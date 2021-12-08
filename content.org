@@ -1,0 +1,406 @@
+:CONFIG:
+#+hugo_base_dir: ./
+#+hugo_section: ./
+#+hugo_weight: auto
+#+hugo_autoset_lastmod: t
+
+#+seq_todo: TODO DRAFT DONE
+#+options: creator:t
+#+property: header-args :eval never-export
+:END:
+
+#+title: walkergriggs.com source file
+#+author: Walker Griggs
+#+email: walkergriggs.com
+
+* Pages
+** About
+:PROPERTIES:
+:export_hugo_section: pages
+:export_file_name: about
+:END:
+
+#+begin_center
+*Hi, my name is Walker Griggs, and I reboot your servers.*
+#+end_center
+
+*** Who
+
+I'm an infrastructure and software engineer living in San Francisco and focusing on public cloud technologies and distributed systems.
+
+*** What
+
+I'm passionate about bleeding edge technology that powers and transforms our day to day, my educational background in Computer Science and English, and I'm urious about every aspect of full-stack development.
+
+Outside of the office, my interests lie heavily in *nix advancement, container orchestration, and distributed cloud computing, and cycling!
+
+Here are some of the technologies I'm familiar with:
+
+- Kubernetes and Docker
+- Golang, Ruby, and Python
+- RHEL, CentOS, and Ubuntu
+- Postgres
+- Terraform
+- Amazon Web Services
+
+*** Where
+
+**** Senior Infrastructure Engineer @ [[https://heroku.com][Heroku]]
+
+
+**** Co-Founder and Advisor @ [[https://outdoorly.com][Outdoorly]]
+
+- Created an e-commerce marketplace with an intuitive, multi-tenant shopping experience.
+- Attended global trade shows to garner the interest of trending winter sports brands.
+- Brought the pro-form model to the European market, disrupting the current, outdated distribution model.
+
+**** Infrastructure Engeering Intern @ [[https://salesforce.com][Salesforce]]
+
+- Engineered automated cloud architecture with AWS, Terraform, and CoreOS.
+- Developed Terraform testing framework with dynamic resource modeling for granular unit tests.
+- Worked on custom Cloudflare analytics pipeline using Docker, Kubernetes, and Grafana.
+- Recipient of the 2018 Mark Benioff Award for most innovating intern.
+
+**** Personal Investing and Digital Platforms Intern @ [[https://fidelity.com][Fidelity]]
+
+- Designed and developed new, internals solutions for enhanced productivity and user experience.
+
+*** What is this site?
+
+Aside from being a personal website, this site hosts my thoughts -- young, old, ill-informed, and carefully considered.
+
+Every word on this site is generated from an Emacs Org file, renered by Hugo, and hosted on Heroku.
+
+** Projects
+:PROPERTIES:
+:export_hugo_section: pages
+:export_file_name: projects
+:END:
+
+A bit more about the work I've done***
+Where
+
+- Heroku
+  - Control plane
+    -***
+    Where
+
+    - Heroku
+      - Control plane
+        -***
+        Where
+
+        - Heroku
+          - Control plane
+            -***
+            Where
+
+            - Heroku
+              - Control plane
+                -***
+                Where
+
+                - Heroku
+                  - Control plane
+                    -***
+                    Where
+
+                    - Heroku
+                      - Control plane
+                        -***
+                        Where
+
+                        - Heroku
+                          - Control plane
+                            -
+* Posts
+:PROPERTIES:
+:export_hugo_section: posts
+:END:
+
+Blog Posts
+
+** Computer IO / Keyboards                                    :io:keyboards:
+*** Ergodox Infinity LCD Firmware                            :io:keyboards:
+:PROPERTIES:
+:export_file_name: ergodox-infinity-lcd-firmware
+:export_date: 2017-03-21
+:END:
+
+So you've got yourself an Ergodox Infinity. Congratulations! Everyone probably thinks your a little bit crazy spending that much on a keyboard that strange with LCD displays that small and a layout you're struggling to type on. But it's ok -- anyone who shares this strange obsession probably understands.
+
+This post is really to demonstrate how to change the default layer's LCD logo. [[http://asciipr0n.net/ergodox-infinity-logo/][Asciipr0n]] has a very clean guide to this, but I find that parts of it are (if not the majority of it is) out of date. Since the firmware has been updated, I thought I'd update the guide.
+
+**** Prerequisites
+
+I don't want to go too deep into these. Essentially, here is the shopping list of the things you'll need...
+
+***** Firmware
+
+The firmware, and really the whole reason for this post, well be using is the [[https://github.com/kiibohd/controller][kiibohd/controller]]. Jacob Alexander (aka Haata) is not only Input Clubs head honcho, but he IS Input Club (well... sorta). He not only wrote kiibohd, but also wrote kll (the keyboard layout language). You'll want to clone his firmware...
+
+***** dfu-util
+
+This toolchain is what we'll be using to flash our firmware onto the board. I downloaded mine from apt-get but it's also available on Homebrew. It's simple enough to download.
+
+***** gcc-arm-none-eabi
+
+This one may only apply to me, but I feel like it shouldn't go unsaid. I needed to download the gcc-arm-none-eabi package to properly build the arm firmware with the gcc compiler. Granted, I'm running Debian over here, so you OSX users may not need this step.
+
+***** Python Imaging Library
+
+This is only necessary if you plan to use kiibohd's bitmap2Struct.py conversion file. Custom logos can only be flashed in the form of byte array, so this script it highly recommended... unless you want to write your byte array by hand. Download 'Image' with pip...
+
+**** Customize Layout
+
+So now that we have everything we need to continue, customize your layout. I just use [[https://configurator.input.club/][Input Club's Configurator]]. It's quite simple and doesn't require too much explanation. Just select the button you want to change, and choose its new function. Go as deep into the layering as you wish. My one recommendation: keep a FLASH button on each half in layer seven. This way, you wont have to flip over your board and hit the reset button with paperclip.
+
+Once you have everything mapped out, download the firmware from the configurator and set aside the ZIP file for later.
+
+If you have aversion to this configurator, so be it. You can use whatever program --or lack thereof if you hate yourself -- you want, as long as the .kll files compile in the end
+
+**** Create a Logo
+
+This part is fun and quite straight forward. Create a logo that fits inside 128x32 screen. Anything large won't get flashed. You can create a the logo in any way, as long as you can get it to .bmp file. Originally, I used [[http://www.piskelapp.com/][Piskel]] to create mine.
+
+#+attr_html: :width 50%
+[[file:static/ergodox-infinity-lcd-firmware/game_of_life.png]]
+
+I created the permutation of a glider from Conway's Game of Life. If you don't know exactly what that is, I highly recommend looking into it.
+
+Essentially, the bitmap can be whatever so long as it's a black foreground on white background. (Though... I've just begun to tinker with and observe the conversion of color bitmaps to the monochromatic lcd display... So you can always give that a try).
+
+Now in order to flash this new logo onto your board, it needs to be in the form of a byte array. The easiest way to convert your bitmap into the byte array is to use the firmware's [[https://github.com/kiibohd/controller/blob/master/Scan/STLcd/bitmap2Struct.py][bitmap2Struct.py]] -- as I mentioned earlier. This script spits out two visual representations of the bitmap and the byte array. Just shove the output into a file for later.
+
+#+begin_src bash
+python bitmap2Struct.py --filename <filename> > ByteArray.txt
+#+end_src
+
+Here is what my ByteArray.txt file look like:
+
+#+begin_src
+uint8_t array[] = {
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00,
+}
+#+end_src
+
+**** Prepare the Firmware
+
+Now that we have all of our files ready to go, it's time to prep the firmware. A few things have changed in the structure of the firmware, so it does take a few steps to get setup. Oddly enough, we need to build the default ergodox firmware in order to rebuild ours later.
+
+#+begin_src bash
+cd controller/Keyboards
+./ergodox.bash
+#+end_src
+
+Now you may notice in the firmware's root directory, a 'kll' directory has been created. That is where we need to add our custom layouts. So make yourself a layout directory and copy in all our .kll files from the ZIP the configurator created.
+
+#+begin_src bash
+mkdir controller/kll/layouts/<my_layout>
+cp <configurator ZIP>/*.kll controller/kll/layouts/<my_layout>
+#+end_src
+
+Since we have our logo's byte array all squared away, all we have to do is include it. Head into the Scan directory and copy the infinity_ergodox module.
+
+#+begin_src bash
+cd controller/Scan
+cp -r Infinity_Ergodox Infinity_Ergodox_Custom
+#+end_src
+
+Now the one and only thing we need to alter in here is the STLcdDefaultImage in scancode_map.kll. Replace the default Input Club's byte array with our custom byte array from earlier.
+
+Bingo. Now our layouts are almost ready to be flashed. We now need to quickly modify our own build script.
+
+#+begin_src bash
+cd controller/Keyboards && cp ergodox.bash ergodox-custom.bash
+#+end_src
+
+Edit this new bash file and update the DefaultMap and PartialMaps to include each layer's .kll map created in the configurator. You can also alter the BuildPath, but I'm not building more than one set of firmware at a time, so I leave them as the default ICED-L and ICED-R. Do note: each map (default or partial) requires the lcdFuncMap. Here is mine for example:
+
+#+begin_src bash
+# This is the default layer of the keyboard
+# NOTE: To combine kll files into a single layout, separate them by spaces
+# e.g.  DefaultMap="mylayout mylayoutmod"
+DefaultMap="<my_layout>/MDErgo1-Default-0 lcdFuncMap"
+
+# This is where you set the additional layers
+# NOTE: Indexing starts at 1
+# NOTE: Each new layer is another array entry
+PartialMaps[1]="<my_layout>/MDErgo1-Default-1 lcdFuncMap"
+PartialMaps[2]="<my_layout>/MDErgo1-Default-2 lcdFuncMap"
+PartialMaps[3]="lcdFuncMap"
+PartialMaps[4]="lcdFuncMap"
+PartialMaps[5]="lcdFuncMap"
+PartialMaps[6]="lcdFuncMap"
+PartialMaps[7]="<my_layout>/MDErgo1-Default-7 lcdFuncMap"
+#+end_src
+
+Finally, change the ScanModule from Infinity_Ergodox to Infinity_Ergodox_Custom or whatever you called your Scan Module. Now we should be all ready to flash.
+
+**** Build and Flash
+
+Now that we have everything set and ready to go, we can actually get this firmware onto your board and have you on your way. First step, rebuild the default firmware from earlier, but run your custom build script this time.
+
+#+begin_src bash
+cd controller/Keyboards
+./ergodox-custom.bash
+#+end_src
+
+This should build your new firmware and create two directories: ICED-L.gcc and ICED-R.gcc. Those contain the binary files to flash.
+
+#+begin_src bash
+# Connect only your left board and enter flash mode
+sudo dfu-util --download ICED-L.gcc/kiibohd.dfu.bin
+
+# Connect only your right board and enter flash mode
+sudo dfu-util --download ICED-R.gcc/kiibohd.dfu.bin
+#+end_src
+
+At this point, your Ergodox Infinity should be both flash with your layout and your custom logo. Happy hacking!
+
+** Distributed Systems                                 :distributed_systems:
+*** TODO State Machines All the Way Down
+:PROPERTIES:
+:export_file_name: state-machines-all-the-way-down
+:export_date: 2020-02-01
+:END:
+
+** Emacs                                                             :emacs:
+*** TODO Five Years with Emacs                                      :emacs:
+:PROPERTIES:
+:export_file_name: five-years-with-emacs
+:export_date: 2017-01-14
+:END:
+
+*** DONE A Year with Emacs                                          :emacs:
+:PROPERTIES:
+:export_file_name: a-year-with-emacs
+:export_date: 2017-01-14
+:END:
+
+_It is important to preface that everything in this article is opinion and based off (roughly) a year of heavy Emacs usage. It is also important to know that this article will be updated along side my configuration and tastes. So without further ado..._
+
+We all know Emacs is an immensely powerful beast. We also know how easy it is to venture down a rabbit hole of elisp and never surface. I liken it to a carpenter replacing a door. After removing the old door, he notices the hinges are askew. He removes the hinges only to notice rot in the door frame. By the time he replaces the frame, he notices a slight difference in shade between the new frame and old moldings... The learning curve for Emacs is wonderfully circular. That being said, I would like to take a moment and explain my configuration in moderate detail.
+
+Before I get too technical, I should probably explain my fascination and reservation with Emacs. Brief background: I was forced into using Emacs when the only other editor on the lab machines was Gedit (and Vi, but we'll forget about that for now). In all honestly, it was quite a hassle. I began compiling a minimal init.el out of necessity. Linum, flyspell, you name it. It was certainly a gradual transition from cushy Atom, but, after a long while, it became an addiction. It wasn't until I discovered a keyboard designed with Emacs in mind (Atreus) did I see Emacs (and the devoted community) in all of its glory.
+
+As for my reservations...
+
+#+begin_quote
+The learning curve is far too steep. My time is best spent elsewhere.
+#+end_quote
+
+WRONG. The weeks of struggling with Meta keys and Emacs pinkie pays off. Trust me. My workflow has increased substantially, and I feel extraordinarily comfortable in my configuration. Granted, emacs is truly a lifestyle. Embrace it.
+
+#+begin_quote
+It's a bloated editor packed with legacy functionality. The startup time is just too long!
+#+end_quote
+
+MYTH. You think Emacs is too heavy for you system? Try running Eclipse and Chrome simultaneously and then get back to me. As long as your config file is optimized (cough cough 'use-package'), the startup time won't be longer than a couple of seconds. Granted, on a system with limited resources, Vi may be a better option. Which brings me to my biggest qualm. Vi is an editor. Emacs is an editor AND IDE. When remoting into a server, I'm not about to Xforward a fully functional Emacs when bandwidth and memory are scarce. For that reason, I keep a modest .vimrc on hand for some quick cli editing.
+
+**** Configuration
+***** melpa and use-package
+
+Melpa is a very common package manager for Emacs. I try not to rely on it, though it certainly comes in handy. The simple (and recommended) solution...
+
+#+begin_src lisp
+;; Melpa
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+  '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+  '("melpa-stable" . "http://stable.melpa.org/packages/"))
+#+end_src
+
+Now it wasn't until a friend picked through my config when I learned about 'use-package'. UP is a wonderful macro written by John Wiegley that declares and isolates packages in your config. Each package can then be initialized, configured, and bound independently. This is a must use...
+
+#+begin_src lisp
+;; Bootstrap 'use-package'
+(unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+(setq use-package-verbose t)
+#+end_src
+
+***** tabs / whitespace
+
+The next few go hand in hand: tabs and whitespace. I'd like to reiterate, these are simply opinions. Feel free to disagree, but I cannot stand tabs in my code. Tab size varies across environments but a space will ALWAYS be one column. Case closed. That being said, tab functionality is quite nice, so I've turned indent-tabs-mode to nil. Simply...
+
+#+begin_src lisp
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+#+end_src
+
+The next is an acquired taste: whitespace-mode. Ever since I properly configured my whitespace (invisibles) to be tastefully visible, I've grown to appreciate the subtly clean code. Trailing whitespace / unnecessary new lines have since disappeared.
+
+#+begin_src lisp
+;; Whitespace
+(use-package whitespace
+    :bind (("C-c C-w" . whitespace-mode))
+    :init
+    (dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+        (add-hook hook #'whitespace-mode))
+    :config
+    (add-hook 'prog-mode-hook 'whitespace-mode)
+    (global-whitespace-mode t) ;; Whitespace ON.
+    (setq whitespace-global-modes '(not org-mode))
+    (setq whitespace-line-column 80) ;; Set indent limit.
+    (setq whitespace-display-mappings
+    '(
+        (space-mark 32 [183] [46])
+        (newline-mark 10 [172 10])
+        (tab-mark 9 [9655 9] [92 9]))))
+#+end_src
+
+Here, I've remapped the display for the space, newline, and tab to suit my taste. Whitespace is shown on pretty much every mode except org (where it really is never needed). Other than that, lines over 80 columns are highlighted. Simple and lovely.
+
+***** helm
+
+Helm is a package that I never knew I needed, until I started using it. It's described as an incremental completion and selection narrowing framework. Essentially, it gives me proper control over buffers, files, and commands similar to Smex (with a Neotree feel). Helm, however, is capably of out of order regex matching which is surprisingly uncommon.
+
+Here, I've remapped the helm key bindings to reflect standard C-x C-f / tab-complete functionality.
+
+#+begin_src lisp
+;; Helm
+(use-package helm
+    :ensure t
+    :bind
+    (("M-x" . helm-M-x)
+    ("C-x C-f" . helm-find-files))
+    :config
+    (setq helm-split-window-in-side-p        t  ;; opens helm inside window
+          helm-move-to-line-cycle-in-source  t
+          helm-autoresize-min-height         20
+          helm-autoresize-max-height         40
+          helm-scroll-amount                 8)
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-z") 'helm-select-action)
+    (setq helm-mode-fuzzy-match t))
+#+end_src
+
+***** org
+
+Org-mode might be one of the most expansive and powerful features of emacs. It is perfect for daily organization, notes, etc. Recently, I've adopted the org-clock, which can time tasks and generate useful reports. I may not be a freelancer who charges by the hour, but it certainly keeps me on track and focused.
+
+#+begin_src lisp
+;; Org
+(use-package org
+    :ensure t
+    :mode (("\\.org$" . org-mode))
+    :bind (("C-c C-x C-i" . org-clock-in)
+           ("C-c C-x C-o" . org-clock-out)
+           ("C-c C-x C-j" . org-clock-goto)
+           ("C-c C-x C-r" . org-clock-report))
+    :config
+    (progn
+        (define-key org-mode-map "\M-q" 'toggle-truncate-lines)
+        (setq org-directory "~/org")
+        (setq org-clock-persist t)
+        (setq org-clock-mode-line-total 'current)))
+#+end_src
+
+While these snippets are not my configuration in it's entirety, the full file is not a hulking mass. It can be found at in my [[https://github.com/WalkerGriggs/DotFiles/blob/master/.emacs][dotfiles repo]]. Feel free to take and modify what you need. If you have anything to contribute, feel free to shoot me an email!

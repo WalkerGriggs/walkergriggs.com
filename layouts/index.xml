@@ -1,0 +1,22 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ .Site.Title }}</title>
+    <description>{{ .Site.Params.description }}</description>
+    <link>{{ .Site.BaseURL }}</link>
+    <language>en</language>
+    <copyright>Copyright {{ now.Format "2002"}}, Walker Griggs</copyright>
+    <generator>Hugo - gohugo.io</generator>
+    <docs>http://cyber.harvard.edu/rss/rss.html</docs>
+    <atom:link href="http://walkergriggs.com/atom.xml" rel="self" type="application/atom+xml"/>
+    {{ range where .Site.RegularPages "Section" "posts" }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <description>{{ .Content | html }}</description>
+      <author>walker@walkergriggs.com (Walker Griggs)</author>
+      <guid>{{ .Permalink }}</guid>
+      <pubDate>{{ .Date.Format "Wed, 02 Oct 2006 08:00:00 ES" | safeHTML }}</pubDate>
+    </item>
+    {{ end }}
+  </channel>
+</rss>

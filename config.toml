@@ -1,0 +1,86 @@
+baseURL = ""
+languageCode = "en-us"
+title = "walkergriggs.com"
+theme = "lines"
+
+[Author]
+  name = "Walker Griggs"
+
+[params]
+  description = "Hi, I'm Walker, and I reboot your servers "
+  author = "Walker Griggs"
+  copyright = "Walker Griggs"
+  logo = "walkergriggs.com"
+  [source]
+    org_dir = "content-org"
+    org_file = "content-org/walkergriggs.org"
+    md_dir = "content"
+  contentTypeName = "posts"
+
+[frontmatter]
+  date  = [":filename", ":default"]
+  author = ""
+  github = ""
+  facebook = ""
+  og_image = ""
+  sitename = ""
+  twitter = ""
+
+[permalinks]
+  posts = "/:year/:month/:day/:filename"
+  pages = "/:slug"
+
+[outputFormats.RSS]
+  mediatype = "application/rss"
+  baseName = "atom"
+
+[outputFormats.JSON]
+  mediatype = "application/json"
+  baseName = "feed"
+
+[sitemap]
+  changefreq = "monthly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+[menu]
+  [[menu.main]]
+    identifier = "writing"
+    name       = "Writing"
+    url        = "/"
+    weight     = -100
+
+  [[menu.main]]
+    identifier = "about"
+    name       = "About"
+    url        = "/about/"
+    weight     = -50
+
+  [[menu.main]]
+    identifier = "rss"
+    name       = "RSS"
+    url        = "/atom.xml"
+    weight     = -1
+
+  [[menu.main]]
+    identifier = "projects"
+    name       = "Projects"
+    url        = "/projects"
+    weight     = -10
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "emacs"
+    tabWidth = 4
