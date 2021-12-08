@@ -1,4 +1,4 @@
-baseURL = ""
+baseURL = "/"
 languageCode = "en-us"
 title = "walkergriggs.com"
 theme = "lines"
