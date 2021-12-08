@@ -1,0 +1,167 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Walker Griggs - ">
+<title>Ergodox Infinity LCD Firmware | walkergriggs.com</title>
+<meta name=description content="Hi, I'm Walker, and I reboot your servers ">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Ergodox Infinity LCD Firmware">
+<meta name=twitter:description content="So you&rsquo;ve got yourself an Ergodox Infinity. Congratulations! Everyone probably thinks your a little bit crazy spending that much on a keyboard that strange with LCD displays that small and a layout you&rsquo;re struggling to type on. But it&rsquo;s ok &ndash; anyone who shares this strange obsession probably understands.
+This post is really to demonstrate how to change the default layer&rsquo;s LCD logo. Asciipr0n has a very clean guide to this, but I find that parts of it are (if not the majority of it is) out of date.">
+<meta property="og:title" content="Ergodox Infinity LCD Firmware">
+<meta property="og:description" content="So you&rsquo;ve got yourself an Ergodox Infinity. Congratulations! Everyone probably thinks your a little bit crazy spending that much on a keyboard that strange with LCD displays that small and a layout you&rsquo;re struggling to type on. But it&rsquo;s ok &ndash; anyone who shares this strange obsession probably understands.
+This post is really to demonstrate how to change the default layer&rsquo;s LCD logo. Asciipr0n has a very clean guide to this, but I find that parts of it are (if not the majority of it is) out of date.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/2017/03/21/ergodox-infinity-lcd-firmware/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2017-03-21T00:00:00+00:00">
+<meta property="article:modified_time" content="2017-03-21T00:00:00+00:00">
+<meta itemprop=name content="Ergodox Infinity LCD Firmware">
+<meta itemprop=description content="So you&rsquo;ve got yourself an Ergodox Infinity. Congratulations! Everyone probably thinks your a little bit crazy spending that much on a keyboard that strange with LCD displays that small and a layout you&rsquo;re struggling to type on. But it&rsquo;s ok &ndash; anyone who shares this strange obsession probably understands.
+This post is really to demonstrate how to change the default layer&rsquo;s LCD logo. Asciipr0n has a very clean guide to this, but I find that parts of it are (if not the majority of it is) out of date."><meta itemprop=datePublished content="2017-03-21T00:00:00+00:00">
+<meta itemprop=dateModified content="2017-03-21T00:00:00+00:00">
+<meta itemprop=wordCount content="1632">
+<meta itemprop=keywords content="io,keyboards,">
+<link rel=canonical href=/2017/03/21/ergodox-infinity-lcd-firmware/>
+<link rel=alternate type=application/atom+xml title=walkergriggs.com href=atom.xml>
+<link rel=alternate type=application/json title=walkergriggs.com href=feed.json>
+<style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 '-apple-system',BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;text-rendering:optimizeSpeed}.email-container{width:40px;position:fixed;bottom:0;right:40px}.email-link-wrapper{display:flex;flex-direction:column;align-items:center;position:relative}.email-link-wrapper:after{content:'';display:block;width:1px;height:90px;margin:0 auto;background-color:#353535}.email-link{writing-mode:vertical-rl;margin:20px auto;letter-spacing:.5px;text-decoration:none}.email-link ::selection,.email-link a:focus,.email-link a:hover{transform:translateY(-3px)}.social-container{width:40px;position:fixed;bottom:0;left:40px}.social-item-list{display:flex;flex-direction:column;align-items:center;list-style-type:none;margin:0}.social-item-list:after{content:'';display:block;width:1px;height:90px;margin:0 auto;background-color:#353535}.social-item{padding-bottom:10px}.posts hr{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:none;border-bottom:1px #353535;flex:1 0 1rem}main{max-width:80ch;padding:2ch;margin:auto}a,body{color:#353535}::selection,a:focus,a:hover{background-color:#353535;color:#fff}.meta{margin:0 0 2.5rem}.tags::before{content:"\2022";margin-left:1rem}code,pre{color:#353535;font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;border:1px solid #353535;font-size:small}code{padding:.1rem;border:none}pre{padding:.5rem;overflow-x:auto}pre code{border:none}img{max-width:100%;border:1px solid #353535}hr{background:#353535;height:1px;border:0}ul{list-style-type:square}ul,ol{padding-left:1.2rem}header li,footer li{display:inline;text-transform:uppercase}header a,footer a{text-decoration:none}header ul,footer ul{justify-content:space-between;display:flex}[aria-current=page]{text-decoration:line-through}header,section,footer{padding:1rem 0}blockquote{border-left:5px solid #353535;padding-left:1rem}.posts ul,header ul,footer ul{list-style:none}.posts,header ul,footer ul{padding:0}.posts li{align-items:center;display:flex;justify-content:space-between;margin-bottom:.7rem}.posts li a,.posts li div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.posts li time{padding-left:1rem;white-space:nowrap;font-variant-numeric:tabular-nums}.hash{opacity:.25;text-decoration:none}table{border-collapse:collapse;text-align:left;width:100%}table tr{background:#fff;border-bottom:1px solid}table th,table td{padding:10px 20px}</style>
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Ergodox Infinity LCD Firmware","headline":"Ergodox Infinity LCD Firmware","alternativeHeadline":"","description":"So you\u0026rsquo;ve got yourself an Ergodox Infinity. Congratulations! Everyone probably thinks your a little bit crazy spending that much on a keyboard that strange with LCD displays that small and a layout you\u0026rsquo;re struggling to type on. But it\u0026rsquo;s ok \u0026ndash; anyone who shares this strange obsession probably understands.\nThis post is really to demonstrate how to change the default layer\u0026rsquo;s LCD logo. Asciipr0n has a very clean guide to this, but I find that parts of it are (if not the majority of it is) out of date.","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"\/2017\/03\/21\/ergodox-infinity-lcd-firmware\/"},"author":{"@type":"Person","name":"[Walker Griggs]"},"creator":{"@type":"Person","name":"[Walker Griggs]"},"accountablePerson":{"@type":"Person","name":"[Walker Griggs]"},"copyrightHolder":"walkergriggs.com","copyrightYear":"2017","dateCreated":"2017-03-21T00:00:00.00Z","datePublished":"2017-03-21T00:00:00.00Z","dateModified":"2017-03-21T00:00:00.00Z","publisher":{"@type":"Organization","name":"walkergriggs.com","url":"","logo":{"@type":"ImageObject","url":"walkergriggs.com","width":"32","height":"32"}},"image":"walkergriggs.com","url":"\/2017\/03\/21\/ergodox-infinity-lcd-firmware\/","wordCount":"1632","genre":["io","keyboards"],"keywords":["io","keyboards"]}</script>
+</head>
+<body>
+<main>
+<header>
+<nav>
+<ul>
+<li>
+<a href=/ aria-current=page>Writing</a>
+</li>
+<li>
+<a href=/about/>About</a>
+</li>
+<li>
+<a href=/projects>Projects</a>
+</li>
+<li>
+<a href=/atom.xml>RSS</a>
+</li>
+</ul>
+</nav>
+</header>
+<hr>
+<section>
+<h2 itemprop="name headline">Ergodox Infinity LCD Firmware</h2>
+<p class=meta>
+<time itemprop=datePublished datetime=2017-03-21> March 21, 2017</time> &bull;
+<a href=/tags/io>Io</a>, <a href=/tags/keyboards>Keyboards</a>
+</p>
+<span itemprop=articleBody>
+<p>So you&rsquo;ve got yourself an Ergodox Infinity. Congratulations! Everyone probably thinks your a little bit crazy spending that much on a keyboard that strange with LCD displays that small and a layout you&rsquo;re struggling to type on. But it&rsquo;s ok &ndash; anyone who shares this strange obsession probably understands.</p>
+<p>This post is really to demonstrate how to change the default layer&rsquo;s LCD logo. <a href=http://asciipr0n.net/ergodox-infinity-logo/>Asciipr0n</a> has a very clean guide to this, but I find that parts of it are (if not the majority of it is) out of date. Since the firmware has been updated, I thought I&rsquo;d update the guide.</p>
+<h2 id=prerequisites>Prerequisites <a href=#prerequisites class=hash>#</a></h2>
+<p>I don&rsquo;t want to go too deep into these. Essentially, here is the shopping list of the things you&rsquo;ll need&mldr;</p>
+<h3 id=firmware>Firmware <a href=#firmware class=hash>#</a></h3>
+<p>The firmware, and really the whole reason for this post, well be using is the <a href=https://github.com/kiibohd/controller>kiibohd/controller</a>. Jacob Alexander (aka Haata) is not only Input Clubs head honcho, but he IS Input Club (well&mldr; sorta). He not only wrote kiibohd, but also wrote kll (the keyboard layout language). You&rsquo;ll want to clone his firmware&mldr;</p>
+<h3 id=dfu-util>dfu-util <a href=#dfu-util class=hash>#</a></h3>
+<p>This toolchain is what we&rsquo;ll be using to flash our firmware onto the board. I downloaded mine from apt-get but it&rsquo;s also available on Homebrew. It&rsquo;s simple enough to download.</p>
+<h3 id=gcc-arm-none-eabi>gcc-arm-none-eabi <a href=#gcc-arm-none-eabi class=hash>#</a></h3>
+<p>This one may only apply to me, but I feel like it shouldn&rsquo;t go unsaid. I needed to download the gcc-arm-none-eabi package to properly build the arm firmware with the gcc compiler. Granted, I&rsquo;m running Debian over here, so you OSX users may not need this step.</p>
+<h3 id=python-imaging-library>Python Imaging Library <a href=#python-imaging-library class=hash>#</a></h3>
+<p>This is only necessary if you plan to use kiibohd&rsquo;s bitmap2Struct.py conversion file. Custom logos can only be flashed in the form of byte array, so this script it highly recommended&mldr; unless you want to write your byte array by hand. Download &lsquo;Image&rsquo; with pip&mldr;</p>
+<h2 id=customize-layout>Customize Layout <a href=#customize-layout class=hash>#</a></h2>
+<p>So now that we have everything we need to continue, customize your layout. I just use <a href=https://configurator.input.club/>Input Club&rsquo;s Configurator</a>. It&rsquo;s quite simple and doesn&rsquo;t require too much explanation. Just select the button you want to change, and choose its new function. Go as deep into the layering as you wish. My one recommendation: keep a FLASH button on each half in layer seven. This way, you wont have to flip over your board and hit the reset button with paperclip.</p>
+<p>Once you have everything mapped out, download the firmware from the configurator and set aside the ZIP file for later.</p>
+<p>If you have aversion to this configurator, so be it. You can use whatever program &ndash;or lack thereof if you hate yourself &ndash; you want, as long as the .kll files compile in the end</p>
+<h2 id=create-a-logo>Create a Logo <a href=#create-a-logo class=hash>#</a></h2>
+<p>This part is fun and quite straight forward. Create a logo that fits inside 128x32 screen. Anything large won&rsquo;t get flashed. You can create a the logo in any way, as long as you can get it to .bmp file. Originally, I used <a href=http://www.piskelapp.com/>Piskel</a> to create mine.</p>
+<figure><img src=/ergodox-infinity-lcd-firmware/game_of_life.png width=50%>
+</figure>
+<p>I created the permutation of a glider from Conway&rsquo;s Game of Life. If you don&rsquo;t know exactly what that is, I highly recommend looking into it.</p>
+<p>Essentially, the bitmap can be whatever so long as it&rsquo;s a black foreground on white background. (Though&mldr; I&rsquo;ve just begun to tinker with and observe the conversion of color bitmaps to the monochromatic lcd display&mldr; So you can always give that a try).</p>
+<p>Now in order to flash this new logo onto your board, it needs to be in the form of a byte array. The easiest way to convert your bitmap into the byte array is to use the firmware&rsquo;s <a href=https://github.com/kiibohd/controller/blob/master/Scan/STLcd/bitmap2Struct.py>bitmap2Struct.py</a> &ndash; as I mentioned earlier. This script spits out two visual representations of the bitmap and the byte array. Just shove the output into a file for later.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>python bitmap2Struct.py --filename &lt;filename&gt; &gt; ByteArray.txt
+</code></pre></div><p>Here is what my ByteArray.txt file look like:</p>
+<pre tabindex=0><code class=language-nil data-lang=nil>uint8_t array[] = {
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x00, 0x00, 0x00, 0x00,
+}
+</code></pre><h2 id=prepare-the-firmware>Prepare the Firmware <a href=#prepare-the-firmware class=hash>#</a></h2>
+<p>Now that we have all of our files ready to go, it&rsquo;s time to prep the firmware. A few things have changed in the structure of the firmware, so it does take a few steps to get setup. Oddly enough, we need to build the default ergodox firmware in order to rebuild ours later.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#a2f>cd</span> controller/Keyboards
+./ergodox.bash
+</code></pre></div><p>Now you may notice in the firmware&rsquo;s root directory, a &lsquo;kll&rsquo; directory has been created. That is where we need to add our custom layouts. So make yourself a layout directory and copy in all our .kll files from the ZIP the configurator created.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mkdir controller/kll/layouts/&lt;my_layout&gt;
+cp &lt;configurator ZIP&gt;/*.kll controller/kll/layouts/&lt;my_layout&gt;
+</code></pre></div><p>Since we have our logo&rsquo;s byte array all squared away, all we have to do is include it. Head into the Scan directory and copy the infinity_ergodox module.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#a2f>cd</span> controller/Scan
+cp -r Infinity_Ergodox Infinity_Ergodox_Custom
+</code></pre></div><p>Now the one and only thing we need to alter in here is the STLcdDefaultImage in scancode_map.kll. Replace the default Input Club&rsquo;s byte array with our custom byte array from earlier.</p>
+<p>Bingo. Now our layouts are almost ready to be flashed. We now need to quickly modify our own build script.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#a2f>cd</span> controller/Keyboards <span style=color:#666>&amp;&amp;</span> cp ergodox.bash ergodox-custom.bash
+</code></pre></div><p>Edit this new bash file and update the DefaultMap and PartialMaps to include each layer&rsquo;s .kll map created in the configurator. You can also alter the BuildPath, but I&rsquo;m not building more than one set of firmware at a time, so I leave them as the default ICED-L and ICED-R. Do note: each map (default or partial) requires the lcdFuncMap. Here is mine for example:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#080;font-style:italic># This is the default layer of the keyboard</span>
+<span style=color:#080;font-style:italic># NOTE: To combine kll files into a single layout, separate them by spaces</span>
+<span style=color:#080;font-style:italic># e.g.  DefaultMap=&#34;mylayout mylayoutmod&#34;</span>
+<span style=color:#b8860b>DefaultMap</span><span style=color:#666>=</span><span style=color:#b44>&#34;&lt;my_layout&gt;/MDErgo1-Default-0 lcdFuncMap&#34;</span>
+
+<span style=color:#080;font-style:italic># This is where you set the additional layers</span>
+<span style=color:#080;font-style:italic># NOTE: Indexing starts at 1</span>
+<span style=color:#080;font-style:italic># NOTE: Each new layer is another array entry</span>
+PartialMaps<span style=color:#666>[</span>1<span style=color:#666>]=</span><span style=color:#b44>&#34;&lt;my_layout&gt;/MDErgo1-Default-1 lcdFuncMap&#34;</span>
+PartialMaps<span style=color:#666>[</span>2<span style=color:#666>]=</span><span style=color:#b44>&#34;&lt;my_layout&gt;/MDErgo1-Default-2 lcdFuncMap&#34;</span>
+PartialMaps<span style=color:#666>[</span>3<span style=color:#666>]=</span><span style=color:#b44>&#34;lcdFuncMap&#34;</span>
+PartialMaps<span style=color:#666>[</span>4<span style=color:#666>]=</span><span style=color:#b44>&#34;lcdFuncMap&#34;</span>
+PartialMaps<span style=color:#666>[</span>5<span style=color:#666>]=</span><span style=color:#b44>&#34;lcdFuncMap&#34;</span>
+PartialMaps<span style=color:#666>[</span>6<span style=color:#666>]=</span><span style=color:#b44>&#34;lcdFuncMap&#34;</span>
+PartialMaps<span style=color:#666>[</span>7<span style=color:#666>]=</span><span style=color:#b44>&#34;&lt;my_layout&gt;/MDErgo1-Default-7 lcdFuncMap&#34;</span>
+</code></pre></div><p>Finally, change the ScanModule from Infinity_Ergodox to Infinity_Ergodox_Custom or whatever you called your Scan Module. Now we should be all ready to flash.</p>
+<h2 id=build-and-flash>Build and Flash <a href=#build-and-flash class=hash>#</a></h2>
+<p>Now that we have everything set and ready to go, we can actually get this firmware onto your board and have you on your way. First step, rebuild the default firmware from earlier, but run your custom build script this time.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#a2f>cd</span> controller/Keyboards
+./ergodox-custom.bash
+</code></pre></div><p>This should build your new firmware and create two directories: ICED-L.gcc and ICED-R.gcc. Those contain the binary files to flash.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#080;font-style:italic># Connect only your left board and enter flash mode</span>
+sudo dfu-util --download ICED-L.gcc/kiibohd.dfu.bin
+
+<span style=color:#080;font-style:italic># Connect only your right board and enter flash mode</span>
+sudo dfu-util --download ICED-R.gcc/kiibohd.dfu.bin
+</code></pre></div><p>At this point, your Ergodox Infinity should be both flash with your layout and your custom logo. Happy hacking!</p>
+</span>
+</section>
+<hr>
+<footer>
+<nav>
+<ul>
+<li>
+© 2021
+</li>
+</ul>
+</nav>
+</footer>
+</hr>
+<div class=email-container>
+<div class=email-link-wrapper>
+<a class=email-link href=walker@walkergriggs.com>walker@walkergriggs.com</a>
+</div>
+</div>
+<script src=https://kit.fontawesome.com/a076d05399.js crossorigin=anonymous></script>
+<div class=social-container>
+<ul class=social-item-list>
+<li class=social-item>
+<a class=social-link href=https://github.com/walkergriggs>
+<i class="fab fa-github fa-lg"></i>
+</a>
+</li>
+<li class=social-item>
+<a class=social-link href=https://linkedin.com/in/walkergriggs>
+<i class="fab fa-linkedin fa-lg"></i>
+</a>
+</li>
+</ul>
+</div>
+</main>
+</body>
+</html>
