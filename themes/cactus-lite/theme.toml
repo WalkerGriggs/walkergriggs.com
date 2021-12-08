@@ -1,0 +1,19 @@
+name = "Cactus Lite"
+license = "MIT"
+description = "A simple hugo theme for personal blogs. Forked from hugo theme cactus created by @monkeyWzr."
+homepage = "https://github.com/monkeyWzr/hugo-theme-cactus"
+demosite = "https://www.takuzen.me/hugo-theme-cactus/"
+tags = ["blog", "responsive", "simple"]
+features = ["mathjax", "customizable", "color"]
+min_version = "0.55"
+
+# If the theme has a single author
+[author]
+    name = "Walker Griggs"
+    homepage = "https://github.com/walkergriggs"
+
+# If porting an existing theme
+[original]
+    name = "Zeran Wu"
+    homepage = "https://github.com/monkeyWzr"
+    repo = "https://github.com/monkeyWzr/hugo-theme-cactus"

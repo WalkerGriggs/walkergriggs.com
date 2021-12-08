@@ -1,42 +1,28 @@
 baseURL = "/"
 languageCode = "en-us"
-title = "walkergriggs.com"
-theme = "lines"
+title = "technobabble"
+theme = "cactus-lite"
 
 [Author]
   name = "Walker Griggs"
 
 [params]
-  description = "Hi, I'm Walker, and I reboot your servers "
   author = "Walker Griggs"
   copyright = "Walker Griggs"
-  logo = "walkergriggs.com"
-  [source]
-    org_dir = "content-org"
-    org_file = "content-org/walkergriggs.org"
-    md_dir = "content"
-  contentTypeName = "posts"
+  colortheme = "classic"
+  mainSection = "posts"
+  showAllPostsOnHomePage = true
+  tagsOverview = false
+  rss = true
+  projectsUrl = "https://github.com/walkergriggs"
 
-[frontmatter]
-  date  = [":filename", ":default"]
-  author = ""
-  github = ""
-  facebook = ""
-  og_image = ""
-  sitename = ""
-  twitter = ""
+  [source]
+    org_file = "content.org"
+    md_dir = "content"
 
 [permalinks]
   posts = "/:year/:month/:day/:filename"
   pages = "/:slug"
-
-[outputFormats.RSS]
-  mediatype = "application/rss"
-  baseName = "atom"
-
-[outputFormats.JSON]
-  mediatype = "application/json"
-  baseName = "feed"
 
 [sitemap]
   changefreq = "monthly"
@@ -45,22 +31,19 @@ theme = "lines"
 
 [menu]
   [[menu.main]]
-    identifier = "writing"
-    name       = "Writing"
-    url        = "/"
-    weight     = -100
+    name = "Home"
+    url = "/"
+    weight = 1
 
   [[menu.main]]
-    identifier = "about"
-    name       = "About"
-    url        = "/about/"
-    weight     = -50
+    name = "Writings"
+    url = "/posts"
+    weight = 2
 
   [[menu.main]]
-    identifier = "rss"
-    name       = "RSS"
-    url        = "/atom.xml"
-    weight     = -1
+    name = "About"
+    url = "/about"
+    weight = 3
 
 [markup.goldmark.renderer]
   unsafe = true
@@ -74,7 +57,7 @@ theme = "lines"
     lineAnchors = ""
     lineNoStart = 1
     lineNos = false
-    lineNumbersInTable = true
+    lineNumbersInTable = false
     noClasses = true
     style = "emacs"
     tabWidth = 4

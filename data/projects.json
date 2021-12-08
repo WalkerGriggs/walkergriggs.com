@@ -1,0 +1,24 @@
+{
+   "list": [
+      {
+         "name":"OpenState",
+         "url":"https://github.com/walkergriggs/openstate",
+         "desc":"Distributed, language agnostic task runner"
+      },
+      {
+         "name":"Carousel",
+         "url":"https://github.com/walkergriggs/carousel",
+         "desc":"Modern IRC bouncer written in Go"
+      },
+      {
+          "name":"Hellosb",
+          "url":"https://github.com/walkergriggs/hellosb",
+          "desc":"Generated reference implementation of Open Service Broker"
+      },
+      {
+          "name":"hl-region",
+          "url":"https://github.com/walkergriggs/hl-region",
+          "desc":"Passive region highlighting for Emacs"
+      }
+   ]
+}

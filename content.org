@@ -20,11 +20,11 @@
 :export_file_name: about
 :END:
 
+*** Who
 #+begin_center
 *Hi, my name is Walker Griggs, and I reboot your servers.*
 #+end_center
 
-*** Who
 I'm an infrastructure and software engineer living in San Francisco, focusing on public cloud technologies and distributed systems.
 
 I'm passionate about bleeding edge technology that powers and transforms our day to day, my educational background is in Computer Science and English, and I'm curious about every aspect of full-stack development.

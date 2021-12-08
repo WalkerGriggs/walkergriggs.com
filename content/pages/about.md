@@ -6,6 +6,8 @@ creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
 weight = 2001
 +++
 
+## Who {#who}
+
 <style>.org-center { margin-left: auto; margin-right: auto; text-align: center; }</style>
 
 <div class="org-center">
@@ -14,9 +16,6 @@ weight = 2001
 **Hi, my name is Walker Griggs, and I reboot your servers.**
 
 </div>
-
-
-## Who {#who}
 
 I'm an infrastructure and software engineer living in San Francisco, focusing on public cloud technologies and distributed systems.
 
@@ -35,7 +34,7 @@ Outside of the office, I enjoy tinerking with Linux, riding my bike, and playing
 
 ## What {#what}
 
-Aside from being a personal website, this site hosts my thoughts -- young, old, ill-informed, and carefully considered.
+Aside from being my personal website, this site hosts my thoughts -- young, old, ill-informed, and carefully considered.
 
 Every word on this site is generated from an Emacs Org file, renered by Hugo, and hosted on Github.
 
