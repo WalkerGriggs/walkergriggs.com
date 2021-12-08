@@ -25,94 +25,25 @@
 #+end_center
 
 *** Who
+I'm an infrastructure and software engineer living in San Francisco, focusing on public cloud technologies and distributed systems.
 
-I'm an infrastructure and software engineer living in San Francisco and focusing on public cloud technologies and distributed systems.
+I'm passionate about bleeding edge technology that powers and transforms our day to day, my educational background is in Computer Science and English, and I'm curious about every aspect of full-stack development.
 
-*** What
-
-I'm passionate about bleeding edge technology that powers and transforms our day to day, my educational background in Computer Science and English, and I'm urious about every aspect of full-stack development.
-
-Outside of the office, my interests lie heavily in *nix advancement, container orchestration, and distributed cloud computing, and cycling!
-
-Here are some of the technologies I'm familiar with:
-
-- Kubernetes and Docker
-- Golang, Ruby, and Python
-- RHEL, CentOS, and Ubuntu
-- Postgres
-- Terraform
-- Amazon Web Services
+Outside of the office, I enjoy tinerking with Linux, riding my bike, and playing far too much chess.
 
 *** Where
+- Senior Infrastructure Engineer @ [[https://heroku.com][Heroku]] /- Jul 2019 - Present/
+- Co-Founder and Advisor @ [[https://outdoorly.com][Outdoorly]] /- Jan 2017 - Jan 2020/
+- Infrastructure Engeering Intern @ [[https://salesforce.com][Salesforce]] /- May 2017 - Aug 2018/
+- Personal Investing and Digital Platforms Intern @ [[https://fidelity.com][Fidelity]] /- May 2016 - Aug 2016/
 
-**** Senior Infrastructure Engineer @ [[https://heroku.com][Heroku]]
+*** What
+Aside from being my personal website, this site hosts my thoughts -- young, old, ill-informed, and carefully considered.
 
+Every word on this site is generated from an Emacs Org file, renered by Hugo, and hosted on Github.
 
-**** Co-Founder and Advisor @ [[https://outdoorly.com][Outdoorly]]
+Of course, the opinions here are my own, not of my employer.
 
-- Created an e-commerce marketplace with an intuitive, multi-tenant shopping experience.
-- Attended global trade shows to garner the interest of trending winter sports brands.
-- Brought the pro-form model to the European market, disrupting the current, outdated distribution model.
-
-**** Infrastructure Engeering Intern @ [[https://salesforce.com][Salesforce]]
-
-- Engineered automated cloud architecture with AWS, Terraform, and CoreOS.
-- Developed Terraform testing framework with dynamic resource modeling for granular unit tests.
-- Worked on custom Cloudflare analytics pipeline using Docker, Kubernetes, and Grafana.
-- Recipient of the 2018 Mark Benioff Award for most innovating intern.
-
-**** Personal Investing and Digital Platforms Intern @ [[https://fidelity.com][Fidelity]]
-
-- Designed and developed new, internals solutions for enhanced productivity and user experience.
-
-*** What is this site?
-
-Aside from being a personal website, this site hosts my thoughts -- young, old, ill-informed, and carefully considered.
-
-Every word on this site is generated from an Emacs Org file, renered by Hugo, and hosted on Heroku.
-
-** Projects
-:PROPERTIES:
-:export_hugo_section: pages
-:export_file_name: projects
-:END:
-
-A bit more about the work I've done***
-Where
-
-- Heroku
-  - Control plane
-    -***
-    Where
-
-    - Heroku
-      - Control plane
-        -***
-        Where
-
-        - Heroku
-          - Control plane
-            -***
-            Where
-
-            - Heroku
-              - Control plane
-                -***
-                Where
-
-                - Heroku
-                  - Control plane
-                    -***
-                    Where
-
-                    - Heroku
-                      - Control plane
-                        -***
-                        Where
-
-                        - Heroku
-                          - Control plane
-                            -
 * Posts
 :PROPERTIES:
 :export_hugo_section: posts

@@ -18,53 +18,25 @@ weight = 2001
 
 ## Who {#who}
 
-I'm an infrastructure and software engineer living in San Francisco and focusing on public cloud technologies and distributed systems.
+I'm an infrastructure and software engineer living in San Francisco, focusing on public cloud technologies and distributed systems.
 
+I'm passionate about bleeding edge technology that powers and transforms our day to day, my educational background is in Computer Science and English, and I'm curious about every aspect of full-stack development.
 
-## What {#what}
-
-I'm passionate about bleeding edge technology that powers and transforms our day to day, my educational background in Computer Science and English, and I'm urious about every aspect of full-stack development.
-
-Outside of the office, my interests lie heavily in \*nix advancement, container orchestration, and distributed cloud computing, and cycling!
-
-Here are some of the technologies I'm familiar with:
-
--   Kubernetes and Docker
--   Golang, Ruby, and Python
--   RHEL, CentOS, and Ubuntu
--   Postgres
--   Terraform
--   Amazon Web Services
+Outside of the office, I enjoy tinerking with Linux, riding my bike, and playing far too much chess.
 
 
 ## Where {#where}
 
-
-### Senior Infrastructure Engineer @ [Heroku](https://heroku.com) {#senior-infrastructure-engineer-heroku}
-
-
-### Co-Founder and Advisor @ [Outdoorly](https://outdoorly.com) {#co-founder-and-advisor-outdoorly}
-
--   Created an e-commerce marketplace with an intuitive, multi-tenant shopping experience.
--   Attended global trade shows to garner the interest of trending winter sports brands.
--   Brought the pro-form model to the European market, disrupting the current, outdated distribution model.
+-   Senior Infrastructure Engineer @ [Heroku](https://heroku.com) _- Jul 2019 - Present_
+-   Co-Founder and Advisor @ [Outdoorly](https://outdoorly.com) _- Jan 2017 - Jan 2020_
+-   Infrastructure Engeering Intern @ [Salesforce](https://salesforce.com) _- May 2017 - Aug 2018_
+-   Personal Investing and Digital Platforms Intern @ [Fidelity](https://fidelity.com) _- May 2016 - Aug 2016_
 
 
-### Infrastructure Engeering Intern @ [Salesforce](https://salesforce.com) {#infrastructure-engeering-intern-salesforce}
-
--   Engineered automated cloud architecture with AWS, Terraform, and CoreOS.
--   Developed Terraform testing framework with dynamic resource modeling for granular unit tests.
--   Worked on custom Cloudflare analytics pipeline using Docker, Kubernetes, and Grafana.
--   Recipient of the 2018 Mark Benioff Award for most innovating intern.
-
-
-### Personal Investing and Digital Platforms Intern @ [Fidelity](https://fidelity.com) {#personal-investing-and-digital-platforms-intern-fidelity}
-
--   Designed and developed new, internals solutions for enhanced productivity and user experience.
-
-
-## What is this site? {#what-is-this-site}
+## What {#what}
 
 Aside from being a personal website, this site hosts my thoughts -- young, old, ill-informed, and carefully considered.
 
-Every word on this site is generated from an Emacs Org file, renered by Hugo, and hosted on Heroku.
+Every word on this site is generated from an Emacs Org file, renered by Hugo, and hosted on Github.
+
+Of course, the opinions here are my own, not of my employer.
