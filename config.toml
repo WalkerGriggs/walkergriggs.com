@@ -31,19 +31,24 @@ theme = "cactus-lite"
 
 [menu]
   [[menu.main]]
-    name = "Home"
+    name = "home"
     url = "/"
     weight = 1
 
   [[menu.main]]
-    name = "Writings"
+    name = "writings"
     url = "/posts"
     weight = 2
 
   [[menu.main]]
-    name = "Projects"
+    name = "projects"
     url = "https://github.com/walkergriggs"
     weight = 3
+
+  [[menu.main]]
+    name = "rss"
+    url = "/index.xml"
+    weight = 4
 
 [markup.goldmark.renderer]
   unsafe = true
