@@ -20,27 +20,15 @@
 :export_file_name: about
 :END:
 
-*** Who
 #+begin_center
 *Hi, my name is Walker Griggs, and I reboot your servers.*
 #+end_center
 
-I'm an infrastructure and software engineer living in San Francisco, focusing on public cloud technologies and distributed systems.
+I'm an infrastructure and software engineer working at [[https://heroku.com][Heroku]], living in San Francisco, and focusing on public cloud technologies and distributed systems.
 
-I'm passionate about bleeding edge technology that powers and transforms our day to day, my educational background is in Computer Science and English, and I'm curious about every aspect of full-stack development.
+My educational background is in Computer Science and English, and I'm passionate about the hidden technologies that silently transform our day to day. Outside of the office, I enjoy puzzling, riding my bike, writing occasionally, and playing far too much chess.
 
-Outside of the office, I enjoy tinerking with Linux, riding my bike, and playing far too much chess.
-
-*** Where
-- Senior Infrastructure Engineer @ [[https://heroku.com][Heroku]] /- Jul 2019 - Present/
-- Co-Founder and Advisor @ [[https://outdoorly.com][Outdoorly]] /- Jan 2017 - Jan 2020/
-- Infrastructure Engeering Intern @ [[https://salesforce.com][Salesforce]] /- May 2017 - Aug 2018/
-- Personal Investing and Digital Platforms Intern @ [[https://fidelity.com][Fidelity]] /- May 2016 - Aug 2016/
-
-*** What
-Aside from being my personal website, this site hosts my thoughts -- young, old, ill-informed, and carefully considered.
-
-Every word on this site is generated from an Emacs Org file, renered by Hugo, and hosted on Github.
+Aside from being my personal website, this site hosts my thoughts -- young, old, ill-informed, and carefully considered. Every word on this site is generated from an Emacs Org file, renered by Hugo, and hosted on Github.
 
 Of course, the opinions here are my own, not of my employer.
 
@@ -49,10 +37,106 @@ Of course, the opinions here are my own, not of my employer.
 :export_hugo_section: posts
 :END:
 
-Blog Posts
+** Proposals                                           :proposals:
+*** TODO A Standard for Password Management
+:PROPERTIES:
+:export_file_name: standard-for-password-management
+:export_date: 2021-12-06
+:END:
+**** tldr;
+Passwords are inherently insecure. We've layered a number of secure practices (some consumer facing, others system facnig) like MFA, security questions, oauth, and OIDC to complimen passwords and have built supporting systems like password managers to enable users to reliably and safely use sufficiently secure passwords, but we haven't written a standard for password management.
+
+I propose a standard set of endpoints which let users, or password managers by proxy, programatically manage their passwords.
+
+Use case: Say a user has 100 accounts at 100 different websites. Some, but not all support MFA. The user wants to rotate their passwords semi-regularly. Currently, they have to visit each of the 100 websites, login, navigate through unique account settings,  manually update their password, and update their password manager.
+
+Instead, a user should be able to press one button in their password manager which will programatically generate a new password and update the account settings through the proposed endpoints. Better yet, the password manager should do this automatically every N days without the user needing to trigger the process.
+
+*** TODO Digital Homesteading
+:PROPERTIES:
+:export_file_name: digital-homesteading
+:export_date: 2021-12-08
+:END:
+
+Our industry is facing two problems
+ 1) We're pushing for higher levels of abstraction, leaving much of our underlying infrastructure unsupported.
+ 2) As systems are distributed across components, the interaction and synnergies of components is sometimes more important than their individual beheviors
+
+In fewer words: we're spreading horizontally across aging infrastructure. Learning the latest, individual abstraction, I argue, isn't enough anymore.
+
+Instead, I propose a form of continuous learning called "digital homesteading" which emphasizes composition and encourages self-sufficiency called. Over the next few sections, I will bolster my claims about our current industry, expand on this homesteading analogy, provide tangible examples, and enumerate the benefits.
+
+**** Homesteading, generally
+
+Homesteading is synonymous with the Homestead Act of 1862 which granted US citizens a western tract of 160 acres should they be willing to settle and farm the land. Generally, the US governemnt used homesteading to incentive western expansion, but we'll ignore the political machinations. Fast forward to the 1970, the Back to the Land Movement worked to similar effect, where people took up rural smallholdings in search of increased autonomy and self-sufficiency.
+
+Homesteading, in this context, is analogous to self-sufficiency. More often than not, homesteaders were physically seperated from society or relied on a small, local community. They grew their own crops, hunted their own game, built their own shelters, and mended their own fences. If their roof leaked, they patched it. If their clothes tore, they patched them just the same. The list goes on, but in every example, they had to rely on their own intuition and experience to solve their daily problems. If they didn't have experience with a particular trade, they were pretty well incentivised to learn.
+
+**** Continuous learning, generally
+
+As is common in ever-changing industries, engineers need to constantly onboard new material, practice our craft, and mind our information diet. Most importantly, we need to learn in ways which compliment idustry needs.
+
+Speaking to my own experience, my typical "learning lifecycle" is fairly sequential and well deliniated. I'll think up a project which suits the some topic. If I'm feeling ambitious, I might even blend two new topics; a language and paradigm, for example. From there, I'll start reading documentation, lay the groundwork, and mould the core behaviors. More often than not though, that project ends up on the private-repo pile after a few iterations or I feel sufficiently versed on the topic. I forget about it, and move on to the next topic.
+
+I'd be willing to bet this pattern is pretty common. This method isn't "bad" or ineffectual, but there are some areas for improvement.
+
+First, like cramming for a test, we don't retain a lot of that info. I'm especially guilty of searching through old projects for a pattern or practice I found useful, but couldn't reproduce.
+
+Perhaps more importatnly, these projects also exist in a vacuum. We understand the bounds of the topic in isolation, but don't always see the interaction between two systems. Think of this like unit testing vs integration testing; one isolates behaviors and mocks the bounderies, the other encapulates behavior and instead focuses on interacton.
+
+See again: "we need to learn in ways which compliment industry needs".
+
+**** Homesteading meets continuous learning
+
+So far we've touched on homesteading and continuous learning in practice. Let's bridge that gap by first reviewing examples of what I consider to be digital homesteading in practice, and then using those examples to derrive a few characteristics of digital homsteading in theory.
+
+The most approachable example is a homelab (note the shared root: "home"). An average homelab might be a few rasberry pis as "compute nodes", an old laptop repurposed as a NAS, or maybe a desktop as a router. You, as the "homesteader", might run KVM or ESXI (type 1 hypervisors) on a makeshift server. You might run Telegraf, InfluxDB, and Grafana to collect, store, and visualize hardware metrics. You might also setup a home network with Pfsense and stream movies with Plex. Slowly, you're building out an ecosystem of systems and services.
+
+Another example. Say you're in the market for a new graphics card, but are having trouble following the various stock trackers, raffles, and notifications. You might write a web app that lets you define alerts through a simple domain specific language. Of course, your friends on discord or slack or IRC want to use that app too. Everyone loves a good chatbot and there are lots of off the shelf solutions, but maybe you want to write your own. You'll want to understand the bots failure modes, so you setup Rollbar or Sentry to error tracking. Maybe you'll even want to push soft touch alerts to your home, so you write a Philip Hue integration. The possibilities are endless.
+
+In both examples,
+- We're building an ecosystem. We're layering services or systems which interact with and complement eachother.
+- Our services persistent, but not production.
+- The individual components span multiple layers.
+- Each service provides useful but not vital functionality
+- We're self sufficient along at least one vertical.
+
+***** Ecosystem
+We're not just considering how an individual component behaves, but how multiple systems interact. Enterprise servces are transitioning to horizontal systems of scale, and we need to factor that into our design process.
+
+Consider your digital homestead. Where is the barn in relation to the fields? The food cellar? Have we considered how the three systems work in concert? With regards to our more tangible example: have we considered how our discord bot pulls information from the web app? Are they tighly coupled? Does the webapp implement any business logic, or just expose the DSL? Do the latest stock alerts need to be persisted, or only cached?
+
+***** Persistent
+
+Digital homesteads should run around the clock. According to the 2020 Stack Overflow Survey, DevOps and Site Reliability Engineers are value multipliers in enterprise environments.
+
+#+BEGIN_QUOTE
+Site reliability engineers and DevOps specialists remain among the highest paid individual contributor roles. 80% of respondents believe that DevOps is at least somewhat important, and 44% work at organizations with at least one dedicated DevOps employee.
+#+END_QUOTE
+
+Persistent homesteads go beyond SRE though. When we take responsibility for supporting every stage of software development -- when we're product owners responding to feature requests, senior leadership driving priority, on-call operators triaging downed systems, SRE debuggig service blips, and DevOps implementing resilient runtime environments -- we're service owners.
+
+Service ownership is overlooked in the majority of continuous learning projects, despite it being such a critical facet of successful enterprise services.
+
+
+***** Span multiple layers
+It's important to think about where and how things are run. This diversity adds perspective
+
+***** Useful but not vital
+This bullet ties back to the "persistent but not production" mantra. You're only going to resent your digital homestead if you rely on it for "business critical" tasks. These systems will be flawed, they will take time, they will break, and you will need to fix them.
+
+Hosting an SMTP server for your professional email or writing a React clone for an enterprise service is objectively a bad idea. In the end of the day, we're not looking to reinvent the wheel, but to instead understand why the wheel is fabulous, how the wheel is fallable, and how the wheel can be leveraged to great success.
+
+If we give our homestead value, we'll stay invested. If we rely on our homestead to feed the neighborhood, we risk a famine.
+
+***** Self-sufficient
+In self-sufficiency, we find the most valuable lessons. If something isn't readily available, we can write it ourselves. If we aren't immediately sure how to write it ourselves, we can learn through trial and error.
+
+Of course you could follow this rule to an extreme -- I'm not suggesting we write our own compilers (though you certainly could challenge yourself). I'm suggesting that in an industry of higher order abstarctions, we might consider our own Back to the Land Movement.
+
 
 ** Computer IO / Keyboards                                    :io:keyboards:
-*** Ergodox Infinity LCD Firmware                            :io:keyboards:
+*** Ergodox Infinity LCD Firmware
 :PROPERTIES:
 :export_file_name: ergodox-infinity-lcd-firmware
 :export_date: 2017-03-21
@@ -196,20 +280,20 @@ At this point, your Ergodox Infinity should be both flash with your layout and y
 *** TODO State Machines All the Way Down
 :PROPERTIES:
 :export_file_name: state-machines-all-the-way-down
-:export_date: 2020-02-01
+:export_date: 2020-06-06
 :END:
 
 ** Emacs                                                             :emacs:
-*** TODO Five Years with Emacs                                      :emacs:
+*** TODO Five Years with Emacs
 :PROPERTIES:
 :export_file_name: five-years-with-emacs
-:export_date: 2017-01-14
+:export_date: 2020-12-28
 :END:
 
-*** DONE A Year with Emacs                                          :emacs:
+*** DONE A Year with Emacs
 :PROPERTIES:
 :export_file_name: a-year-with-emacs
-:export_date: 2017-01-14
+:export_date: 2017-01-05
 :END:
 
 _It is important to preface that everything in this article is opinion and based off (roughly) a year of heavy Emacs usage. It is also important to know that this article will be updated along side my configuration and tastes. So without further ado..._

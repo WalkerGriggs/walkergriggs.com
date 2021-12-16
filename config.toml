@@ -41,8 +41,8 @@ theme = "cactus-lite"
     weight = 2
 
   [[menu.main]]
-    name = "About"
-    url = "/about"
+    name = "Projects"
+    url = "https://github.com/walkergriggs"
     weight = 3
 
 [markup.goldmark.renderer]
