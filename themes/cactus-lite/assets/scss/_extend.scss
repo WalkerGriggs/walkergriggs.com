@@ -4,11 +4,12 @@ h1,
   display: block;
   margin-top: 3rem;
   margin-bottom: 1rem;
-  color: $color-accent-1;
+  // color: $color-accent-1;
   letter-spacing: .01em;
-  font-weight: 700;
+  font-family: "IBM Plex Serif Bold";
+  font-weight: 400;
   font-style: normal;
-  font-size: 1.5em;
+  font-size: 1.25em;
 
   @include antialias();
 }
@@ -18,24 +19,25 @@ h2,
   display: block;
   margin-top: 2rem;
   margin-bottom: .5rem;
-  color: $color-accent-2;
+  // color: $color-accent-2;
   text-transform: none;
   letter-spacing: normal;
   font-weight: bold;
   font-size: 1rem;
+  font-size: 1.15em;
 }
 h3 {
-  color: $color-accent-2;
+  // color: $color-accent-2;
   text-decoration: underline;
   font-weight: bold;
-  font-size: .9rem;
+  font-size: 1.1rem;
 }
 h4
 h5
 h6 {
   display: inline;
   text-decoration: none;
-  color: $color-accent-3;
+  // color: $color-accent-3;
   font-weight: bold;
   font-size: .9rem;
 }

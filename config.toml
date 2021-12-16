@@ -9,7 +9,7 @@ theme = "cactus-lite"
 [params]
   author = "Walker Griggs"
   copyright = "Walker Griggs"
-  colortheme = "classic"
+  colortheme = "custom"
   mainSection = "posts"
   showAllPostsOnHomePage = true
   tagsOverview = false

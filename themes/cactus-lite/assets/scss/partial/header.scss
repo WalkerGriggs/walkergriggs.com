@@ -3,11 +3,12 @@
 
   h1,
   .h1 {
+    font-family: "IBM Plex Serif Bold", serif;
     margin-top: 0;
     margin-bottom: 0;
     color: $color-text;
     letter-spacing: .01em;
-    font-weight: 700;
+    font-weight: 500;
     font-style: normal;
     font-size: 1.5rem;
     line-height: 2rem;
@@ -18,6 +19,7 @@
     background: none;
     color: inherit;
     text-decoration: none;
+    padding: 0;
   }
   #nav {
     color: $color-accent-1;
