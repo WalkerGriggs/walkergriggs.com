@@ -2,6 +2,7 @@ baseURL = "/"
 languageCode = "en-us"
 title = "technobabble"
 theme = "cactus-lite"
+googleAnalytics = "G-9XXDHB6KRT"
 
 [Author]
   name = "Walker Griggs"

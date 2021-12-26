@@ -14,7 +14,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   {{ template "_internal/opengraph.html" . }}
-  {{ template "_internal/twitter_cards.html" . }}
+
   {{ .Scratch.Set "colortheme" "white"}}
 
   {{ if .Site.Params.Colortheme }}
@@ -37,11 +37,5 @@
     {{ end }}
   {{ end }}
 
-  {{ if .Site.GoogleAnalytics }}
-    {{ if .Site.Params.googleAnalyticsAsync }}
-      {{ template "_internal/google_analytics_async.html" . }}
-    {{ else }}
-      {{ template "_internal/google_analytics.html" . }}
-    {{ end }}
-  {{ end }}
+  {{ template "_internal/google_analytics.html" . }}
 </head>
