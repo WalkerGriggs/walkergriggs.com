@@ -2,10 +2,9 @@
 title = "Ergodox Infinity LCD Firmware"
 author = ["Walker Griggs"]
 date = 2017-03-21
-tags = ["io", "keyboards"]
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
-weight = 3001
+creator = "Emacs 28.1 (Org mode 9.5.2 + ox-hugo)"
+weight = 2005
 +++
 
 So you've got yourself an Ergodox Infinity. Congratulations! Everyone probably thinks your a little bit crazy spending that much on a keyboard that strange with LCD displays that small and a layout you're struggling to type on. But it's ok -- anyone who shares this strange obsession probably understands.
@@ -57,7 +56,7 @@ I created the permutation of a glider from Conway's Game of Life. If you don't k
 
 Essentially, the bitmap can be whatever so long as it's a black foreground on white background. (Though... I've just begun to tinker with and observe the conversion of color bitmaps to the monochromatic lcd display... So you can always give that a try).
 
-Now in order to flash this new logo onto your board, it needs to be in the form of a byte array. The easiest way to convert your bitmap into the byte array is to use the firmware's [bitmap2Struct.py](https://github.com/kiibohd/controller/blob/master/Scan/STLcd/bitmap2Struct.py) -- as I mentioned earlier. This script spits out two visual representations of the bitmap and the byte array. Just shove the output into a file for later.
+Now in order to flash this new logo onto your board, it needs to be in the form of a byte array. The easiest way to convert your bitmap into the byte array is to use the firmware's [bitmap2Struct.py](https://github.com/kiibohd/controller/blob/master/Scan/Devices/STLcd/bitmap2Struct.py) -- as I mentioned earlier. This script spits out two visual representations of the bitmap and the byte array. Just shove the output into a file for later.
 
 ```bash
 python bitmap2Struct.py --filename <filename> > ByteArray.txt
@@ -91,14 +90,14 @@ mkdir controller/kll/layouts/<my_layout>
 cp <configurator ZIP>/*.kll controller/kll/layouts/<my_layout>
 ```
 
-Since we have our logo's byte array all squared away, all we have to do is include it. Head into the Scan directory and copy the infinity\_ergodox module.
+Since we have our logo's byte array all squared away, all we have to do is include it. Head into the Scan directory and copy the infinity_ergodox module.
 
 ```bash
 cd controller/Scan
 cp -r Infinity_Ergodox Infinity_Ergodox_Custom
 ```
 
-Now the one and only thing we need to alter in here is the STLcdDefaultImage in scancode\_map.kll. Replace the default Input Club's byte array with our custom byte array from earlier.
+Now the one and only thing we need to alter in here is the STLcdDefaultImage in scancode_map.kll. Replace the default Input Club's byte array with our custom byte array from earlier.
 
 Bingo. Now our layouts are almost ready to be flashed. We now need to quickly modify our own build script.
 
@@ -126,7 +125,7 @@ PartialMaps[6]="lcdFuncMap"
 PartialMaps[7]="<my_layout>/MDErgo1-Default-7 lcdFuncMap"
 ```
 
-Finally, change the ScanModule from Infinity\_Ergodox to Infinity\_Ergodox\_Custom or whatever you called your Scan Module. Now we should be all ready to flash.
+Finally, change the ScanModule from Infinity_Ergodox to Infinity_Ergodox_Custom or whatever you called your Scan Module. Now we should be all ready to flash.
 
 
 ## Build and Flash {#build-and-flash}

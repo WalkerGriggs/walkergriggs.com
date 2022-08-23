@@ -2,15 +2,14 @@
 title = "ZNC, the right way"
 author = ["Walker Griggs"]
 date = 2021-10-13
-tags = ["irc"]
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
-weight = 2009
+creator = "Emacs 28.1 (Org mode 9.5.2 + ox-hugo)"
+weight = 2003
 +++
 
 I've setup [ZNC](https://wiki.znc.in/ZNC) one too many times.
 
-Sometimes I forget it's [riding shotgun](https://en.wikipedia.org/wiki/Riding%5Fshotgun) on a spare droplet heading to the trash heap. Other times, my payment method expires and so too does the instance. Other times I'm too lazy to host it in the cloud at all, so I run it locally. In any case, today I wanted to set up ZNC the right way... for the last time.
+Sometimes I forget it's [riding shotgun](https://en.wikipedia.org/wiki/Riding_shotgun) on a spare droplet heading to the trash heap. Other times, my payment method expires and so too does the instance. Other times I'm too lazy to host it in the cloud at all, so I run it locally. In any case, today I wanted to set up ZNC the right way... for the last time.
 
 I also want to document the process for posterity and stop scouring the web for the same articles time after time.
 

@@ -2,10 +2,9 @@
 title = "Learning Go Generics with Advent of Code"
 author = ["Walker Griggs"]
 date = 2021-12-15
-tags = ["programming"]
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
-weight = 3001
+creator = "Emacs 28.1 (Org mode 9.5.2 + ox-hugo)"
+weight = 2002
 +++
 
 _This post is a living draft and may be revised. If you have any comments, questions, or concerns, please reach out._

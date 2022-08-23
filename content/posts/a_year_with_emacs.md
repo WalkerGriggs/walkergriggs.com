@@ -1,11 +1,10 @@
 +++
 title = "A Year with Emacs"
 author = ["Walker Griggs"]
-date = 2017-01-14
-tags = ["emacs"]
+date = 2017-01-05
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
-weight = 3002
+creator = "Emacs 28.1 (Org mode 9.5.2 + ox-hugo)"
+weight = 2004
 +++
 
 <span class="underline">It is important to preface that everything in this article is opinion and based off (roughly) a year of heavy Emacs usage. It is also important to know that this article will be updated along side my configuration and tastes. So without further ado...</span>
@@ -132,4 +131,4 @@ Org-mode might be one of the most expansive and powerful features of emacs. It i
         (setq org-clock-mode-line-total 'current)))
 ```
 
-While these snippets are not my configuration in it's entirety, the full file is not a hulking mass. It can be found at in my [dotfiles repo](https://github.com/WalkerGriggs/DotFiles/blob/master/.emacs). Feel free to take and modify what you need. If you have anything to contribute, feel free to shoot me an email!
+While these snippets are not my configuration in it's entirety, the full file is not a hulking mass. It can be found at in my [dotfiles repo](https://github.com/WalkerGriggs/DotFiles/blob/master/.emacs). Feel free to take and modify what you need. If you have anything to contribute, feel free to shoot me an em
