@@ -6,7 +6,7 @@
     font-family: 'Verily Serif Mono';
     font-style: normal;
     font-weight: 400;
-    font-size: 11px;
+    font-size: 14px;
 }
 
 p {
@@ -18,7 +18,7 @@ p {
 h1, h2, h3, h4, h5 {
     font-family: 'Helvetica';
     font-style: normal;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 html {
@@ -45,7 +45,7 @@ div {
 a {
     color: #fff;
     text-decoration: none;
-    background: #EC8E00;
+    background: #4B32EC;
     padding: 0 3px;
 }
 
@@ -80,8 +80,8 @@ footer {
     font-weight: 400;
     font-size: 12px;
     line-height: 12px;
-    color: #EC8E00;
-    float: right;
+    color: #4B32EC;
+    float: left;
     padding-bottom:32px;
 }
 
@@ -105,7 +105,7 @@ footer {
 }
 
 .content-wrapper {
-    width: 70%;
+    width: 80%;
 }
 
 /*
@@ -121,6 +121,7 @@ footer {
 #index-gif {
     margin-top:10px;
     width: 100%;
+    object-fit: cover;
 }
 
 
