@@ -1,0 +1,182 @@
+/*
+ * Shared
+ */
+
+* {
+    font-family: 'Verily Serif Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+}
+
+p {
+    line-height: 1.25em;
+    margin-block-start: 1em;
+    margin-block-end: 2em;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 700;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 5%;
+    margin-bottom: 0px;
+    width: 645px;
+}
+
+div {
+    overflow: hidden;
+}
+
+.no-decoration {
+    color: #000;
+    background: #fff;
+    text-decoration: none;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    background: #EC8E00;
+    padding: 0 3px;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 15px 15px 10px 15px;
+}
+
+/*
+ * Navigation
+ */
+
+.menu {
+    padding: 0;
+    margin: 0;
+}
+
+
+.menu > li {
+    display: inline-block;
+    padding-right: 10px;
+}
+
+/*
+ * Footer
+ */
+
+footer {
+    text-decoration: none;
+    font-family: 'Fake Receipt';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    color: #EC8E00;
+    float: right;
+    padding-bottom:32px;
+}
+
+/*
+ * Shared wrappers
+ */
+
+.wrapper {
+    margin-bottom: 32px;
+}
+
+.hero-wrapper {
+    width: 100%;
+}
+
+.hero-wrapper > .hero {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.content-wrapper {
+    width: 70%;
+}
+
+/*
+ * Index
+ */
+
+#signature-wrapper {
+    font-size: 10px;
+    line-height: 10px;
+    letter-spacing: -0.1em;
+}
+
+#index-gif {
+    margin-top:10px;
+    width: 100%;
+}
+
+
+/*
+ * List view
+ */
+
+.list {
+    padding-inline-start: 0px;
+}
+
+.list > li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+}
+
+
+/*
+ * Single view
+ */
+
+.post-params  {
+    display: inline-block;
+    padding-right: 12px;
+}
+
+/*
+ * Subscribe partial
+ */
+
+form {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+#form-label {
+    margin-bottom: 0.5em;
+}
+
+#subscribe-form > input {
+    border-width: 1px;
+    border-radius: 0px;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+#subscribe-form > #email {
+    width: 75%;
+}
+
+#subscribe-form > #submit {
+    width: 20%;
+    text-align: center;
+    background: #fff;
+}

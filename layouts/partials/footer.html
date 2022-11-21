@@ -1,0 +1,5 @@
+<footer>
+  {{ with .Site.Params.footer }}
+  {{ replace . "{Year}" now.Year }}
+  {{ end }}
+</footer>

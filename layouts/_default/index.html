@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="wrapper hero-wrapper">
+  <div class="hero">
+    {{ .Site.Params.Header }}
+  </div>
+</div>
+
+<div class="wrapper content-wrapper">
+  <div class="content">
+    {{.Content}}
+  </div>
+
+  <img src="index.gif">
+</div>
+{{ end }}
