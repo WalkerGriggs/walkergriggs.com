@@ -2,9 +2,10 @@
 title = "Ergodox Infinity LCD Firmware"
 author = ["Walker Griggs"]
 date = 2017-03-21
+categories = ["devlog"]
 draft = false
-creator = "Emacs 28.1 (Org mode 9.5.2 + ox-hugo)"
-weight = 2005
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+weight = 2009
 +++
 
 So you've got yourself an Ergodox Infinity. Congratulations! Everyone probably thinks your a little bit crazy spending that much on a keyboard that strange with LCD displays that small and a layout you're struggling to type on. But it's ok -- anyone who shares this strange obsession probably understands.

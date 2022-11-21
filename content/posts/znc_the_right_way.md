@@ -2,9 +2,10 @@
 title = "ZNC, the right way"
 author = ["Walker Griggs"]
 date = 2021-10-13
+categories = ["devlog"]
 draft = false
-creator = "Emacs 28.1 (Org mode 9.5.2 + ox-hugo)"
-weight = 2003
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+weight = 2007
 +++
 
 I've setup [ZNC](https://wiki.znc.in/ZNC) one too many times.

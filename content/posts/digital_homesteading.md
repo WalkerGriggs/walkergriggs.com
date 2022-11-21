@@ -2,9 +2,10 @@
 title = "Digital Homesteading"
 author = ["Walker Griggs"]
 date = 2021-12-08
+categories = ["writing"]
 draft = true
-creator = "Emacs 28.1 (Org mode 9.5.2 + ox-hugo)"
-weight = 2007
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+weight = 2003
 +++
 
 Tech is [changing](https://trends.google.com/trends/explore?cat=5&date=2011-01-01%202021-01-01&q=%2Fm%2F011spz0k,%2Fg%2F11b7lxp79d,%2Fm%2F0wkcjgj). Whether you want to call it horitzontal scaling, scaling out, distributing, or deconstructing; the ways we structure, write, test, and deploy systems is changing.

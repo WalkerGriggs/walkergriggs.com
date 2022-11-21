@@ -2,9 +2,10 @@
 title = "A Standard for Password Management"
 author = ["Walker Griggs"]
 date = 2021-12-06
+categories = ["devlog"]
 draft = true
-creator = "Emacs 28.1 (Org mode 9.5.2 + ox-hugo)"
-weight = 2010
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+weight = 2005
 +++
 
 ## tldr; {#tldr}

@@ -13,11 +13,11 @@
 #+author: Walker Griggs
 #+email: walkergriggs.com
 
-* Writing
+* Posts
 :PROPERTIES:
-:export_hugo_section: writing
+:export_hugo_section: posts
 :END:
-** DONE Basic English
+** DONE Basic English                                              :@writing:
 :PROPERTIES:
 :export_file_name: basic_english
 :export_date: 2022-08-03
@@ -66,7 +66,7 @@ In my case, maybe that person is a colleague who isn't familiar with Python. May
 Of course, list comprehension is a small example, but this principle applies just as well to complex patterns and sprawling systems. Simplicity is empathy.
 
 All in all, controlled languages are an interesting theory and intuitively make so much sense. I likely won't be fluent in Italian any time soon, but I'll certainly remind myself to slow down and keep it stuipid simple. I might even revisit Rust and do it right this time.
-** Coding Diddles
+** Coding Diddles                                                  :@writing:
 :PROPERTIES:
 :export_file_name: coding_diddles
 :export_date: 2022-08-07
@@ -98,7 +98,7 @@ So write like Didion! Paint like Jackson! Dribble like Jordan!
 
 Practice your diddles, re-implement your darlings, and study how “innovations” make use of your favorite data structures. Before you blow anyone’s mind, first learn what makes their brain tick.
 
-** DRAFT Digital Homesteading
+** DRAFT Digital Homesteading                                      :@writing:
 :PROPERTIES:
 :export_file_name: digital_homesteading
 :export_date: 2021-12-08
@@ -178,13 +178,13 @@ In self-sufficiency, we find the most valuable lessons. If something isn't readi
 
 Of course you could follow this rule to an extreme -- I'm not suggesting we write our own compilers (though you certainly could challenge yourself). I'm suggesting that in an industry of higher order abstarctions, we might consider our own Back to the Land Movement.
 
-** TODO State Machines All the Way Down
+** TODO State Machines All the Way Down                            :@writing:
 :PROPERTIES:
 :export_file_name: state_machines_all_the_way_down
 :export_date: 2020-06-06
 :END:
 
-** TODO A Standard for Password Management
+** TODO A Standard for Password Management                          :@devlog:
 :PROPERTIES:
 :export_file_name: standard_for_password_management
 :export_date: 2021-12-06
@@ -198,12 +198,7 @@ Use case: Say a user has 100 accounts at 100 different websites. Some, but not a
 
 Instead, a user should be able to press one button in their password manager which will programatically generate a new password and update the account settings through the proposed endpoints. Better yet, the password manager should do this automatically every N days without the user needing to trigger the process.
 
-
-* Devlog
-:PROPERTIES:
-:export_hugo_section: devlog
-:END:
-** DONE Learning Go Generics with Advent of Code
+** DONE Learning Go Generics with Advent of Code                    :@devlog:
 :PROPERTIES:
 :export_file_name: learning_go_generics_with_aoc
 :export_date: 2021-12-15
@@ -436,7 +431,7 @@ I tried writing a library myself last year, but it felt brittle. Grids wont alwa
 
 Enter: generics. I'm taking another stab with the help of ~1.18beta1~ -- all contributions are welcome.
 
-** DONE ZNC, the right way
+** DONE ZNC, the right way                                          :@devlog:
 :PROPERTIES:
 :export_file_name: znc_the_right_way
 :export_date: 2021-10-13
@@ -585,7 +580,7 @@ And that's about it. We've setup the A record for our domain, configured separat
 
 If you'd like to chat, you can find me on [[https://libera.chat/][libera.chat]]!
 
-** DONE A Year with Emacs
+** DONE A Year with Emacs                                           :@devlog:
 :PROPERTIES:
 :export_file_name: a_year_with_emacs
 :export_date: 2017-01-05
@@ -714,7 +709,7 @@ Org-mode might be one of the most expansive and powerful features of emacs. It i
 #+end_src
 
 While these snippets are not my configuration in it's entirety, the full file is not a hulking mass. It can be found at in my [[https://github.com/WalkerGriggs/DotFiles/blob/master/.emacs][dotfiles repo]]. Feel free to take and modify what you need. If you have anything to contribute, feel free to shoot me an em
-** DONE Ergodox Infinity LCD Firmware
+** DONE Ergodox Infinity LCD Firmware                               :@devlog:
 :PROPERTIES:
 :export_file_name: ergodox_infinity_lcd_firmware
 :export_date: 2017-03-21
@@ -853,7 +848,7 @@ sudo dfu-util --download ICED-R.gcc/kiibohd.dfu.bin
 #+end_src
 
 At this point, your Ergodox Infinity should be both flash with your layout and your custom logo. Happy hacking!
-** TODO Five Years with Emacs
+** TODO Five Years with Emacs                                       :@devlog:
 :PROPERTIES:
 :export_file_name: five_years_with_emacs
 :export_date: 2020-12-28

@@ -11,16 +11,21 @@
 <div class="wrapper content-wrapper">
   <div class="content">
     {{ partial "subscribe.html" . }}
-    <ul class="list">
-      {{ $pages := .Pages }}
-      {{ if .IsHome }}{{ $pages = .Site.RegularPages }}{{ end }}
-      {{ range (sort $pages "Date" "desc") }}
-      <li>
-        <a class="no-decoration" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
-        <span class="date">{{ .Date.Format "2006/01/02" }}</span>
-      </li>
-      {{ end }}
-    </ul>
+
+
+    {{ range $taxonomy := .Site.Taxonomies.categories.Alphabetical.Reverse }}
+    <div class="wrapper">
+      <h1><a href="/categories/{{$taxonomy.Name}}">{{ strings.FirstUpper $taxonomy.Name }}</a></h1>
+      <ul class="list">
+        {{ range .Pages }}
+        <li>
+          <a class="no-decoration" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+          <span class="date">{{ .Date.Format "2006/01/02" }}</span>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
   </div>
 </div>
 {{ end }}

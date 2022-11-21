@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="wrapper hero-wrapper">
+  <div class="hero">
+    {{if not .IsHome }}
+    {{ strings.FirstUpper .Title | markdownify }}
+    {{ end }}
+  </div>
+</div>
+
+
+<div class="wrapper content-wrapper">
+  <div class="content">
+    {{ partial "subscribe.html" . }}
+
+    {{ range (sort .Pages "Date" "desc") }}
+    <ul class="list">
+      <li>
+        <a class="no-decoration" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+        <span class="date">{{ .Date.Format "2006/01/02" }}</span>
+      </li>
+    </ul>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

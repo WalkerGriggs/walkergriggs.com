@@ -2,9 +2,10 @@
 title = "A Year with Emacs"
 author = ["Walker Griggs"]
 date = 2017-01-05
+categories = ["devlog"]
 draft = false
-creator = "Emacs 28.1 (Org mode 9.5.2 + ox-hugo)"
-weight = 2004
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+weight = 2008
 +++
 
 <span class="underline">It is important to preface that everything in this article is opinion and based off (roughly) a year of heavy Emacs usage. It is also important to know that this article will be updated along side my configuration and tastes. So without further ado...</span>

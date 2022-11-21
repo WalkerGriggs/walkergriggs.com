@@ -2,6 +2,7 @@
 title = "Coding Diddles"
 author = ["Walker Griggs"]
 date = 2022-08-07
+categories = ["writing"]
 draft = false
 creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
 weight = 2002

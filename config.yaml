@@ -10,12 +10,13 @@ params:
         getFormLink: https://getform.io/f/0f0f62d6-edbd-45d9-a998-3e2148260d5d
         formLabel: Want to be forwarded essays as they’re posted?
 
+disableKinds: ["taxonomy"]
+ignoreErrors: ["error-disable-taxonomy"]
+
 
 permalinks:
-        writing: "/:year/:month/:day/:filename"
-        devlog: "/:year/:month/:day/:filename"
+        posts: "/:year/:month/:day/:filename"
         pages: "/:slug"
-
 
 menu:
         main:
@@ -23,11 +24,8 @@ menu:
                   url: ""
                   weight: 1
                 - name: Writing.
-                  url: "writing/"
+                  url: "posts/"
                   weight: 2
-                - name: Devlog.
-                  url: "devlog/"
-                  weight: 3
                 - name: Projects.
                   url: "https://github.com/WalkerGriggs"
                   weight: 4
