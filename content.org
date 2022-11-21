@@ -13,11 +13,11 @@
 #+author: Walker Griggs
 #+email: walkergriggs.com
 
-* Posts
+* Writing
 :PROPERTIES:
-:export_hugo_section: posts
+:export_hugo_section: writing
 :END:
-** Basic English
+** DONE Basic English
 :PROPERTIES:
 :export_file_name: basic_english
 :export_date: 2022-08-03
@@ -66,6 +66,143 @@ In my case, maybe that person is a colleague who isn't familiar with Python. May
 Of course, list comprehension is a small example, but this principle applies just as well to complex patterns and sprawling systems. Simplicity is empathy.
 
 All in all, controlled languages are an interesting theory and intuitively make so much sense. I likely won't be fluent in Italian any time soon, but I'll certainly remind myself to slow down and keep it stuipid simple. I might even revisit Rust and do it right this time.
+** Coding Diddles
+:PROPERTIES:
+:export_file_name: coding_diddles
+:export_date: 2022-08-07
+:END:
+
+#+begin_quote
+"If you fail in copying from a master you succeed in birthing an original art", Kushal Poddar
+#+end_quote
+
+Last year, a colleague of mine picked up woodcarving. They told me about their battle with the “originality demon” and how, even when learning a new and productively right-brain skill, they felt every knife stroke needed to be an original one. Each complete whittle needed to an attractive addition to a catalog of novel works.
+
+Then a content creator – a carving guru, as my colleague referred to him – referred to some of their more simple or instructive carvings as “diddles”. These diddles were common, practiced, and rehearsed; there’s absolutely nothing original about these them. He event went as far as to dictate each cut as if they were notes on a staff. Yet, they were a critical part of this creator's trade, and so my colleague took solace in the idea that regardless of profession or experience, we need to iterate on the trite before we can produce even a modicum of original work.
+
+My colleagues' story resonated with me; programming works the same way.
+
+I can't count the number of times I've stumbled on a new idea, excitedly put pen to paper, and resurfaced a few hours later to learn -- after some light 'market research' -- that someone else has solved the problem. At that point I’m faced with the decision to write it off as a fun investigation or to forge ahead knowing that someone beat me to the punch. And of course someone else has! Given the glut of public repositories on Github alone, it’s hard to imagine some problems haven’t been solved.
+
+I wouldn’t call this a particularly productive outlook, but for some innate reason it’s a shared human experience. We want to be adventurers and make great discoveries, and yet the most notable advances are often those in a solved fields.
+
+Take chess, for example. The further a player deviates from the "main line" or accepted variation, the higher their odds of finding a novelty -- a move no one has considered before in that position. 99.9999% of those novelties aren't fabulous moves, but there's a one-in-an-infinitesimally-small chance they've discovered something game changing. Chess is not a solved game; that's why we continue to play. On the surface, it looks like there are a finite number of moves. On the surface, every player has perfect knowledge. And on the surface, there shouldn't be a stone un-turned. For those reasons alone, finding novelties Chess is exhilarating. Repetition, learning the lines, and studying old games are the only way you'll find a novelty worth its salt.
+
+Like chess games or wood carvings, frame your programming projects as diddles. Sorting algorithms, data structures, security groups, EMNIST data, hello worlds – all are diddles. There’s nothing original about heap sort and certainly classifying handwritten letters seems like a solved problem. We should take solace in that. Before we write our magnum opal, we should understand existing systems. How can we presume to be entirely original until we know all existing prior art.
+
+There’s another part to diddles too. In a recent post about Basic English and controlled languages, I touched on that, to learn quickly we need to first learn slowly. By limiting the syllabus to the most common parts, we’re giving ourselves time to build a solid, reliable, and practical foundation. My colleague may have carved 15+ canoes in one weekend, but their last iteration was infinitely better than their first. By freeing themselves from the need to produce original work, they were able to focus on the techniques of carving.
+
+Thinking about my own experience learning Go, I probably wrote just as many CLIs as my colleague has carved canoes. CLIs aren’t sexy and they’re most certainly not novel. But now I can whip out a CLI faster than you read this post. And how many times have I needed to in the wild. Tons!
+
+So write like Didion! Paint like Jackson! Dribble like Jordan!
+
+Practice your diddles, re-implement your darlings, and study how “innovations” make use of your favorite data structures. Before you blow anyone’s mind, first learn what makes their brain tick.
+
+** DRAFT Digital Homesteading
+:PROPERTIES:
+:export_file_name: digital_homesteading
+:export_date: 2021-12-08
+:END:
+
+Tech is [[https://trends.google.com/trends/explore?cat=5&date=2011-01-01%202021-01-01&q=%2Fm%2F011spz0k,%2Fg%2F11b7lxp79d,%2Fm%2F0wkcjgj][changing]]. Whether you want to call it horitzontal scaling, scaling out, distributing, or deconstructing; the ways we structure, write, test, and deploy systems is changing.
+
+I argue though, that the ways we learn, however, are not changing but should be. Learning the latest, individual abstraction isn't enough anymore. Side projects are often too narrow and our exposure to "enterprise systems" is limited. We, as engineers, are not adequately tailoring our "studies" to fit the needs of industry... but we could be.
+
+I propose a form of continuous learning called "digital homesteading" which emphasizes composition and encourages self-sufficiency.
+
+**** Homesteading, generally
+
+Homesteading is synonymous with the Homestead Act of 1862 which granted US citizens a western tract of 160 acres should they be willing to settle and farm the land. Generally, the US governemnt used homesteading to incentive western expansion, but we'll ignore the political machinations. Fast forward to the 1970, the Back to the Land Movement worked to similar effect, where people took up rural smallholdings in search of increased autonomy and self-sufficiency.
+
+Homesteading, in this context, is analogous to self-sufficiency. More often than not, homesteaders were physically seperated from society or relied on a small, local community. They grew their own crops, hunted their own game, built their own shelters, and mended their own fences. If their roof leaked, they patched it. If their clothes tore, they patched them just the same. The list goes on, but in every example, they had to rely on their own intuition and experience to solve their daily problems. If they didn't have experience with a particular trade, they were pretty well incentivised to learn.
+
+**** Continuous learning, generally
+
+As is common in ever-changing industries, engineers need to constantly onboard new material, practice our craft, and mind our information diet. Most importantly, we need to learn in ways which compliment idustry needs.
+
+Speaking to my own experience, my typical "learning lifecycle" is fairly sequential and well deliniated. I'll think up a project which suits the some topic. If I'm feeling ambitious, I might even blend two new topics; a language and paradigm, for example. From there, I'll start reading documentation, lay the groundwork, and mould the core behaviors. More often than not though, that project ends up on the private-repo pile after a few iterations or I feel sufficiently versed on the topic. I forget about it, and move on to the next topic.
+
+I'd be willing to bet this pattern is pretty common. This method isn't "bad" or ineffectual, but there are some areas for improvement.
+
+First, like cramming for a test, we don't retain a lot of that info. I'm especially guilty of searching through old projects for a pattern or practice I found useful, but couldn't reproduce.
+
+Perhaps more importatnly, these projects also exist in a vacuum. We understand the bounds of the topic in isolation, but don't always see the interaction between two systems. Think of this like unit testing vs integration testing; one isolates behaviors and mocks the bounderies, the other encapulates behavior and instead focuses on interacton.
+
+See again: "we need to learn in ways which compliment industry needs".
+
+**** Homesteading meets continuous learning
+
+So far we've touched on homesteading and continuous learning in practice. Let's bridge that gap by first reviewing examples of what I consider to be digital homesteading in practice, and then using those examples to derrive a few characteristics of digital homsteading in theory.
+
+The most approachable example is a homelab (note the shared root: "home"). An average homelab might be a few rasberry pis as "compute nodes", an old laptop repurposed as a NAS, or maybe a desktop as a router. You, as the "homesteader", might run KVM or ESXI (type 1 hypervisors) on a makeshift server. You might run Telegraf, InfluxDB, and Grafana to collect, store, and visualize hardware metrics. You might also setup a home network with Pfsense and stream movies with Plex. Slowly, you're building out an ecosystem of systems and services.
+
+Another example. Say you're in the market for a new graphics card, but are having trouble following the various stock trackers, raffles, and notifications. You might write a web app that lets you define alerts through a simple domain specific language. Of course, your friends on discord or slack or IRC want to use that app too. Everyone loves a good chatbot and there are lots of off the shelf solutions, but maybe you want to write your own. You'll want to understand the bots failure modes, so you setup Rollbar or Sentry to error tracking. Maybe you'll even want to push soft touch alerts to your home, so you write a Philip Hue integration. The possibilities are endless.
+
+In both examples,
+- We're building an ecosystem. We're layering services or systems which interact with and complement eachother.
+- Our services persistent, but not production.
+- The individual components span multiple layers.
+- Each service provides useful but not vital functionality
+- We're self sufficient along at least one vertical.
+
+***** Ecosystem
+We're not just considering how an individual component behaves, but how multiple systems interact. Enterprise servces are transitioning to horizontal systems of scale, and we need to factor that into our design process.
+
+Consider your digital homestead. Where is the barn in relation to the fields? The food cellar? Have we considered how the three systems work in concert? With regards to our more tangible example: have we considered how our discord bot pulls information from the web app? Are they tighly coupled? Does the webapp implement any business logic, or just expose the DSL? Do the latest stock alerts need to be persisted, or only cached?
+
+***** Persistent
+
+Digital homesteads should run around the clock. According to the 2020 Stack Overflow Survey, DevOps and Site Reliability Engineers are value multipliers in enterprise environments.
+
+#+BEGIN_QUOTE
+Site reliability engineers and DevOps specialists remain among the highest paid individual contributor roles. 80% of respondents believe that DevOps is at least somewhat important, and 44% work at organizations with at least one dedicated DevOps employee.
+#+END_QUOTE
+
+Persistent homesteads go beyond SRE though. When we take responsibility for supporting every stage of software development -- when we're product owners responding to feature requests, senior leadership driving priority, on-call operators triaging downed systems, SRE debuggig service blips, and DevOps implementing resilient runtime environments -- we're service owners.
+
+Service ownership is overlooked in the majority of continuous learning projects, despite it being such a critical facet of successful enterprise services.
+
+
+***** Span multiple layers
+It's important to think about where and how things are run. This diversity adds perspective
+
+***** Useful but not vital
+This bullet ties back to the "persistent but not production" mantra. You're only going to resent your digital homestead if you rely on it for "business critical" tasks. These systems will be flawed, they will take time, they will break, and you will need to fix them.
+
+Hosting an SMTP server for your professional email or writing a React clone for an enterprise service is objectively a bad idea. In the end of the day, we're not looking to reinvent the wheel, but to instead understand why the wheel is fabulous, how the wheel is fallable, and how the wheel can be leveraged to great success.
+
+If we give our homestead value, we'll stay invested. If we rely on our homestead to feed the neighborhood, we risk a famine.
+
+***** Self-sufficient
+In self-sufficiency, we find the most valuable lessons. If something isn't readily available, we can write it ourselves. If we aren't immediately sure how to write it ourselves, we can learn through trial and error.
+
+Of course you could follow this rule to an extreme -- I'm not suggesting we write our own compilers (though you certainly could challenge yourself). I'm suggesting that in an industry of higher order abstarctions, we might consider our own Back to the Land Movement.
+
+** TODO State Machines All the Way Down
+:PROPERTIES:
+:export_file_name: state_machines_all_the_way_down
+:export_date: 2020-06-06
+:END:
+
+** TODO A Standard for Password Management
+:PROPERTIES:
+:export_file_name: standard_for_password_management
+:export_date: 2021-12-06
+:END:
+**** tldr;
+Passwords are inherently insecure. We've layered a number of secure practices (some consumer facing, others system facnig) like MFA, security questions, oauth, and OIDC to complimen passwords and have built supporting systems like password managers to enable users to reliably and safely use sufficiently secure passwords, but we haven't written a standard for password management.
+
+I propose a standard set of endpoints which let users, or password managers by proxy, programatically manage their passwords.
+
+Use case: Say a user has 100 accounts at 100 different websites. Some, but not all support MFA. The user wants to rotate their passwords semi-regularly. Currently, they have to visit each of the 100 websites, login, navigate through unique account settings,  manually update their password, and update their password manager.
+
+Instead, a user should be able to press one button in their password manager which will programatically generate a new password and update the account settings through the proposed endpoints. Better yet, the password manager should do this automatically every N days without the user needing to trigger the process.
+
+
+* Devlog
+:PROPERTIES:
+:export_hugo_section: devlog
+:END:
 ** DONE Learning Go Generics with Advent of Code
 :PROPERTIES:
 :export_file_name: learning_go_generics_with_aoc
@@ -716,136 +853,8 @@ sudo dfu-util --download ICED-R.gcc/kiibohd.dfu.bin
 #+end_src
 
 At this point, your Ergodox Infinity should be both flash with your layout and your custom logo. Happy hacking!
-** DRAFT Coding Diddles
-:PROPERTIES:
-:export_file_name: coding_diddles
-:export_date: 2022-08-07
-:END:
-
-Last year, a colleague of mine picked up woodcarving. They told me about their battle with the “originality demon” and how, even when learning a new and productively right-brain skill, they felt every knife stroke needed to be an original one. Each complete whittle needed to an attractive addition to a catalog of novel works.
-
-Then a content creator – a carving guru, as my colleague referred to him – referred to some of their more simple or instructive carvings as a “diddle”. These diddles were common, practiced, and rehearsed; there’s absolutely nothing original about these them. Yet, they were a critical part of this creator's trade, and so my colleague took solace in the idea that regardless of profession or experience, we need to iterate on the trite before we can produce even a modicum of original work.
-
-My colleagues' story resonated with me; programming is no different! I can’t count the number of times I…
-1. stumble on a new idea
-2. excitedly put pen to paper
-3. resurface a few hours later to learn, after some light ‘market research’, that someone else has solved the problem.
-
-At that point I’m faced with the decision to write it off as a fun investigation or to forge ahead knowing that someone beat me to the punch. And of course someone else has! Given the glut of public repos on Github alone, it’s hard to imagine some problems haven’t been solved.
-
-I wouldn’t call this a particularly productive outlook, but for some innate reason it’s a shared human experience.
-
-When you frame your projects are diddles though, your perspective shifts (for the better). Sorting algorithms, data structures, security groups, EMNIST dataset, hello worlds – all are diddles. There’s nothing original about heap sort and certainly classifying handwritten letters is a solved problem. We should take solace in that. Before we write our magnum opal, we should understand existing systems. How can we presume to be entirely original until we know all prior art.
-
-There’s another part to diddles too. In a recent post about Basic English and controlled languages, I touched on that, to learn quickly we need to first learn slowly. By limiting the syllabus to the most common parts, we’re giving ourselves time to build a solid, reliable, and practical foundation. My colleague carved 15+ canoes in one weekend, but their last iteration was infinitely better than their first.
-
-By freeing themselves from the need to produce original work, they were able to focus on the techniques of carving. Thinking about my own experience learning Go, I probably wrote just as many CLIs as they carved canoes. CLIs aren’t sexy and they’re most certainly not novel. But now I can whip out a CLI faster than you read this post. And how many times have I needed to in the wild. Tons!
-
-So write like Didion! Paint like Jackson! Dribble like Jordan!
-
-Practice your diddles, re-implement your darlings, and study how “innovations” make use of your favorite data structures. Before you blow anyone’s mind, first learn what makes their brain tick.
-
-** DRAFT Digital Homesteading
-:PROPERTIES:
-:export_file_name: digital_homesteading
-:export_date: 2021-12-08
-:END:
-
-Tech is [[https://trends.google.com/trends/explore?cat=5&date=2011-01-01%202021-01-01&q=%2Fm%2F011spz0k,%2Fg%2F11b7lxp79d,%2Fm%2F0wkcjgj][changing]]. Whether you want to call it horitzontal scaling, scaling out, distributing, or deconstructing; the ways we structure, write, test, and deploy systems is changing.
-
-I argue though, that the ways we learn, however, are not changing but should be. Learning the latest, individual abstraction isn't enough anymore. Side projects are often too narrow and our exposure to "enterprise systems" is limited. We, as engineers, are not adequately tailoring our "studies" to fit the needs of industry... but we could be.
-
-I propose a form of continuous learning called "digital homesteading" which emphasizes composition and encourages self-sufficiency.
-
-**** Homesteading, generally
-
-Homesteading is synonymous with the Homestead Act of 1862 which granted US citizens a western tract of 160 acres should they be willing to settle and farm the land. Generally, the US governemnt used homesteading to incentive western expansion, but we'll ignore the political machinations. Fast forward to the 1970, the Back to the Land Movement worked to similar effect, where people took up rural smallholdings in search of increased autonomy and self-sufficiency.
-
-Homesteading, in this context, is analogous to self-sufficiency. More often than not, homesteaders were physically seperated from society or relied on a small, local community. They grew their own crops, hunted their own game, built their own shelters, and mended their own fences. If their roof leaked, they patched it. If their clothes tore, they patched them just the same. The list goes on, but in every example, they had to rely on their own intuition and experience to solve their daily problems. If they didn't have experience with a particular trade, they were pretty well incentivised to learn.
-
-**** Continuous learning, generally
-
-As is common in ever-changing industries, engineers need to constantly onboard new material, practice our craft, and mind our information diet. Most importantly, we need to learn in ways which compliment idustry needs.
-
-Speaking to my own experience, my typical "learning lifecycle" is fairly sequential and well deliniated. I'll think up a project which suits the some topic. If I'm feeling ambitious, I might even blend two new topics; a language and paradigm, for example. From there, I'll start reading documentation, lay the groundwork, and mould the core behaviors. More often than not though, that project ends up on the private-repo pile after a few iterations or I feel sufficiently versed on the topic. I forget about it, and move on to the next topic.
-
-I'd be willing to bet this pattern is pretty common. This method isn't "bad" or ineffectual, but there are some areas for improvement.
-
-First, like cramming for a test, we don't retain a lot of that info. I'm especially guilty of searching through old projects for a pattern or practice I found useful, but couldn't reproduce.
-
-Perhaps more importatnly, these projects also exist in a vacuum. We understand the bounds of the topic in isolation, but don't always see the interaction between two systems. Think of this like unit testing vs integration testing; one isolates behaviors and mocks the bounderies, the other encapulates behavior and instead focuses on interacton.
-
-See again: "we need to learn in ways which compliment industry needs".
-
-**** Homesteading meets continuous learning
-
-So far we've touched on homesteading and continuous learning in practice. Let's bridge that gap by first reviewing examples of what I consider to be digital homesteading in practice, and then using those examples to derrive a few characteristics of digital homsteading in theory.
-
-The most approachable example is a homelab (note the shared root: "home"). An average homelab might be a few rasberry pis as "compute nodes", an old laptop repurposed as a NAS, or maybe a desktop as a router. You, as the "homesteader", might run KVM or ESXI (type 1 hypervisors) on a makeshift server. You might run Telegraf, InfluxDB, and Grafana to collect, store, and visualize hardware metrics. You might also setup a home network with Pfsense and stream movies with Plex. Slowly, you're building out an ecosystem of systems and services.
-
-Another example. Say you're in the market for a new graphics card, but are having trouble following the various stock trackers, raffles, and notifications. You might write a web app that lets you define alerts through a simple domain specific language. Of course, your friends on discord or slack or IRC want to use that app too. Everyone loves a good chatbot and there are lots of off the shelf solutions, but maybe you want to write your own. You'll want to understand the bots failure modes, so you setup Rollbar or Sentry to error tracking. Maybe you'll even want to push soft touch alerts to your home, so you write a Philip Hue integration. The possibilities are endless.
-
-In both examples,
-- We're building an ecosystem. We're layering services or systems which interact with and complement eachother.
-- Our services persistent, but not production.
-- The individual components span multiple layers.
-- Each service provides useful but not vital functionality
-- We're self sufficient along at least one vertical.
-
-***** Ecosystem
-We're not just considering how an individual component behaves, but how multiple systems interact. Enterprise servces are transitioning to horizontal systems of scale, and we need to factor that into our design process.
-
-Consider your digital homestead. Where is the barn in relation to the fields? The food cellar? Have we considered how the three systems work in concert? With regards to our more tangible example: have we considered how our discord bot pulls information from the web app? Are they tighly coupled? Does the webapp implement any business logic, or just expose the DSL? Do the latest stock alerts need to be persisted, or only cached?
-
-***** Persistent
-
-Digital homesteads should run around the clock. According to the 2020 Stack Overflow Survey, DevOps and Site Reliability Engineers are value multipliers in enterprise environments.
-
-#+BEGIN_QUOTE
-Site reliability engineers and DevOps specialists remain among the highest paid individual contributor roles. 80% of respondents believe that DevOps is at least somewhat important, and 44% work at organizations with at least one dedicated DevOps employee.
-#+END_QUOTE
-
-Persistent homesteads go beyond SRE though. When we take responsibility for supporting every stage of software development -- when we're product owners responding to feature requests, senior leadership driving priority, on-call operators triaging downed systems, SRE debuggig service blips, and DevOps implementing resilient runtime environments -- we're service owners.
-
-Service ownership is overlooked in the majority of continuous learning projects, despite it being such a critical facet of successful enterprise services.
-
-
-***** Span multiple layers
-It's important to think about where and how things are run. This diversity adds perspective
-
-***** Useful but not vital
-This bullet ties back to the "persistent but not production" mantra. You're only going to resent your digital homestead if you rely on it for "business critical" tasks. These systems will be flawed, they will take time, they will break, and you will need to fix them.
-
-Hosting an SMTP server for your professional email or writing a React clone for an enterprise service is objectively a bad idea. In the end of the day, we're not looking to reinvent the wheel, but to instead understand why the wheel is fabulous, how the wheel is fallable, and how the wheel can be leveraged to great success.
-
-If we give our homestead value, we'll stay invested. If we rely on our homestead to feed the neighborhood, we risk a famine.
-
-***** Self-sufficient
-In self-sufficiency, we find the most valuable lessons. If something isn't readily available, we can write it ourselves. If we aren't immediately sure how to write it ourselves, we can learn through trial and error.
-
-Of course you could follow this rule to an extreme -- I'm not suggesting we write our own compilers (though you certainly could challenge yourself). I'm suggesting that in an industry of higher order abstarctions, we might consider our own Back to the Land Movement.
-
 ** TODO Five Years with Emacs
 :PROPERTIES:
 :export_file_name: five_years_with_emacs
 :export_date: 2020-12-28
 :END:
-** TODO State Machines All the Way Down
-:PROPERTIES:
-:export_file_name: state_machines_all_the_way_down
-:export_date: 2020-06-06
-:END:
-
-** TODO A Standard for Password Management
-:PROPERTIES:
-:export_file_name: standard_for_password_management
-:export_date: 2021-12-06
-:END:
-**** tldr;
-Passwords are inherently insecure. We've layered a number of secure practices (some consumer facing, others system facnig) like MFA, security questions, oauth, and OIDC to complimen passwords and have built supporting systems like password managers to enable users to reliably and safely use sufficiently secure passwords, but we haven't written a standard for password management.
-
-I propose a standard set of endpoints which let users, or password managers by proxy, programatically manage their passwords.
-
-Use case: Say a user has 100 accounts at 100 different websites. Some, but not all support MFA. The user wants to rotate their passwords semi-regularly. Currently, they have to visit each of the 100 websites, login, navigate through unique account settings,  manually update their password, and update their password manager.
-
-Instead, a user should be able to press one button in their password manager which will programatically generate a new password and update the account settings through the proposed endpoints. Better yet, the password manager should do this automatically every N days without the user needing to trigger the process.
