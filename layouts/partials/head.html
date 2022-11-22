@@ -5,9 +5,23 @@
   <meta charset="utf-8">
   <title>{{ .Title }} | {{ .Site.Title }}</title>
 
-  {{- $options := (dict "targetPath" "css/styles.css" "outputStyle" "compressed" "enableSourceMap" "true") -}}
-  {{- $styles := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "scss/style.scss" . | resources.ToCSS $options | resources.Fingerprint "sha512" }}
-  <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
+  {{ $inServerMode := .Site.IsServer }}
+  {{ $sass         := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "scss/style.scss" . }}
+  {{ $sassIncludes := (slice "assets/dependencies/" "assets/scss/" "assets/scss/vendors/") }}
+  {{ $cssTarget    := "css/styles.css" }}
+  {{- $cssOpts := (dict "targetPath" "css/styles.css" "outputStyle" "compressed" "enableSourceMap" "true") -}}
+
+  {{ if or ($inServerMode) (eq hugo.Environment "local") }}
+
+  {{ $css := $sass | toCSS $cssOpts }}
+  <link rel="stylesheet" href="{{ $css.Permalink | absURL }}" media="screen">
+
+  {{ else }}
+
+  {{ $css := $sass | toCSS $cssOpts | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.Permalink | absURL }}" integrity="{{ $css.Data.Integrity }}" media="screen">
+
+  {{ end }}
 
   <link rel="shortcut icon" type="image/png" href="/img/32x32-beige.png">
   <link rel="shortcut icon" sizes="32x32" href="/img/32x32-beige.png">
