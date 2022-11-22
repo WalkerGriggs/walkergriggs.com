@@ -1,31 +1,25 @@
 {{ define "main" }}
-<div class="wrapper hero-wrapper">
-  <div class="hero">
-    {{if not .IsHome }}
-    {{ .Title | markdownify }}
-    {{ end }}
-  </div>
+<div class="mb3 hero">
+  {{if not .IsHome }}
+  {{ .Title | markdownify }}
+  {{ end }}
 </div>
 
 
-<div class="wrapper content-wrapper">
-  <div class="content">
-    {{ partial "subscribe.html" . }}
-
-
-    {{ range $taxonomy := .Site.Taxonomies.categories.Alphabetical.Reverse }}
-    <div class="wrapper">
-      <h1><a href="/categories/{{$taxonomy.Name}}">{{ strings.FirstUpper $taxonomy.Name }}</a></h1>
-      <ul class="list">
-        {{ range .Pages }}
-        <li>
-          <a class="no-decoration" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
-          <span class="date">{{ .Date.Format "2006/01/02" }}</span>
-        </li>
-        {{ end }}
-      </ul>
-    </div>
-    {{ end }}
+<div class="mb3 content">
+  {{ partial "form.html" . }}
+  {{ range $taxonomy := .Site.Taxonomies.categories.Alphabetical.Reverse }}
+  <div class="mb3">
+    <a href="/categories/{{$taxonomy.Name}}">{{ strings.FirstUpper $taxonomy.Name }}</a>
+    <ul class="page-list">
+      {{ range .Pages }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+        <span >{{ .Date.Format "2006/01/02" }}</span>
+      </li>
+      {{ end }}
+    </ul>
   </div>
+  {{ end }}
 </div>
 {{ end }}

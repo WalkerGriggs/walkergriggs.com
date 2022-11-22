@@ -1,5 +1,5 @@
-<nav class="wrapper">
-  <ul class="menu">
+<nav class="mb3">
+  <ul id="header">
     {{ range .Site.Menus.main }}
     <li><a class="no-decoration" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
     {{ end }}

@@ -1,11 +1,11 @@
 {{ define "main" }}
-<div class="wrapper hero-wrapper">
+<div class="mb3">
   <div class="hero">
     {{ .Title | markdownify }}
   </div>
 
-  <div class="post-params">
-    {{ if (gt .Params.date 0) }}<span class="date">{{ .Date.Format "2006/01/02" }}</span>{{ end }}
+  <div class="pr1">
+    {{ if (gt .Params.date 0) }}<span>{{ .Date.Format "2006/01/02" }}</span>{{ end }}
   </div>
 </div>
 
@@ -13,7 +13,7 @@
 <div class="wrapper content-wrapper">
   <div class="content">
     {{ .Content }}
-    {{ partial "subscribe.html" . }}
+    {{ partial "form.html" . }}
   </div>
 </div>
 {{ end }}

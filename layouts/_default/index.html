@@ -1,15 +1,10 @@
 {{ define "main" }}
-<div class="wrapper hero-wrapper">
-  <div class="hero">
+<div class="mb3 hero">
     {{ .Site.Params.Header }}
-  </div>
 </div>
 
-<div class="wrapper content-wrapper">
-  <div class="content">
-    {{.Content}}
-  </div>
-
-  <img id="index-gif" src="/img/index.gif">
+<div class="mb3 content">
+  {{.Content}}
+  <img class="ma3" id="index-gif" src="/img/index.gif">
 </div>
 {{ end }}
