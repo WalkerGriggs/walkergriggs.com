@@ -18,7 +18,7 @@
 
   {{ else }}
 
-  {{ $css := $sass | toCSS $cssOpts | fingerprint }}
+  {{ $css := $sass | toCSS $cssOpts }}
   <link rel="stylesheet" href="{{ $css.Permalink | absURL }}" integrity="{{ $css.Data.Integrity }}" media="screen">
 
   {{ end }}
