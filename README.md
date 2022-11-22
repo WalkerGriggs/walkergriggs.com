@@ -12,6 +12,5 @@ hugo serve -D
 ```
 
 <div align="center">
-<img width="960" alt="Screen Shot 2022-11-20 at 10 05 26 PM" src="https://user-images.githubusercontent.com/12417470/202977132-6f205c25-1167-4a61-8f7a-b47ba9721477.png">
+<img alt="Tiled screen shots of website" src="https://user-images.githubusercontent.com/12417470/203399353-80d307be-a369-4108-bcd5-d72d36eb13a6.png">
 </div>
-
