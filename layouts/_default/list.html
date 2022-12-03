@@ -12,7 +12,7 @@
   <div class="mb3">
     <a href="/categories/{{$taxonomy.Name}}">{{ strings.FirstUpper $taxonomy.Name }}</a>
     <ul class="page-list">
-      {{ range .Pages }}
+      {{ range (sort .Pages "Date" "desc") }}
       <li>
         <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
         <span >{{ .Date.Format "2006/01/02" }}</span>
