@@ -1,6 +1,6 @@
 baseURL: 'https://walkergriggs.com'
 languageCode: 'en-us'
-title: 'walkergriggs.com'
+title: 'Walker Griggs'
 pluralizelisttitles: "false"
 
 
@@ -13,7 +13,6 @@ params:
 disableKinds: ["taxonomy"]
 ignoreErrors: ["error-disable-taxonomy"]
 
-
 permalinks:
         posts: "/:year/:month/:day/:filename"
         pages: "/:slug"
@@ -23,7 +22,7 @@ menu:
                 - name: Home.
                   url: ""
                   weight: 1
-                - name: Writing.
+                - name: Posts.
                   url: "posts/"
                   weight: 2
                 - name: Projects.

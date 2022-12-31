@@ -3,7 +3,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="all,follow">
   <meta charset="utf-8">
-  <title>{{ .Title }} | {{ .Site.Title }}</title>
+
+  {{ if .IsHome }}
+  <title>{{ .Site.Title }}</title>
+  {{ else }}
+  <title>{{ strings.FirstUpper .Title }}</title>
+  {{ end }}
 
   {{ $inServerMode := .Site.IsServer }}
   {{ $sass         := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "scss/style.scss" . }}

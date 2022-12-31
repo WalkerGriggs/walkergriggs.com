@@ -1,6 +1,6 @@
 {{ define "main" }}
 <div class="mb2 hero">
-  {{if not .IsHome }}
+  {{ if not .IsHome }}
   {{ strings.FirstUpper .Title | markdownify }}
   {{ end }}
 </div>
