@@ -95,3 +95,8 @@ pre {
   overflow-x: auto;
   padding: 15px 15px 10px 15px;
 }
+
+iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
