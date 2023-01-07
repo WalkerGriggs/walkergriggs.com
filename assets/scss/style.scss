@@ -60,9 +60,9 @@ textarea {
 
 .content {
     width: 80%;
+    line-height: $line-height;
 
-    p {
-        line-height: $line-height;
+    p, li {
         margin-block-start: 1em;
         margin-block-end: 2em;
     }
@@ -94,4 +94,9 @@ textarea {
 pre {
   overflow-x: auto;
   padding: 15px 15px 10px 15px;
+}
+
+iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
 }
