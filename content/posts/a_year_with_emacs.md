@@ -2,9 +2,9 @@
 title = "A Year with Emacs"
 author = ["Walker Griggs"]
 date = 2017-01-05
-categories = ["devlog"]
+categories = ["devlogs"]
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
 weight = 2008
 +++
 

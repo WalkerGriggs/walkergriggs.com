@@ -2,9 +2,9 @@
 title = "Basic English"
 author = ["Walker Griggs"]
 date = 2022-08-03
-categories = ["writing"]
+categories = ["essays"]
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
 weight = 2001
 +++
 

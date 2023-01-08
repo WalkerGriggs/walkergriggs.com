@@ -2,7 +2,7 @@
 title = "Timestamp Troubles"
 author = ["Walker Griggs"]
 date = 2023-01-07
-categories = ["writing"]
+categories = ["talks"]
 draft = false
 creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
 weight = 2013

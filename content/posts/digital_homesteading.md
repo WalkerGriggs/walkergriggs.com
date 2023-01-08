@@ -2,9 +2,9 @@
 title = "Digital Homesteading"
 author = ["Walker Griggs"]
 date = 2021-12-08
-categories = ["writing"]
+categories = ["essays"]
 draft = true
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
 weight = 2003
 +++
 

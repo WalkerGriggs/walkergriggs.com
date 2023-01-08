@@ -2,9 +2,9 @@
 title = "Zettelkasten, Rhizomes, and You"
 author = ["Walker Griggs"]
 date = 2023-01-05
-categories = ["writing"]
+categories = ["essays"]
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
 weight = 2012
 +++
 
@@ -58,7 +58,7 @@ In our "chair" example, somewhere on that tree are stools, stumps, and hammocks.
 
 <a id="figure--fig:rhizome"></a>
 
-{{< figure src="/img/zettelkasten_rhizomes_and_you/rhizome.jpg" caption="<span class=\"figure-number\">Figure 3: </span>Terry Winters, Rhizome, 1998, Smithsonian American Art Museum" width="435px" >}}
+{{< figure src="/img/zettelkasten_rhizomes_and_you/rhizome.jpg" caption="<span class=\"figure-number\">Figure 1: </span>Terry Winters, Rhizome, 1998, Smithsonian American Art Museum" width="435px" >}}
 
 In contrast, Deleuze calls this "rhizomatic" thinking. Rhizomes are systems of roots that spread horizontally underground and branch in every direction. Ginger and asparagus are rhizomes.
 They have no top or bottom, no start, and no end. They are circuitous and cyclical. If you kill one section, the remaining roots will live on. If you cut it in half, they will live separate lives.

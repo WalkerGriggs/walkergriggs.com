@@ -2,9 +2,9 @@
 title = "Ergodox Infinity LCD Firmware"
 author = ["Walker Griggs"]
 date = 2017-03-21
-categories = ["devlog"]
+categories = ["devlogs"]
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
 weight = 2009
 +++
 

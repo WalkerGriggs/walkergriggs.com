@@ -2,9 +2,9 @@
 title = "ZNC, the right way"
 author = ["Walker Griggs"]
 date = 2021-10-13
-categories = ["devlog"]
+categories = ["devlogs"]
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
 weight = 2007
 +++
 
