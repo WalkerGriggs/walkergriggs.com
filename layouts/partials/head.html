@@ -15,20 +15,17 @@
   {{ $sassIncludes := (slice "assets/dependencies/" "assets/scss/" "assets/scss/vendors/") }}
   {{ $cssTarget    := "css/styles.css" }}
   {{- $cssOpts := (dict "targetPath" "css/styles.css" "outputStyle" "compressed" "enableSourceMap" "true") -}}
+  {{ $css := $sass | toCSS $cssOpts }}
 
   {{ if or ($inServerMode) (eq hugo.Environment "local") }}
-
-  {{ $css := $sass | toCSS $cssOpts }}
   <link rel="stylesheet" href="{{ $css.Permalink | absURL }}" media="screen">
-
   {{ else }}
-
-  {{ $css := $sass | toCSS $cssOpts }}
   <link rel="stylesheet" href="{{ $css.Permalink | absURL }}" integrity="{{ $css.Data.Integrity }}" media="screen">
-
   {{ end }}
 
-  <link rel="shortcut icon" type="image/png" href="/img/32x32-beige.png">
-  <link rel="shortcut icon" sizes="32x32" href="/img/32x32-beige.png">
-  <link rel="apple-touch-icon" href="/img/32x32-beige.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 </head>
