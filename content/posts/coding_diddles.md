@@ -1,11 +1,14 @@
 +++
 title = "Coding Diddles"
 author = ["Walker Griggs"]
+description = """
+  "Coding Diddles" talks about my relationship with originality, novelty, and repetition. It uses an example taken from word carving to highlight the need for praxis to reinforce and supplement your continuous education as a programmer.
+  """
 date = 2022-08-07
 categories = ["essays"]
 draft = false
-creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
-weight = 2002
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+weight = 2005
 +++
 
 > "If you fail in copying from a master you succeed in birthing an original art", Kushal Poddar

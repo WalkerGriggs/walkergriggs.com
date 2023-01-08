@@ -1,6 +1,9 @@
 +++
 title = "Pipewire in Docker"
 author = ["Walker Griggs"]
+description = """
+  "Pipewire in Docker" lists the steps I took to get the Pipewire multi-media server for Linux running in an Ubuntu 22.04 Docker container.
+  """
 date = 2022-12-03
 categories = ["devlogs"]
 draft = false

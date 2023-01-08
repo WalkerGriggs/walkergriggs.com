@@ -1,11 +1,14 @@
 +++
 title = "ZNC, the right way"
 author = ["Walker Griggs"]
+description = """
+  "ZNC, the right way" lists the steps I took to reproducibly deploy, configure, and secure my IRC bouncer.
+  """
 date = 2021-10-13
 categories = ["devlogs"]
 draft = false
-creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
-weight = 2007
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+weight = 2008
 +++
 
 I've setup [ZNC](https://wiki.znc.in/ZNC) one too many times.

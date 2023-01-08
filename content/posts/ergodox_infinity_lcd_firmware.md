@@ -1,11 +1,14 @@
 +++
 title = "Ergodox Infinity LCD Firmware"
 author = ["Walker Griggs"]
+description = """
+  "Ergodox Infinity LCD Firmware" lists the steps I took to design, compile, and flash custom icons to the Ergodox Infinity's LCD screen.
+  """
 date = 2017-03-21
 categories = ["devlogs"]
 draft = false
 creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
-weight = 2009
+weight = 2010
 +++
 
 So you've got yourself an Ergodox Infinity. Congratulations! Everyone probably thinks your a little bit crazy spending that much on a keyboard that strange with LCD displays that small and a layout you're struggling to type on. But it's ok -- anyone who shares this strange obsession probably understands.

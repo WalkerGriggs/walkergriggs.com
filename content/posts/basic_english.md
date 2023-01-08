@@ -1,18 +1,21 @@
 +++
 title = "Basic English"
 author = ["Walker Griggs"]
+description = """
+  "Basic English" considers the application of controlled languages -- simplified languages developed by linguists as a teaching aide -- in programming. This essay considers controlled languages as a practice in both education and maintenance.
+  """
 date = 2022-08-03
 categories = ["essays"]
 draft = false
-creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
-weight = 2001
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+weight = 2006
 +++
 
 > It takes only 400 words of Basic to run a battleship; with 850 words you can run the planet.
 >
 > Ivor Armstrong Richards
 
-I'm terrible at learning foreign languages. In fact, I studied latin for 8 years -- a dead language for all intents and purposes -- and hardly remember a thing. Recently I tried learning Italian; that fell by the wayside too.
+I'm terrible at learning foreign languages. In fact, I studied Latin for 8 years -- a dead language for all intents and purposes -- and hardly remember a thing. Recently I tried learning Italian; that fell by the wayside too.
 
 My experience with foreign languages could probably be summed up in one word: overwhelming. Gerunds and gerundives. Participle. Present perfect imperatives. Yet, somehow, there's a sizable population of polyglots out there who learn languages, or at least the basics, in just a few weeks. How? Enter: Basic English.
 
@@ -22,7 +25,7 @@ Of the hundreds of thousands of words in the English language, Basic is only 850
 
 Of course, this got me thinking about my experience learning to code, or work with computers more generally. Honestly, Basic English is not far off.
 
-In highschool, we wrote hundreds of lines on paper well before we typed a single character into a text editor. Before we learned loops, we learned about variables. Before variables: types. The syllabus was condensed to 850 words (or whatever the programming equivalent is), and we kept to it. Our diction was limited, and we drilled those core principles home.
+In high school, we wrote hundreds of lines on paper well before we typed a single character into a text editor. Before we learned loops, we learned about variables. Before variables: types. The syllabus was condensed to 850 words (or whatever the programming equivalent is), and we kept to it. Our diction was limited, and we drilled those core principles home.
 
 Jump forward however many years, and my experience learning Rust was vastly different. I dove straight into traits and borrowing and async, and I ultimately failed to learn the language. I don't know Rust any better than I know Italian. I didn't limit myself to 850 words.
 
@@ -48,4 +51,4 @@ In my case, maybe that person is a colleague who isn't familiar with Python. May
 
 Of course, list comprehension is a small example, but this principle applies just as well to complex patterns and sprawling systems. Simplicity is empathy.
 
-All in all, controlled languages are an interesting theory and intuitively make so much sense. I likely won't be fluent in Italian any time soon, but I'll certainly remind myself to slow down and keep it stuipid simple. I might even revisit Rust and do it right this time.
+All in all, controlled languages are an interesting theory and intuitively make so much sense. I likely won't be fluent in Italian any time soon, but I'll certainly remind myself to slow down and keep it stupid simple. I might even revisit Rust and do it right this time.

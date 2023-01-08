@@ -1,11 +1,14 @@
 +++
 title = "Learning Go Generics with Advent of Code"
 author = ["Walker Griggs"]
+description = """
+  "Learning Go Generics with Advent of Code" explores Go's new generic system that shipped with go1.18beta1. It discusses generics as a system, a bit about their implementation, and how they can be practically applied with the Advent of Code.
+  """
 date = 2021-12-15
 categories = ["devlogs"]
 draft = false
-creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
-weight = 2006
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+weight = 2007
 +++
 
 _This post is a living draft and may be revised. If you have any comments, questions, or concerns, please reach out._

@@ -1,11 +1,11 @@
 +++
-title = "tldr;"
+title = "A Standard for Password Management"
 author = ["Walker Griggs"]
 date = 2021-12-06
 categories = ["devlogs"]
 draft = true
-creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
-weight = 2005
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+weight = 2003
 +++
 
 ## tldr; {#tldr}

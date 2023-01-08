@@ -1,10 +1,13 @@
 +++
 title = "Timestamp Troubles"
 author = ["Walker Griggs"]
+description = """
+  "Timestamp Troubles" tells the story of triaging and patching unexpected livestream behaviors. The talk is a narrative account that puts equal weight on the debugging process as the final implementation, and was first given at Deuxed 2022. <https://youtu.be/m0yNWtCeWh8>
+  """
 date = 2023-01-07
 categories = ["talks"]
 draft = false
-creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
 weight = 2013
 +++
 
