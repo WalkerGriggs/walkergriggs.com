@@ -4,7 +4,7 @@ author = ["Walker Griggs"]
 date = 2017-03-21
 categories = ["devlogs"]
 draft = false
-creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
 weight = 2009
 +++
 
@@ -51,7 +51,7 @@ If you have aversion to this configurator, so be it. You can use whatever progra
 
 This part is fun and quite straight forward. Create a logo that fits inside 128x32 screen. Anything large won't get flashed. You can create a the logo in any way, as long as you can get it to .bmp file. Originally, I used [Piskel](http://www.piskelapp.com/) to create mine.
 
-{{< figure src="/ergodox-infinity-lcd-firmware/game_of_life.png" width="50%" >}}
+{{< figure src="/img/ergodox-infinity-lcd-firmware/game_of_life.png" width="50%" >}}
 
 I created the permutation of a glider from Conway's Game of Life. If you don't know exactly what that is, I highly recommend looking into it.
 

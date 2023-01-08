@@ -756,7 +756,7 @@ If you have aversion to this configurator, so be it. You can use whatever progra
 This part is fun and quite straight forward. Create a logo that fits inside 128x32 screen. Anything large won't get flashed. You can create a the logo in any way, as long as you can get it to .bmp file. Originally, I used [[http://www.piskelapp.com/][Piskel]] to create mine.
 
 #+attr_html: :width 50%
-[[file:static/ergodox-infinity-lcd-firmware/game_of_life.png]]
+[[file:static/img/ergodox-infinity-lcd-firmware/game_of_life.png]]
 
 I created the permutation of a glider from Conway's Game of Life. If you don't know exactly what that is, I highly recommend looking into it.
 
@@ -865,7 +865,7 @@ At this point, your Ergodox Infinity should be both flash with your layout and y
 :END:
 
 #+attr_html: :width 100%
-[[file:static/pipewire-in-docker/pipewire.gif]]
+[[file:static/img/pipewire-in-docker/pipewire.gif]]
 
 [[https://pipewire.org/][Pipewire]] is a graph-based multimedia processing engine that lets you handle audio + video in real time! I've had way too much fun playing with it recently, but spent longer than I care to admit spinning it up in an Ubuntu container.
 

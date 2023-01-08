@@ -4,11 +4,11 @@ author = ["Walker Griggs"]
 date = 2022-12-03
 categories = ["devlogs"]
 draft = false
-creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
+creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
 weight = 2011
 +++
 
-{{< figure src="/pipewire-in-docker/pipewire.gif" width="100%" >}}
+{{< figure src="/img/pipewire-in-docker/pipewire.gif" width="100%" >}}
 
 [Pipewire](https://pipewire.org/) is a graph-based multimedia processing engine that lets you handle audio + video in real time! I've had way too much fun playing with it recently, but spent longer than I care to admit spinning it up in an Ubuntu container.
 
