@@ -1055,7 +1055,6 @@ Writing is an integral part of thinking. "Zettelkasten, Rhizomes, and You" talks
 #+end_description
 
 #+CAPTION: Chris Korner, Deutsches Literaturarchiv Marbach
-#+NAME:   fig:zettel_1
 #+ATTR_HTML: :width 435px
 [[./static/img/zettelkasten_rhizomes_and_you/zettel_1.jpg]]
 
@@ -1079,7 +1078,6 @@ It is impossible to think without writing; at least it is impossible in any soph
 You can browse [[https://niklas-luhmann-archiv.de/][Luhmann's archive]] online if you're interested.
 
 #+CAPTION: The Niklas Luhmann Archive, Historisches Museum Frankfurt
-#+NAME:   fig:zettel_2
 #+ATTR_HTML: :width 435px
 [[./static/img/zettelkasten_rhizomes_and_you/zettel_2.jpg]]
 
@@ -1104,7 +1102,6 @@ Deleuze describes this model as "arborescent"; it is structured like a tree, whe
 In our "chair" example, somewhere on that tree are stools, stumps, and hammocks. They are ranked according to their proximity to the ideal chair. Plato might ask, "How perfect of a chair are you?" but Deleuze took issue with this line of reasoning. He proposed that a better question is "How are you different?" or "What characteristics make you unique?" We can then categorize the stump, stool, and hammock not by their representation of an "ideal chair," but by the differences between them. Stools are portable, hammocks are soothing, and stumps firmly ground you in nature.
 
 #+CAPTION: Terry Winters, Rhizome, 1998, Smithsonian American Art Museum
-#+NAME:   fig:rhizome
 #+ATTR_HTML: :width 435px
 [[./static/img/zettelkasten_rhizomes_and_you/rhizome.jpg]]
 

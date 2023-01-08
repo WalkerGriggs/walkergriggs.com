@@ -11,8 +11,6 @@ creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
 weight = 2012
 +++
 
-<a id="figure--fig:zettel-1"></a>
-
 {{< figure src="/img/zettelkasten_rhizomes_and_you/zettel_1.jpg" caption="<span class=\"figure-number\">Figure 1: </span>Chris Korner, Deutsches Literaturarchiv Marbach" width="435px" >}}
 
 A few years ago, I stumbled upon a collection of odd websites that called themselves "brain dumps." On the surface, they seemed like collections of disjointed thoughts – fragments of ideas that linked to seemingly unrelated topics. Often, they bridged disciplines altogether.
@@ -32,8 +30,6 @@ In fact, Niklas Luhmann, a German sociologist credited with creating the modern 
 > It is impossible to think without writing; at least it is impossible in any sophisticated or networked fashion. Somehow we must mark differences and capture distinctions which are either implicitly or explicitly contained in concepts. Only if we have secured in this way the constancy of the schema that produces information can the consistency of the subsequent processes of processing information be guaranteed. And if one has to write anyway, it is useful to take advantage of this activity in order to create in the system of notes a competent partner of communication.
 
 You can browse [Luhmann's archive](https://niklas-luhmann-archiv.de/) online if you're interested.
-
-<a id="figure--fig:zettel-2"></a>
 
 {{< figure src="/img/zettelkasten_rhizomes_and_you/zettel_2.jpg" caption="<span class=\"figure-number\">Figure 2: </span>The Niklas Luhmann Archive, Historisches Museum Frankfurt" width="435px" >}}
 
@@ -58,8 +54,6 @@ To properly understand Deleuze, we should probably first understand Plato. Plato
 Deleuze describes this model as "arborescent"; it is structured like a tree, where the ideal form is the root and the lesser representations extend out over the branches to the canopy.
 
 In our "chair" example, somewhere on that tree are stools, stumps, and hammocks. They are ranked according to their proximity to the ideal chair. Plato might ask, "How perfect of a chair are you?" but Deleuze took issue with this line of reasoning. He proposed that a better question is "How are you different?" or "What characteristics make you unique?" We can then categorize the stump, stool, and hammock not by their representation of an "ideal chair," but by the differences between them. Stools are portable, hammocks are soothing, and stumps firmly ground you in nature.
-
-<a id="figure--fig:rhizome"></a>
 
 {{< figure src="/img/zettelkasten_rhizomes_and_you/rhizome.jpg" caption="<span class=\"figure-number\">Figure 3: </span>Terry Winters, Rhizome, 1998, Smithsonian American Art Museum" width="435px" >}}
 
