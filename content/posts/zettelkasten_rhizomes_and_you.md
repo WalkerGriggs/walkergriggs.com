@@ -7,8 +7,9 @@ description = """
 date = 2023-01-05
 categories = ["essays"]
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+creator = "Emacs 27.1 (Org mode 9.6 + ox-hugo)"
 weight = 2012
+featured_image = "img/zettelkasten_rhizomes_and_you/zettel_1.jpg"
 +++
 
 {{< figure src="/img/zettelkasten_rhizomes_and_you/zettel_1.jpg" caption="<span class=\"figure-number\">Figure 1: </span>Chris Korner, Deutsches Literaturarchiv Marbach" width="435px" >}}

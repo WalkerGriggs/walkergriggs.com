@@ -1048,6 +1048,7 @@ I'll likely write more about Pipewire once I get more experiencing working with 
 :PROPERTIES:
 :export_file_name:  zettelkasten_rhizomes_and_you
 :export_date: 2023-01-05
+:export_hugo_custom_front_matter: :featured_image "img/zettelkasten_rhizomes_and_you/zettel_1.jpg"
 :END:
 
 #+begin_description
