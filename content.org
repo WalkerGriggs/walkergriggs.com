@@ -1401,7 +1401,7 @@ That said, I think the big takeaway here is the one I told you was coming from t
 :PROPERTIES:
 :export_file_name:  the_guy_who_likes_lemons
 :export_date: 2023-02-07
-:export_hugo_custom_front_matter: :featured_image "img/the-guy-who-likes-lemons/walker-griggs-the-guy-who-likes-lemons.jpg"
+:export_hugo_custom_front_matter: :featured_image "img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.jpg"
 :END:
 
 #+begin_description
@@ -1438,7 +1438,7 @@ The funny thing is I never intended to grow a mustache. I was debugging a misbeh
 *** Look good, feel good, sh*t in the woods!
 
 #+ATTR_HTML: :width 435px
-[[./static/img/the_guy_who_likes_lemons/look-good-feel-good.jpeg]]
+[[./static/img/the_guy_who_likes_lemons/look_good_feel_good.jpg]]
 
 I went to college in Maine. Freshman orientation was a one-week trek deep into the forest. So deep, in fact, that our van had skid plates for dirt roads and bull bars in case we “bumped” into a moose.
 
@@ -1475,4 +1475,4 @@ I take solace in knowing that, as long as we approach life bright and funky, bol
 And so, of course, there’s only one way to close. My name is Walker Griggs, and I want to be remembered as the mustached man who looked good, felt good, loved lemons, and shat in the woods – metaphorically, of course.
 
 #+ATTR_HTML: :height 300px
-[[./static/img/the_guy_who_likes_lemons/walker-griggs-the-guy-who-likes-lemons.jpg]]
+[[./static/img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.jpg]]
