@@ -1462,9 +1462,11 @@ Conway spent much of his illustrious career studying cellular automaton, but his
 
 [[https://en.wikipedia.org/wiki/Kolmogorov_complexity][Kolmogorov complexity]] is the theory that something is as complex as the shortest program that can reproduce it. By those standards, the Game of Life is less complex than [[https://en.wikivoyage.org/wiki/Llanfairpwllgwyngyll][the name of some Welch towns]].
 
+#+begin_quote
 Well, I used to say, and I’m still inclined to say occasionally, that I hate it, I hate the Game of Life. I don’t really, at least I don’t anymore.
 
 The reason why I felt like that was that, whenever my name was mentioned with respect to some mathematics, it was always the Game of Life. And I don’t think the Game of Life is very very interesting. I don’t think it was worth all that, I’ve done lots of other mathematical things. So I found the Game of Life was overshadowing much more important things and I did not like it.
+#+end_quote
 
 The Game of Life and Conway’s relationship with it, highlights how little it takes to leave a lasting impression and how it often happens when you least expect it. No matter how we try, we can’t control it.
 
