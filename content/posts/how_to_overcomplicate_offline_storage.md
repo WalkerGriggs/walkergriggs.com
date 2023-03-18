@@ -4,7 +4,7 @@ author = ["Walker Griggs"]
 date = 2023-03-15
 categories = ["devlogs"]
 draft = true
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+creator = "Emacs 27.1 (Org mode 9.3 + ox-hugo)"
 weight = 2015
 featured_image = "img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.jpg"
 +++
@@ -75,62 +75,74 @@ Annex supports quite a few remote repository backends like web, bittorrents, xmp
 First thing's first, we need to create an annex repository. I always keep one local repository on my system so I can run a quick `git annex whereis` when I need to locate a file.
 
 ```bash
-mkdir -p ~/anenx && cd ~/annex
-
-git init
-
-git annex init
-git annex numcopies 2
+$ mkdir -p ~/anenx && cd ~/annex
+$ git init
+$ git annex init
+$ git annex numcopies 2
 ```
 
-Once we've setup the \\(origin\\) remote, so to speak, we can format our drive, clone a copy of the annex, and create an "offline repo".
+Once we've setup the \\(origin\\) remote, so to speak, we can format our drive, clone a copy of the annex, and create an "offline repo". A small but critical detail: name and label your drive the same thing. I mean psychically label the drive, initialize the filesystem, title offline annex, and mount to a directory all with the same name -- `drive0`, in this case. You can use the annex description for a bit more metadata; I use the hdd model number so I always have it tracked.
 
 ```bash
-mkfs.btrfs
+$ mkfs.btrfs -L drive0 /deb/sdb
 
-mkdir -p /mnt/drive0
+$ mkdir -p /mnt/drive0
+$ mount /dev/sdb /mnt/drive0 && cd /mnt/drive0
 
-mount /dev/sdb /mnt/drive0 && cd /mnt/drive0
-
-git clone ~/annex
-
-cd ~/annex
-git annex group drive0 archive
-git annex wanted drive0 standard
-git annex describe drive0 "hdd-model-number"
+$ git clone ~/annex && cd ~/annex
+$ git annex group drive0 archive
+$ git annex wanted drive0 standard
+$ git annex describe drive0 "hdd-model-number"
 ```
 
-At this point, we're ready to start backing up our files! I'll use rsync to copy files to the drive and add them to the annex. In this instance, lets backup an extremely value video files.
+At this point, we're ready to start backing up our files! I'll use rsync to copy files to the drive and add them to the annex. In this instance, let's backup an extremely value video files.
 
 ```bash
-cd /mnt/drive0/annex
-rsync -h --progress ~/Documents/big_buck_bunny.mp4 ./
+$ cd /mnt/drive0/annex
+$ rsync -h --progress /mnt/somefarawayland/big_buck_bunny.mp4 ./
 
-git annex add ./big_buck_bummy.mp4
-git commit -S -m "🅱️ig 🅱️uck 🅱️unny"
-git annex sync
+$ git annex add ./big_buck_bummy.mp4
+$ git commit -S -m "🅱️ig 🅱️uck 🅱️unny"
+$ git annex sync
 ```
 
 Syncing the file is a bit like pushing. It makes sure that all other remotes are aware. If we jump back to the origin repo and sync, we should be able to see the newly committed file. What's more, since we set the desired number of copies to 2, we can list all files missing a copy. We can even check the location of the file and grab some info on the drive -- all the info you'd ever need when recovering offline data.
 
 ```bash
-cd ~/annex
-git annex sync
+$ cd ~/annex
+$ git annex sync
 
-git annex list
+$ git annex list --lackingcopies 1
+here
+|drive0
+||web
+|||bittorrent
+||||
+_X__ big_buck_bunny.mp4
 
-git annex list --lackingcopies 1
+$ git annex whereis big_buck_bunny.mp4
+whereis big_buck_bunny.mp4 (1 copy)
+    0eb61bd8-80d8-4ebe-8ba8-2f93296ac1ad -- wgriggs@DebianBox:/mnt/drive0/annex [drive0]
+ok
 
-git annex whereis big_buck_bunny.mp4
-
-git annex info drive0
+$ git annex info drive0
+uuid: 3ddb6b63-33d8-43fa-8553-e594866530af
+description: WD80EMZZ-00TBGA0 [drive10]
+trust: semitrusted
+remote: drive10
+cost: 100.0
+type: git
+repository location: /mnt/drive0/annex/
+last synced: 2023-03-21 04:33:17 UTC
+remote annex keys: 1
+remote annex size: 355.86 megabytes
 ```
 
 Let's say this drive has the capacity for exactly one copy of `big_buck_bunny.mp4`. Before packing the drive away, I'll run a quick (buyer beware, this actually takes a while) defragmentation and data scrub to validate the file's integrity. This is likely overkill, but what about this process isn't?
 
 ```bash
-btrfs filesystem defrag -vf /mnt/drive0
-btrfs scrub /mnt/drive0
+$ btrfs filesystem defrag -vf /mnt/drive0
+$ btrfs scrub /mnt/drive0
 ```
 
 An important note: I'll pull this drive out every 4-6 months and run another scrub! Part of offline storge is actually spinning the disk up, mounting it, and making sure all the files are as you expect.
