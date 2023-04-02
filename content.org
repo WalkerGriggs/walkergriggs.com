@@ -1479,150 +1479,6 @@ And so, of course, there’s only one way to close. My name is Walker Griggs, an
 #+ATTR_HTML: :height 300px
 [[./static/img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.jpg]]
 
-** TODO How to Overcomplicate Offline Storage                     :@devlogs:
-:PROPERTIES:
-:export_file_name: how_to_overcomplicate_offline_storage
-:export_date: 2023-03-15
-:export_hugo_custom_front_matter: :featured_image "img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.jpg"
-:END:
-
-#+begin_description
-#+end_description
-
-Seven years ago, I made the decision to keep an offline backup of data I found personally important. What started as a 1 terrabyte external harddrive filled with a few sentimental photos, zipped folders of school projects, and maybe the odd 360p DVD rip has turned into a 40TB NAS (network attached storage) and 26TB offline drives.
-
-I tried recently explaining my system to friend but my thoughts kept running off in every possible direction. This post answers "how I store and track offline files"; I'm drafting a post for 'why', but that's a substantially longer post.
-
-*** What to backup
-
-Before you think about /how/ you store offline files you first have to enumerate /what/ you're storing. Personally, I have three rules.
-
-/*"Can this data be replaced?"*/
-
-If not, I wont hesitate to keep /multiple/ offline copies. Data in this category includes family photos and artifacts of hard work like blog posts, source code, or research notes. These are items that need to be protected at all times.  Whether of not I keep a copy online is a matter of frequency.
-
-Speaking of which, /*do I access the file than twice a year?*/
-
-If not, it's probably not worth keeping on a spinning disk. Pulling out my drives, setting up an external drive dock, and mounting the drive all take time so I avoid it when I can.
-
-/*Am I running out of online storage space?*/
-
-This one depends on how much storage space you're working with. As I've expanded my networked storage, my definition of a "large file" has changed.
-
-*** Picking the right drive
-
-Everyone has a different opinion on this one. Personally, my archive drives are a graveyard of systems-past. Each drive has a slightly different capacity, spin at a different speed, and are a different formfactor. As long as it's above its S.M.A.R.T. thresholds, it's fine by me.
-
-What about the capacity, how large should the drives be? My general rule of thumb is "4 times the capacity of your data set, divided by your maximum accepible number of drives". Personally I never want to have more than 10 drives at a time. Routine scrubbing and maintenance can be a slow process; let's not make it slower than it has to be.
-
-For me, currently, that's ~(12TB * 4) / 10~ or about 5TB per drive. At the moment, I have a grab bag of 8, 4, and 3TB drives, so that math works out pretty well.
-
-Why 4x the size of the dataset? Well, hard drives -- especially old drives -- aren't meant to be long term, offline data solutions. As a result, I try to keep 2 copies of every file spread across all the drives. I also like to keep 50% capacity available, which is probably overkill but it spreads the files out nicely and reduces the blast radius should a drive completely fail.
-
-My recommendation for sourcing the drives is "cheap and slow". If you can salvage the drives from you old systems, even better. I find that I can rotate my NAS drives 1 year before they give up the ghost, and those make perfectly AOK drives. Otherwise, if you're going to buy drive specifically for offline storage, check [[https://diskprices.com/][DiskPrices]] for the best dollar-per-terrabyte price possible. 5600 or 7200rpm, air or helium, 128 or 256mb cache: none of this matters when they're sitting in a drawer somewhere.
-
-**** Storing your drives
-
-This bit might sound pedantic, but storing your drives properly is, in many ways, just as important as checking their S.M.A.R.T. status. I personally, keep my drives in Orico cases, labeled with their model number, capacity, and canonical name. The Orico cases claim to be shock and static resistent, but I still keep the drive in an antistatic bag with a small silica packet inside the case just to be safe. Stack these somewhere dry with little temperature fluctation. Harddrives are pretty hearty, but I'd rather be safe than sorry.
-
-*** Finding your flow.
-
-This is where things get optinionated and taylored to your needs. Personally I wanted a system that could:
-
-- be fully administered (backup, recovery, and maintenance) in a Linux shell -- bonus points if it's a live install with basic kernel primitives.
-- leave the files fully intact and accessable without any special software or de-serialization
-- locate the file among all the offline drives
-- validate the content of every block with checksums
-- replicate te files easily and implicitly
-
-I chose ~btrfs~ and ~git-annex~.
-
-The filesystem was between btrfs and zfs, but I personally have personal experience with the former and dislike the experience of exporting and offlining ZFS pools. BTRFS is now include in the Linux kernel and has all the features I look for in a modern filesystem. Relevant to this use case: block-level deduplication, disk defragmenting, and data scrubbing.
-
-Git Annex surprised me, honestly. I hadn't given it much thought in the past, but it cover my requirements fully and it, at the very least, aligns with my normal software development workflow. From their website:
-
-#+begin_quote
-git-annex allows managing large files with git, without storing the file contents in git. It can sync, backup, and archive your data, offline and online. Checksums and encryption keep your data safe and secure. Bring the power and distributed nature of git to bear on your large files with git-annex.
-#+end_quote
-
-Annex supports quite a few remote repository backends like web, bittorrents, xmpp, and S3 to name a few. Unless I decide to move files into AWS S3 or Glacier in the future, I'll only ever use the bare filesystem. I'd recommend at least reading through their [[https://git-annex.branchable.com/][docs]] -- they're wonderful!
-
-*** In practice
-
-First thing's first, we need to create an annex repository. I always keep one local repository on my system so I can run a quick ~git annex whereis~ when I need to locate a file.
-
-#+begin_src bash
-$ mkdir -p ~/anenx && cd ~/annex
-$ git init
-$ git annex init
-$ git annex numcopies 2
-#+end_src
-
-Once we've setup the $origin$ remote, so to speak, we can format our drive, clone a copy of the annex, and create an "offline repo". A small but critical detail: name and label your drive the same thing. I mean psychically label the drive, initialize the filesystem, title offline annex, and mount to a directory all with the same name -- ~drive0~, in this case. You can use the annex description for a bit more metadata; I use the hdd model number so I always have it tracked.
-
-#+begin_src bash
-$ mkfs.btrfs -L drive0 /deb/sdb
-
-$ mkdir -p /mnt/drive0
-$ mount /dev/sdb /mnt/drive0 && cd /mnt/drive0
-
-$ git clone ~/annex && cd ~/annex
-$ git annex group drive0 archive
-$ git annex wanted drive0 standard
-$ git annex describe drive0 "hdd-model-number"
-#+end_src
-
-At this point, we're ready to start backing up our files! I'll use rsync to copy files to the drive and add them to the annex. In this instance, let's backup an extremely value video files.
-
-#+begin_src bash
-$ cd /mnt/drive0/annex
-$ rsync -h --progress /mnt/somefarawayland/big_buck_bunny.mp4 ./
-
-$ git annex add ./big_buck_bummy.mp4
-$ git commit -S -m "🅱️ig 🅱️uck 🅱️unny"
-$ git annex sync
-#+end_src
-
-Syncing the file is a bit like pushing. It makes sure that all other remotes are aware. If we jump back to the origin repo and sync, we should be able to see the newly committed file. What's more, since we set the desired number of copies to 2, we can list all files missing a copy. We can even check the location of the file and grab some info on the drive -- all the info you'd ever need when recovering offline data.
-
-#+begin_src bash
-$ cd ~/annex
-$ git annex sync
-
-$ git annex list --lackingcopies 1
-here
-|drive0
-||web
-|||bittorrent
-||||
-_X__ big_buck_bunny.mp4
-
-$ git annex whereis big_buck_bunny.mp4
-whereis big_buck_bunny.mp4 (1 copy)
-    0eb61bd8-80d8-4ebe-8ba8-2f93296ac1ad -- wgriggs@DebianBox:/mnt/drive0/annex [drive0]
-ok
-
-$ git annex info drive0
-uuid: 3ddb6b63-33d8-43fa-8553-e594866530af
-description: WD80EMZZ-00TBGA0 [drive10]
-trust: semitrusted
-remote: drive10
-cost: 100.0
-type: git
-repository location: /mnt/drive0/annex/
-last synced: 2023-03-21 04:33:17 UTC
-remote annex keys: 1
-remote annex size: 355.86 megabytes
-#+end_src
-
-Let's say this drive has the capacity for exactly one copy of ~big_buck_bunny.mp4~. Before packing the drive away, I'll run a quick (buyer beware, this actually takes a while) defragmentation and data scrub to validate the file's integrity. This is likely overkill, but what about this process isn't?
-
-#+begin_src bash
-$ btrfs filesystem defrag -vf /mnt/drive0
-$ btrfs scrub /mnt/drive0
-#+end_src
-
-An important note: I'll pull this drive out every 4-6 months and run another scrub! Part of offline storge is actually spinning the disk up, mounting it, and making sure all the files are as you expect.
 ** DONE Data Preservation, Alf's Room, and Spicy P                 :@essays:
 :PROPERTIES:
 :export_file_name: data_preservation_alfs_room_and_spicy_p
@@ -1709,3 +1565,234 @@ Forget those well lit, well staged, well edited ‘candids’; I’m talking abo
 I’m talking about Adachi Yoshinori’s snapshots tracking the history of potted trees at his local train station or Pascal Siakam’s grainy footage of his friends at the All-Star game.
 
 I’m talking about my Youtube channel from 2011 and those VHS tapes stuffed deep in your grandparents' closet. I may not be the right person to preserve them, but you are.
+** How to Overcomplicate Offline Storage                          :@devlogs:
+:PROPERTIES:
+:export_file_name: how_to_overcomplicate_offline_storage
+:export_date: 2023-04-01
+:export_hugo_custom_front_matter: :featured_image "img/how_to_overcomplicate_offline_storage/lto.jpg"
+:END:
+
+#+begin_description
+What started as a 1 terabyte external harddrive loaded with a few sentimental photos has turned into a 40TB NAS and 26TB worth of offline drives. This post is an attempt to answer 'how I store and track offline files.'
+#+end_description
+
+Seven years ago, I made the decision to keep offline backups of all my personal data. What started as a 1 terabyte external harddrive loaded with a few sentimental photos, zipped folders of school projects, and maybe the odd 360p DVD rip has turned into a 40TB NAS and 26TB worth of offline drives.
+
+#+CAPTION: LTO Tapes: the dream no one can reasonably afford
+#+ATTR_HTML: :width 435px
+[[./static/img/how_to_overcomplicate_offline_storage/lto.jpg]]
+
+Recently, I tried explaining my system to a friend but my thoughts kept running off in every possible direction. This post attempts to answer 'how I store and track offline files'; [[https://walkergriggs.com/2023/03/25/data_preservation_alfs_room_and_spicy_p/][Data Preservation, Alf’s Room, and Spicy P]] answers 'why.'
+
+*** What to backup
+
+Before anyone thinks about how they handle offline storage, they should first think about what they’re storing. Personally, I have three rules.
+
+/*Can this data be replaced?*/
+
+If not, I won't hesitate to keep multiple offline copies. Data in this category includes family photos and artifacts of hard work like blog posts, source code, or research notes. These are items that need to be protected at all times.
+
+/*Do I access the file regularly?*/
+
+If I access the file less often than I perform a round of disk maintenance, it’s probably not worth keeping on a spinning disk. That said, pulling out the drives, setting up an external drive dock, and mounting the drives all take time. I avoid it when I can.
+
+/*Am I running out of online storage space?*/
+
+As I’ve expanded my networked storage, my definition of a “large file” has changed, and my tolerance for always-online storage has grown. Mileage may vary.
+
+*** Picking the right drive
+
+Everyone has a different opinion on which drives are best for offline storage. I think the best drives are the ones you have.
+
+Personally, my archive drives are a graveyard of systems-past. They’re all different capacities, manufactured by different companies, and spin at different speeds. As long as they’re above their [[http://ntfs.com/disk-monitor-smart-attributes.htm][S.M.A.R.T. thresholds]], they’re fine by me.
+
+Capacity is another story; some drives are just too small to bother with. My general rule of thumb is “4 times the size of your data set, divided by your maximum acceptable number of drives”. Personally I never want to maintain more than 10 offline drives at a time. Routine scrubbing and maintenance can be a slow process; let’s not make it slower than it has to be.
+
+For me, currently, that’s ~(12TB * 4) / 10~ or about 5TB per drive. At the moment, I have a grab bag of 8, 4, and 3TB drives, so that math works out pretty well.
+
+Why 4x the size of the dataset? Well, hard drives – especially old drives – aren’t meant to be long term, offline data solutions. As a result, I try to keep 2 copies of every file spread across multiple drives. I also like to keep 50% capacity available, which is probably overkill but it spreads the files out nicely and reduces the blast radius should a drive completely fail.
+
+**** Storing your drives
+
+This bit might sound pedantic, but storing your drives properly is, in many ways, just as important as their S.M.A.R.T. status. I keep my drives in [[https://www.orico.cc/us/product/detail/3665.html][Orico cases]], labeled with their model number, serial number, capacity, and canonical name.
+
+The cases claim to be shock and static resistant, but I still keep the drive in an antistatic bag with a small silica packet inside the case just to be safe. Of course, I store those cases somewhere dry with little temperature fluctuation. Harddrives are pretty hearty, but I’d rather be safe than sorry.
+
+*** Workflow, in theory
+
+This is where things get opinionated and tailored to your needs. Personally I wanted a system that could:
+- Be fully administered (backup, recovery, and maintenance) in a Linux shell – bonus points if that shell is live booted off the thumb drive with only standard kernel tools
+- Leave the files fully intact and accessible without any special software or de-serialization or de-fragmentation
+- Locate the file among all the offline drives
+- Validate the content of every block with checksums
+- Replicate the files easily and implicitly
+
+I chose ~btrfs~ and ~git-annex~.
+
+I initially narrowed my filesystem choice down to either BTRFS or ZFS, but I have personal experience with the former and dislike the experience of exporting and offlining ZFS pools. BTRFS is now included in the Linux kernel and has all the features I look for in a modern filesystem. Relevant to this use case: block-level deduplication, disk defragmenting, and data scrubbing.
+
+Git Annex surprised me, honestly. I hadn’t given it much thought in the past, but it covered my requirements fully. At the very least, it aligns with my normal software development workflow. From their website:
+
+#+begin_quote
+git-annex allows managing large files with git, without storing the file contents in git. It can sync, backup, and archive your data, offline and online. Checksums and encryption keep your data safe and secure. Bring the power and distributed nature of git to bear on your large files with git-annex.
+#+end_quote
+
+Annex supports quite a few remote repository backends like web, bittorrents, XMPP, and S3 to name a few. Unless I decide to move files into AWS S3 or Glacier in the future, I’ll only ever use the bare filesystem. I’d recommend at least reading through their docs – they’re wonderful!
+
+*** Workflow, in practice
+
+My workflow, in practice, is pretty simple.
+1. Load a drive up with files until it’s mostly full
+2. Annex those files into a git repository and sync to the origin remote
+3. Defragment the drive
+4. Scrub the filesystem to ensure that all checksums match
+5. Clone the repository on another drive and copy over any files that have less than 2 copies.
+
+Here are some rough steps to reproduce that workflow.
+
+**** Create an annex repository
+
+First thing’s first, we need to create an annex repository. I always keep one local repository on my system, so I can run a quick git annex whereis when I need to locate a file. That local repo won't store any large files though.
+
+#+begin_src bash
+$ mkdir -p ~/anenx && cd ~/annex
+$ git init
+$ git annex init
+$ git annex numcopies 2
+#+end_src
+
+**** Format and prepare a fresh drive
+
+Once we’ve set up the origin remote we can format our first drive, clone a copy of the annex, and create an “offline repo.”
+
+A small but critical detail: name and label your drive the same thing. I mean psychically label the drive, initialize the filesystem, title offline annex, and mount to a directory all with the same name – drive0, in this case. You can use the annex description for a bit more metadata; I use the hdd model number, so I always have it tracked.
+
+#+begin_src bash
+$ mkfs.btrfs -L drive0 /dev/sdb
+
+$ mkdir -p /mnt/drive0
+$ mount /dev/sdb /mnt/drive0 && cd /mnt/drive0
+
+$ git clone ~/annex && cd ~/annex
+$ git annex group drive0 archive
+$ git annex wanted drive0 standard
+$ git annex describe drive0 "WD80EMZZ-00TBGA"
+
+$ git annex info drive0
+uuid: 3ddb6b63-33d8-43fa-8553-e594866530af
+description: WD80EMZZ-00TBGA0 [drive0]
+trust: semitrusted
+remote: drive0
+cost: 100.0
+type: git
+repository location: /mnt/drive0/annex/
+last synced: 2023-03-21 04:33:17 UTC
+remote annex keys: 1
+remote annex size: 355.86 megabytes
+#+end_src
+
+**** Copy the files over
+
+At this point, we’re ready to start backing up our files! Rsync is the easiest way to copy our files over, but any tool that validates the files’ checksums will work.
+
+#+begin_src bash
+$ cd /mnt/drive0/annex
+$ rsync -h --progress /mnt/somefarawayland/big_buck_bunny.mp4 ./
+
+$ git annex add ./big_buck_bummy.mp4
+$ git commit -S -m "🅱️ig 🅱️uck 🅱️unny"
+$ git annex sync
+#+end_src
+
+Syncing the file is a bit like pushing. It makes sure that all other remotes are aware of the commit and file. If we jump back to the origin repo and sync as well, we should see the newly committed file.
+
+#+begin_src bash
+$ cd ~/annex
+$ git annex sync
+
+$ git annex list
+here
+|drive0
+||web
+|||bittorrent
+||||
+_X__ big_buck_bunny.mp4
+#+end_src
+
+What's more, since we set the desired number of copies to 2, we can list all files missing a copy. We can even check the location of the file and grab some info on the drive – all the info you’d ever need when recovering offline data.
+
+#+begin_src bash
+$ git annex list --lackingcopies 1
+here
+|drive0
+||web
+|||bittorrent
+||||
+_X__ big_buck_bunny.mp4
+
+$ git annex whereis big_buck_bunny.mp4
+whereis big_buck_bunny.mp4 (1 copy)
+    0eb61bd8-80d8-4ebe-8ba8-2f93296ac1ad -- wgriggs@DebianBox:/mnt/drive0/annex [drive0]
+ok
+#+end_src
+
+You might notice as well that if you list the repo, the files have been moved into a ~.git/annex~ directory and replaced by a symlink. This structure lets you organize your files -- no matter how large -- into directories which span multiple harddrives.
+
+#+begin_src bash
+$ ls -l
+big_buck_bunny.mp4 -> .git/annex/objects/some/long/path.mp4
+#+end_src
+
+If, for example, I uploaded ~tears_of_steel.mp4~ in this same repository but on another drive, each drive would have a symlink to both files. But the links would only resolve to the actual files on each respective drive.
+
+#+begin_src bash
+$ git annex list --lackingcopies 1
+here
+|drive0
+||drive1
+|||web
+||||bittorrent
+|||||
+_X___ big_buck_bunny.mp4
+__X__ tears_of_steel.mp4
+
+$ ls -al /mnt/drive0
+big_buck_bunny.mp4 -> .git/annex/objects/some/long/path.mp4
+tears_of_steel.mp4 -> .git/annex/objects/some/other/path.mp4
+#+end_src
+
+This use of symlinks is one of the hidden gems in git-annex. Every offline drive stores a local copy of the repository, and the content of the repository contains every symlink. Only the drive that contains the file has a valid link, but the drive knows the location of every file.
+
+Was your laptop with the origin repository remote stolen? Not a problem: grab any offline drive and clone the repo. The caveat here is that you need to keep the repositories on each drive up to date with git annex sync, but that shouldn’t be an issue if you perform routine maintenance.
+
+**** Duplicate the files
+
+Now that one of our drives has the file annexed, we need to create a second copy. Setup a second drive same as before: create the filesystem, mount the drive, and clone the repository. This time, instead of using rsync to copy the files to the new drive, we can use annex get to identify files on available drives missing duplicates.
+
+#+begin_src bash
+$ git annex get --auto --numcopies 2
+#+end_src
+
+After the file has been copied over the second drive and the repos have syncd, you'll see that a copy exists on both drives.
+
+#+begin_src bash
+$ git annex list
+here
+|drive0
+||drive1
+|||web
+||||bittorrent
+|||||
+_XX__ big_buck_bunny.mp4
+#+end_src
+
+**** Maintenance
+
+Let’s say this drive has the capacity for exactly one copy of ~big_buck_bunny.mp4~. Before packing the drive away, I’ll run a quick disk defragmentation and data scrub to validate the file’s integrity. This step is likely overkill, but what about this process isn’t?
+
+#+begin_src bash
+$ btrfs filesystem defrag -vf /mnt/drive0
+$ btrfs scrub /mnt/drive0
+#+end_src
+
+An important note: I’ll pull this drive out every 4-6 months and run another scrub! Part of offline storage is actually spinning the disk up, mounting it, and making sure all the files are as you expect.
