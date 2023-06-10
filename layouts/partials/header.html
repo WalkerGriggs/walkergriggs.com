@@ -1,7 +1,13 @@
 <nav class="mb3">
-  <ul id="header">
-    {{ range .Site.Menus.main }}
-    <li><a class="no-decoration" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-    {{ end }}
-  </ul>
+  <div id="header">
+    <div id="logo"><img src="/apple-touch-icon.png"/></div>
+
+    <div id="nav">
+      <ul>
+        {{ range .Site.Menus.main }}
+        <li><a class="no-decoration" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
 </nav>
