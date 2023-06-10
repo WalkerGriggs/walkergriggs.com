@@ -33,6 +33,7 @@ h6 {
     font-family: $font-family-header;
     font-style: normal;
     font-weight: 700;
+    font-size: $font-size;
 }
 
 input,
@@ -53,9 +54,9 @@ textarea {
 
 .hero {
     font-family: $font-family-header;
+    font-size: $hero-size;
     font-style: normal;
     font-weight: 700;
-    font-size: 36px;
 }
 
 .content {

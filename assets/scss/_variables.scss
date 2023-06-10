@@ -1,13 +1,17 @@
-$font-family-header: sans;
-$font-family-body: serif;
+$font-family-header: Palatino, "Lucida Grande";
+$font-family-body: "Lucida Grande";
 $font-family-mono: monospace;
 $font-family-footer: "Fake Receipt", sans;
 
 $font-size: 16px;
+$hero-size: 24px;
 $line-height: 1.5;
-$page-width: 645px;
 
-$color-background: #fff;
+$page-width: 500px;
+$content-width: 420px;
+$content-padding: 80px;
+
+$color-background: #FAF9F6;
 $color-text: #000;
 $color-accent: #4B32EC;
 $color-meta: #666;
