@@ -60,8 +60,20 @@ textarea {
 }
 
 .content {
-    width: 80%;
+    width: 100%;
+    float: right;
     line-height: $line-height;
+
+    figure {
+        width: $content-width;
+        margin: 0px;
+
+        img, p {
+            font-style: italic;
+            padding: 0;
+            width: 100%;
+        }
+    }
 
     p {
         margin-block-start: 1em;
@@ -72,7 +84,7 @@ textarea {
         color: $color-background;
         background: $color-accent;
         text-decoration: none;
-        padding: 0 3px;
+        padding: 0.15em 0.25em;
     }
 }
 
