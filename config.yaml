@@ -22,9 +22,12 @@ menu:
                 - name: Home.
                   url: ""
                   weight: 1
-                - name: Posts.
+                - name: Writing.
                   url: "posts/"
                   weight: 2
+                - name: Reading.
+                  url: "reading/"
+                  weight: 3
                 - name: Projects.
                   url: "https://github.com/WalkerGriggs"
                   weight: 4
