@@ -27,8 +27,18 @@
 :export_file_name: reading
 :END:
 
-*** Apr. '24
+*** Jun. '24
+- Nagel, Thomas. Mortal Questions. Cambridge University Press, 1991.
+- Sapolsky, Robert M. Why Zebras Don't Get Ulcers. W. H. Freeman, 1994.
 
+*** May. '24
+- Murakami, Haruki. Sputnik Sweetheart. Kodansha International, 2001.
+- Murakami, Haruki. Hard-Boiled Wonderland and the End of the World. Kodansha International, 1991.
+- Zelazny, Roger. The Dream Master. Ace Books, 1966.
+- Sontag, Susan. Regarding the Pain of Others. Penguin Books, 2004.
+
+*** Apr. '24
+- Wilkerson, Isabel. The Warmth of Other Suns: The Epic Story of America's Great Migration. Random House, 2010.
 - Mason, Daniel. North Woods. Random House, 2023.
 - Smith, Adam. The Wealth of Nations. The Modern Library, 1994.
 
