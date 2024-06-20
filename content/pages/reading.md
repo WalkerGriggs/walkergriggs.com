@@ -2,12 +2,27 @@
 title = "Reading"
 author = ["Walker Griggs"]
 draft = false
-creator = "Emacs 28.2 (Org mode 9.5.5 + ox-hugo)"
+creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
 weight = 2001
 +++
 
+## Jun. '24 {#jun-dot-24}
+
+-   Nagel, Thomas. Mortal Questions. Cambridge University Press, 1991.
+-   Sapolsky, Robert M. Why Zebras Don't Get Ulcers. W. H. Freeman, 1994.
+
+
+## May. '24 {#may-dot-24}
+
+-   Murakami, Haruki. Sputnik Sweetheart. Kodansha International, 2001.
+-   Murakami, Haruki. Hard-Boiled Wonderland and the End of the World. Kodansha International, 1991.
+-   Zelazny, Roger. The Dream Master. Ace Books, 1966.
+-   Sontag, Susan. Regarding the Pain of Others. Penguin Books, 2004.
+
+
 ## Apr. '24 {#apr-dot-24}
 
+-   Wilkerson, Isabel. The Warmth of Other Suns: The Epic Story of America's Great Migration. Random House, 2010.
 -   Mason, Daniel. North Woods. Random House, 2023.
 -   Smith, Adam. The Wealth of Nations. The Modern Library, 1994.
 
