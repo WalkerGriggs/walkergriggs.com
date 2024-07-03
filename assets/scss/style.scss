@@ -71,13 +71,18 @@ textarea {
     font-family: inherit;
 }
 
+table td, table td * {
+    text-align: left;
+    vertical-align: top;
+}
+
+td {
+    min-width: 80px;
+    padding-bottom: 1em;
+}
+
 @import "partial/header";
 @import "partial/footer";
-
-#index-gif {
-    width: $content-width;
-    object-fit: cover;
-}
 
 .hero {
     font-family: $font-family-header;
