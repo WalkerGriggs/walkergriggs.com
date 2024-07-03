@@ -5,12 +5,12 @@ description = "Data is plentiful and only getting more abundant. That presents a
 date = 2023-03-25
 categories = ["essays"]
 draft = false
-creator = "Emacs 27.1 (Org mode 9.3 + ox-hugo)"
-weight = 2016
+creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
+weight = 2015
 featured_image = "img/data_preservation_alfs_room_and_spicy_p/spicy_p.jpg"
 +++
 
-{{< figure src="/img/data_preservation_alfs_room_and_spicy_p/alfs_room.gif" caption="<span class=\"figure-number\">Figure 1: </span>Alf, \"Welcome to Alf's Room. I am Alf\"" width="435px" >}}
+{{< figure src="/img/data_preservation_alfs_room_and_spicy_p/alfs_room.webp" caption="<span class=\"figure-number\">Figure 1: </span>Alf, \"Welcome to Alf's Room. I am Alf\"" width="420px" >}}
 
 A colleague of mine recently bought a capture card to record their Nintendo Switch. I asked if they wanted to stream on Twitch or post to Youtube. “No,” they explained, “I just like saving the recordings for my personal archives...something to remember.”
 
@@ -29,7 +29,7 @@ That conversation with my colleague highlights a crucial distinction between per
 
 Pascal Siakam, an NBA player currently with the Toronto Raptors, showed up to the NBA All-Star game this year with a tape camcorder – three, actually! What may have started as an homage to [Shaq and his VX1000](https://twitter.com/NBAonTNT/status/1627142034522796033) turned into a spectacle all its own.
 
-{{< figure src="/img/data_preservation_alfs_room_and_spicy_p/spicy_p.jpg" caption="<span class=\"figure-number\">Figure 2: </span>Sam Byford, Pascal Siakam and his NBA All-Star Weekend camcorders: an investigation" width="435px" >}}
+{{< figure src="/img/data_preservation_alfs_room_and_spicy_p/spicy_p.webp" caption="<span class=\"figure-number\">Figure 2: </span>Sam Byford, Pascal Siakam and his NBA All-Star Weekend camcorders: an investigation" width="420px" >}}
 
 People were throwing themselves at the camera. In a sea of cellphones and broadcast equipment, everyone wanted to be taped by Spicy P and his Handycam Vision. It was a sincere gesture on Siakam’s part. His smiles were genuine, and everyone’s reactions were priceless. Afterwards, he posted clips to Instagram. The film was grainy and the colors fluctuated so often that it couldn’t be used for anything but personal records. I love that idea.
 
@@ -44,7 +44,7 @@ Siakam's story reminds me so much of Adachi Yoshinori's website [Alf's Room,](ht
 
 Alf’s Room is Yoshinori’s digital “cabinet of curiosities.” The site is broken down into a handful of categories like trains, computers, and music. One stands out: the “exhibition room,” home to “weird, unusual and mysterious things, photos, etc.” It’s a grab bag of oddities like t-shaped vending machines, potted plants at train stations, and holiday lights. Like Siakam, Yoshinori doesn’t worry about the composition of his photos. They exist solely to document his experiences.
 
-{{< figure src="/img/data_preservation_alfs_room_and_spicy_p/alfs_room_ueki_station.jpg" caption="<span class=\"figure-number\">Figure 3: </span>Adachi Yoshinori, Ueki Station" width="435px" >}}
+{{< figure src="/img/data_preservation_alfs_room_and_spicy_p/alfs_room_ueki_station.webp" caption="<span class=\"figure-number\">Figure 3: </span>Adachi Yoshinori, Ueki Station" width="420px" >}}
 
 On their own, these oddities and unusual mysteries wouldn’t garner likes or follows; they would never individually “blow up.” Yet, Alf’s Room did indeed go viral. It falls on the intersection of quaint and eccentric, and I have to believe that it gained brief fame because of its quirky personality. The site itself could be part of someone else’s “weird and unusual” digital curio – that’s what makes it so appealing.
 
@@ -61,7 +61,7 @@ For some time now, I’ve wanted to build a rack dedicated to the conversation a
 
 There’s an incredible amount of data actively decaying or otherwise falling victim to the annals of time. VCRs are breaking down, tapes are rotting, and interest in the older formats has completely disappeared with all but a dedicated few. Tapes are not a durable format, at least not the tape made for home consumption.
 
-{{< figure src="/img/data_preservation_alfs_room_and_spicy_p/blinkenlights.jpg" caption="<span class=\"figure-number\">Figure 4: </span>/u/nicholasserra, Video archival rack build: one year update; More gear, bigger rack" width="435px" >}}
+{{< figure src="/img/data_preservation_alfs_room_and_spicy_p/blinkenlights.webp" caption="<span class=\"figure-number\">Figure 4: </span>/u/nicholasserra, Video archival rack build: one year update; More gear, bigger rack" width="420px" >}}
 
 Ironically, that fragility makes this data more valuable. Disney will always have a master record of “Beauty and the Beast,” but your family memories can never be recovered.
 

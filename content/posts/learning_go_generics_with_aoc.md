@@ -7,7 +7,7 @@ description = """
 date = 2021-12-15
 categories = ["devlogs"]
 draft = false
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
 weight = 2007
 +++
 

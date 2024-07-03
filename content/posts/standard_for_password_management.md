@@ -4,7 +4,7 @@ author = ["Walker Griggs"]
 date = 2021-12-06
 categories = ["devlogs"]
 draft = true
-creator = "Emacs 27.2 (Org mode 9.4.4 + ox-hugo)"
+creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
 weight = 2003
 +++
 

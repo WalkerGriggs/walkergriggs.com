@@ -5,14 +5,14 @@ description = "What started as a 1 terabyte external harddrive loaded with a few
 date = 2023-04-01
 categories = ["devlogs"]
 draft = false
-creator = "Emacs 27.1 (Org mode 9.3 + ox-hugo)"
+creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
 weight = 2016
 featured_image = "img/how_to_overcomplicate_offline_storage/lto.jpg"
 +++
 
 Seven years ago, I made the decision to keep offline backups of all my personal data. What started as a 1 terabyte external harddrive loaded with a few sentimental photos, zipped folders of school projects, and maybe the odd 360p DVD rip has turned into a 40TB NAS and 26TB worth of offline drives.
 
-{{< figure src="/img/how_to_overcomplicate_offline_storage/lto.jpg" caption="<span class=\"figure-number\">Figure 1: </span>LTO Tapes: the dream no one can reasonably afford" width="435px" >}}
+{{< figure src="/img/how_to_overcomplicate_offline_storage/lto.webp" caption="<span class=\"figure-number\">Figure 1: </span>LTO Tapes: the dream no one can reasonably afford" width="420px" >}}
 
 Recently, I tried explaining my system to a friend but my thoughts kept running off in every possible direction. This post attempts to answer 'how I store and track offline files'; [Data Preservation, Alf’s Room, and Spicy P](https://walkergriggs.com/2023/03/25/data_preservation_alfs_room_and_spicy_p/) answers 'why.'
 
