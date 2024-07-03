@@ -1,7 +1,14 @@
-$font-family-header: Palatino, "Lucida Grande";
-$font-family-body: "Lucida Grande";
+$font-family-header: Palatino, Constantia, "Lucida Bright", Lucidabright,
+                     "Lucida Serif", Lucida, "DejaVu Serif",
+                     "Bitstream Vera Serif", "Liberation Serif", Georgia,
+                     serif;
+
+$font-family-body: -apple-system, BlinkMacSystemFont, "Avenir Next",
+                   Avenir, "Nimbus Sans L", Roboto, Noto, "Segoe UI",
+                   Arial, Helvetica, "Helvetica Neue", sans-serif;
+
 $font-family-mono: monospace;
-$font-family-footer: "Fake Receipt", sans;
+$font-family-footer: monospace;
 
 $font-size: 16px;
 $hero-size: 24px;
