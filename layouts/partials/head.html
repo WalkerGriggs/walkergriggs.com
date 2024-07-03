@@ -12,7 +12,6 @@
 
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
 
-  {{ template "_internal/google_analytics.html" . }}
   {{ partial "twitter.html" . }}
   {{ partial "open_graph.html" . }}
 

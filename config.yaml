@@ -3,7 +3,6 @@ languageCode: 'en-us'
 title: 'Walker Griggs'
 disableKinds: ["taxonomy"]
 ignoreErrors: ["error-disable-taxonomy"]
-googleAnalytics: "G-PT8ZDFH0GE"
 
 author:
         email: "hello@walkergriggs.com"
