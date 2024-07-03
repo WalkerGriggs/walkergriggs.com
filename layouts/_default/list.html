@@ -7,7 +7,6 @@
 
 
 <div class="mb3 content">
-  {{ partial "form.html" . }}
   {{ range $taxonomy := .Site.Taxonomies.categories.Alphabetical.Reverse }}
   <div class="mb3">
     <a href="/categories/{{$taxonomy.Name}}">{{ strings.FirstUpper $taxonomy.Name }}</a>
