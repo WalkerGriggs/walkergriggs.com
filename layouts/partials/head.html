@@ -15,7 +15,7 @@
   {{ partial "twitter.html" . }}
   {{ partial "open_graph.html" . }}
 
-  {{ $inServerMode := .Site.IsServer }}
+  {{ $inServerMode := hugo.IsServer }}
   {{ $sass         := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "scss/style.scss" . }}
   {{ $sassIncludes := (slice "assets/dependencies/" "assets/scss/" "assets/scss/vendors/") }}
   {{ $cssTarget    := "css/styles.css" }}
