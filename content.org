@@ -1832,3 +1832,473 @@ $ btrfs scrub /mnt/drive0
 #+end_src
 
 An important note: I’ll pull this drive out every 4-6 months and run another scrub! Part of offline storage is actually spinning the disk up, mounting it, and making sure all the files are as you expect.
+
+** TODO PSSH: What's in the Box!?                                 :@devlogs:
+:PROPERTIES:
+:export_file_name: pssh_whats_in_the_box
+:export_date: 2024-04-27
+:END:
+
+*** PSSH Box
+
+#+begin_src text
+aligned(8) class PSSH extends FullBox('pssh', version, flags=0)
+{
+    unsigned int(8) [16] SystemID;
+    if (version > 0)
+    {
+        unsigned int(32) KID_COUNT;
+        {
+            unsigned int(8)[16] KID;
+        } [KID_count];
+    }
+    unsigned int(32) DataSize;
+    unsigned int(8)[DataSize] Data;
+}
+#+end_src
+
+*** Widevine
+
+Here's an example of a PSSH Box. On the surface, there's nothing unusual about it. The ~KEYID~ is a hex encoded 16 byte identifier. The ~KEYFORMAT~ is the UUIDv4 scheme identifier that does indeed signal Widevine.
+
+#+begin_src text
+#EXT-X-KEY:METHOD=SAMPLE-AES,URI="data:text/plain;base64,AAAAknBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAHISEMtCZvRtSxeihjNfmx+ZfGQiWGV5SmhjM05sZEVsa0lqb2lPVFUyTlRjMU56RXpNRGt6T0RjM056WTNJaXdpZG1GeWFXRnVkRWxrSWpvaU9UVTJOVGM0TlRreU1qRXdNakl6TVRFeEluMD1I88aJmwY=",KEYID=0xcb4266f46d4b17a286335f9b1f997c64,KEYFORMAT="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed",KEYFORMATVERSION="1"
+#+end_src
+
+If we isolate that ~URI~, it's just a base64 string. Nothing to see here. Let's dig deeper.
+
+#+begin_src text
+data:text/plain;base64,AAAAknBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAHISEMtCZvRtSxeihjNfmx+ZfGQiWGV5SmhjM05sZEVsa0lqb2lPVFUyTlRjMU56RXpNRGt6T0RjM056WTNJaXdpZG1GeWFXRnVkRWxrSWpvaU9UVTJOVGM0TlRreU1qRXdNakl6TVRFeEluMD1I88aJmwY="
+#+end_src
+
+First thing first, I'll dump that base64 to a binary fle that we can inspect with any hex editor.
+
+#+begin_src bash
+echo "AAAAknBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAHISEMtCZvRtSxeihjNfmx+ZfGQiWGV5SmhjM05sZEVsa0lqb2lPVFUyTlRjMU56RXpNRGt6T0RjM056WTNJaXdpZG1GeWFXRnVkRWxrSWpvaU9UVTJOVGM0TlRreU1qRXdNakl6TVRFeEluMD1I88aJmwY=" | base64 -d > widevine.bin
+#+end_src
+
+If we look at the cannonical dump, with one octet per group and 16 octets per line, we already see some familiar signs.
+
+#+begin_src bash
+xxd -g1 widevine.bin
+
+00000000: 00 00 00 92 70 73 73 68 00 00 00 00 ed ef 8b a9  ....pssh........
+00000010: 79 d6 4a ce a3 c8 27 dc d5 1d 21 ed 00 00 00 72  y.J...'...!....r
+00000020: 12 10 cb 42 66 f4 6d 4b 17 a2 86 33 5f 9b 1f 99  ...Bf.mK...3_...
+00000030: 7c 64 22 58 65 79 4a 68 63 33 4e 6c 64 45 6c 6b  |d"XeyJhc3NldElk
+00000040: 49 6a 6f 69 4f 54 55 32 4e 54 63 31 4e 7a 45 7a  IjoiOTU2NTc1NzEz
+00000050: 4d 44 6b 7a 4f 44 63 33 4e 7a 59 33 49 69 77 69  MDkzODc3NzY3Iiwi
+00000060: 64 6d 46 79 61 57 46 75 64 45 6c 6b 49 6a 6f 69  dmFyaWFudElkIjoi
+00000070: 4f 54 55 32 4e 54 63 34 4e 54 6b 79 4d 6a 45 77  OTU2NTc4NTkyMjEw
+00000080: 4d 6a 49 7a 4d 54 45 78 49 6e 30 3d 48 f3 c6 89  MjIzMTExIn0=H...
+00000090: 9b 06
+#+end_src
+
+Let's take a look at the first 32 bytes.
+- The first four (0-3), ~00 00 00 92~ tell us this box is a total of 146 bytes.
+- The next four (4-7), ~70 73 73 68~ confirm that is is indeed a PSSH box.
+- The following four (8-11), ~00 00 00 00~, tell us this box's version is 0 and we shouldn't expect any key IDs before the payload.
+- The next 16 bytes (12-27),
+~ed ef 8b a9 79 d6 4a ce a3 c8 27 dc d5 1d 21 ed~ signal that this is a Widevine-specific PSSH box. Each scheme has a UUID, so ~edef8ba9-79d6-4ace-a3c8-27dcd51d21ed~ might look more familiar.
+- The final four (28-31) tell us the payload takes up the remaining ~114~ bytes.
+
+#+begin_src bash
+xxd -g1 -l32 widevine.bin
+00000000: 00 00 00 92 70 73 73 68 00 00 00 00 ed ef 8b a9  ....pssh........
+00000010: 79 d6 4a ce a3 c8 27 dc d5 1d 21 ed 00 00 00 72  y.J...'...!....r
+#+end_src
+
+That leaaves us with our payload. These byte arrays are the wild west, anything goes. So what are these 144 bytes? There are a few hints as to what's going on here. The first hint, might be "this is Google, we're dealing with."
+
+#+begin_src text
+xxd -g1 -s32 -l114 widevine.bin
+
+00000020: 12 10 cb 42 66 f4 6d 4b 17 a2 86 33 5f 9b 1f 99  ...Bf.mK...3_...
+00000030: 7c 64 22 58 65 79 4a 68 63 33 4e 6c 64 45 6c 6b  |d"XeyJhc3NldElk
+00000040: 49 6a 6f 69 4f 54 55 32 4e 54 63 31 4e 7a 45 7a  IjoiOTU2NTc1NzEz
+00000050: 4d 44 6b 7a 4f 44 63 33 4e 7a 59 33 49 69 77 69  MDkzODc3NzY3Iiwi
+00000060: 64 6d 46 79 61 57 46 75 64 45 6c 6b 49 6a 6f 69  dmFyaWFudElkIjoi
+00000070: 4f 54 55 32 4e 54 63 34 4e 54 6b 79 4d 6a 45 77  OTU2NTc4NTkyMjEw
+00000080: 4d 6a 49 7a 4d 54 45 78 49 6e 30 3d 48 f3 c6 89  MjIzMTExIn0=H...
+00000090: 9b 06
+#+end_src
+
+
+If we know anything about Google they love sprinkling Protobuf anywhere and everywhere.
+
+There is actually a lot of information represented in these two 16 bits and I say 16 bits, not two bytes, because protobuf does some creative bin packing to cut down on the overall size of the encoded message.
+
+For starters, protobufs messages are key-value pairs where every field has a name, type, and index. In this example, b is a LEN type with an index of 1.
+
+
+#+begin_src text
+message Foo {
+  string bar = 1;
+}
+#+end_src
+
+Protobuf encodes each key-value pair into a record using a scheme often referred to as Tag-Length-Value, or TLV. As the name implies, the record starts with a tag, followed by the payload length, and finally the payload itself.
+
+The "tag" in protobuf is a variable length integer where the lowest three bits denote the record's wire type, and the remaining bits encode the field's index. The field's name is dropped to save room; if you want to decode the message back into named fields, you'll need the original protobuf.
+
+Let's consider an example. If we were to assign "testing" to ~Foo.Bar~ and encode the message, we'd get the byte sequence ~0A 07 [74 64 73 74 69 6e 67]~.
+
+In this record, ~0A~ is our tag, ~07~ is the payload length, and ~74 64 73 74 69 6e 67~ is the payload itself. We can break the tag down further into ~00001 010~ which means this record is the 1st index and is type ~LEN~, or a "length-delimeted record" like strings or lists.
+
+| ID | Name   | Used For                                                 |
+|----+--------+----------------------------------------------------------|
+|  0 | VARINT | int32, int64, uint32, uint64, sint32, sint64, bool, enum |
+|  1 | I64    | fixed64, sfixed64, double                                |
+|  2 | LEN    | string, bytes, embedded messages, packed repeated fields |
+|  5 | I32    | fixed32, sfixed32, float                                 |
+
+
+We can apply the same encoding scheme to the first two bytes of our Widevine PSSH payload. In our case ~0x12 0x10~ breaks down into ~00010 010 00010000~ or "a length delimeted field (~010~) at index 2 (~00010~) with a payload 16 bytes long (~00010000~)".
+
+As it just so happens, the next 16 bytes is our key ID. So field 2 must be a variable length list or string of key ids.
+
+#+begin_src text
+xxd -g1 -s34 -l16 widevine.bin
+
+00000022: cb 42 66 f4 6d 4b 17 a2 86 33 5f 9b 1f 99 7c 64  .Bf.mK...3_...|d
+#+end_src
+
+And what of the remaining data? For brevities sake, I'll leave that as an execerise for the reader. Instead we can use use a tool called protoscope to introspect the encoding format for protobuf. Here, we can dump everything from that initial two-byte oddity onward, and we see some perfectly reasonable output. The first field at index 2 we've already identified to be our key ID.
+
+#+begin_src text
+dd status=none skip=32 bs=1 if=widevine.bin | protoscope
+2: {`cb4266f46d4b17a286335f9b1f997c64`}
+4: {
+  "eyJhc3NldElkIjoiOTU2NTc1NzEzMDkzODc3NzY3IiwidmFyaWFudElkIjoiOTU2NTc4NTkyMjEwMjIz"
+  "MTExIn0="
+}
+9: 1667392371
+#+end_src
+
+The 4th ID looks like generic base64 data, and the 9th ID looks a whole lot like a timestamp or fourcc depending on who's looking. We can cheat here and look at Shaka's proto definition for this PSSH payload.
+
+The fourth field is indeed a byte slice of variable length. ~0x22 0x58~ tells us this is LEN type in the 4th index and is 88 bytes long. This field is, like so much in the PSSH, a free-form byte array.
+
+#+begin_src text
+// A content identifier, specified by content provider.
+optional bytes content_id = 4;
+#+end_src
+
+#+begin_src bash
+xxd -g1 -s50 -l90 widevine.bin
+00000032: 22 58 65 79 4a 68 63 33 4e 6c 64 45 6c 6b 49 6a  "XeyJhc3NldElkIj
+00000042: 6f 69 4f 54 55 32 4e 54 63 31 4e 7a 45 7a 4d 44  oiOTU2NTc1NzEzMD
+00000052: 6b 7a 4f 44 63 33 4e 7a 59 33 49 69 77 69 64 6d  kzODc3NzY3Iiwidm
+00000062: 46 79 61 57 46 75 64 45 6c 6b 49 6a 6f 69 4f 54  FyaWFudElkIjoiOT
+00000072: 55 32 4e 54 63 34 4e 54 6b 79 4d 6a 45 77 4d 6a  U2NTc4NTkyMjEwMj
+00000082: 49 7a 4d 54 45 78 49 6e 30 3d                    IzMTExIn0=
+
+dd status=none skip=52 count=88 bs=1 if=widevine.bin
+eyJhc3NldElkIjoiOTU2NTc1NzEzMDkzODc3NzY3IiwidmFyaWFudElkIjoiOTU2NTc4NTkyMjEwMjIzMTExIn0=
+#+end_src
+
+
+The 9th field, no surprise here, is the fourcc for AES-CBCS. Or in proto land. ~0x48~ tells us it's a VARIANT type in the 9th field: ~01001 000~.
+
+#+begin_src text
+// Protection scheme identifying the encryption algorithm. Represented as one
+// of the following 4CC values: 'cenc' (AES-CTR), 'cbc1' (AES-CBC),
+// 'cens' (AES-CTR subsample), 'cbcs' (AES-CBC subsample).
+optional uint32 protection_scheme = 9;
+#+end_src
+
+I won't belabor this point, but for completenesses sake, to convert this varint 128 hex to decimal, we can follow series of simple steps.
+- Lay out our hex and binary.
+- Drop the most signifiant bit, or the "continuation bit". If the continuation bit is 1, the current byte is part of the variable length integer. If it's 0, that byte is the last.
+- Convert to big endian.
+- Concatenate and convert.
+
+In our case the value ~1667392371~ is the 4cc for 'AES-CBCS'.
+
+#+begin_src text
+      f3       c6       89       9b       06 // original hex
+11110011 11000110 10001001 10011011 00000110 // convert to binary
+ 1000110  1110011  0001001  0011011  0000110 // drop the most significant "continuity" bit
+ 0000110  0011011  0001001  1000110  1110011 // convert to big endian
+
+int('00001100011011000100110001101110011', 2)
+1667392371
+#+end_src
+
+This leaves one nagging question though. What's in that base64??
+
+#+begin_src text
+dd status=none skip=52 count=88 bs=1 if=widevine.bin | base64 -d
+{"assetId":"956575713093877767","variantId":"956578592210223111"}
+#+end_src
+
+JSON, of course! So there we have it. A bit by bit disection of our PSSH presenting, proto encoded, base64 double dipped, JSON blob.
+
+And if you have to know, the decoded JSON blob is indeed fewer bytes.
+
+#+begin_src text
+dd status=none skip=52 count=88 bs=1 if=widevine.bin | base64 -d | wc -c
+65
+#+end_src
+
+*** PlayReady
+
+#+begin_src text
+#EXT-X-KEY:METHOD=SAMPLE-AES,URI="data:text/plain;charset=UTF-16;base64,AAADYnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAA0JCAwAAAQABADgDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMwAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAUwA+ADwASwBJAEQAIABBAEwARwBJAEQAPQAiAEEARQBTAEMAQgBDACIAIABWAEEATABVAEUAPQAiAGkAZwBYAEIAdgBhADEAZQBVAGcATgBCADQANQB0AEsAUQByAEQAeAA1AHcAPQA9ACIAPgA8AC8ASwBJAEQAPgA8AC8ASwBJAEQAUwA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGwAaQBjAC4AcwB0AGEAZwBpAG4AZwAuAGQAcgBtAHQAbwBkAGEAeQAuAGMAbwBtAC8AbABpAGMAZQBuAHMAZQAtAHAAcgBvAHgAeQAtAGgAZQBhAGQAZQByAGEAdQB0AGgALwBkAHIAbQB0AG8AZABhAHkALwBSAGkAZwBoAHQAcwBNAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA8AC8ATABBAF8AVQBSAEwAPgA8AEwAVQBJAF8AVQBSAEwAPgBoAHQAdABwAHMAOgAvAC8AcABsAGEAeQByAGUAYQBkAHkALQB1AGkALgBlAHgAYQBtAHAAbABlAC4AYwBvAG0APAAvAEwAVQBJAF8AVQBSAEwAPgA8AEQARQBDAFIAWQBQAFQATwBSAFMARQBUAFUAUAA+AE8ATgBEAEUATQBBAE4ARAA8AC8ARABFAEMAUgBZAFAAVABPAFIAUwBFAFQAVQBQAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=",KEYFORMAT="com.microsoft.playready",KEYFORMATVERSION="1"
+#+end_src
+
+Ugh. Fair warning. This PSSH is steeped in Microsoft-isms. Right off the bat, it's UTF-16. Get your shutter shades at the ready.
+
+#+begin_src bash
+echo "AAADYnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAA0JCAwAAAQABADgDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMwAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAUwA+ADwASwBJAEQAIABBAEwARwBJAEQAPQAiAEEARQBTAEMAQgBDACIAIABWAEEATABVAEUAPQAiAGkAZwBYAEIAdgBhADEAZQBVAGcATgBCADQANQB0AEsAUQByAEQAeAA1AHcAPQA9ACIAPgA8AC8ASwBJAEQAPgA8AC8ASwBJAEQAUwA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGwAaQBjAC4AcwB0AGEAZwBpAG4AZwAuAGQAcgBtAHQAbwBkAGEAeQAuAGMAbwBtAC8AbABpAGMAZQBuAHMAZQAtAHAAcgBvAHgAeQAtAGgAZQBhAGQAZQByAGEAdQB0AGgALwBkAHIAbQB0AG8AZABhAHkALwBSAGkAZwBoAHQAcwBNAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA8AC8ATABBAF8AVQBSAEwAPgA8AEwAVQBJAF8AVQBSAEwAPgBoAHQAdABwAHMAOgAvAC8AcABsAGEAeQByAGUAYQBkAHkALQB1AGkALgBlAHgAYQBtAHAAbABlAC4AYwBvAG0APAAvAEwAVQBJAF8AVQBSAEwAPgA8AEQARQBDAFIAWQBQAFQATwBSAFMARQBUAFUAUAA+AE8ATgBEAEUATQBBAE4ARAA8AC8ARABFAEMAUgBZAFAAVABPAFIAUwBFAFQAVQBQAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=" | base64 -d > playready.bin
+#+end_src
+
+Is this how it all end?
+
+#+begin_src bash
+xxd -g1 playready.bin
+
+00000000: 00 00 03 62 70 73 73 68 00 00 00 00 9a 04 f0 79  ...bpssh.......y
+00000010: 98 40 42 86 ab 92 e6 5b e0 88 5f 95 00 00 03 42  .@B....[.._....B
+00000020: 42 03 00 00 01 00 01 00 38 03 3c 00 57 00 52 00  B.......8.<.W.R.
+00000030: 4d 00 48 00 45 00 41 00 44 00 45 00 52 00 20 00  M.H.E.A.D.E.R. .
+00000040: 78 00 6d 00 6c 00 6e 00 73 00 3d 00 22 00 68 00  x.m.l.n.s.=.".h.
+00000050: 74 00 74 00 70 00 3a 00 2f 00 2f 00 73 00 63 00  t.t.p.:././.s.c.
+00000060: 68 00 65 00 6d 00 61 00 73 00 2e 00 6d 00 69 00  h.e.m.a.s...m.i.
+00000070: 63 00 72 00 6f 00 73 00 6f 00 66 00 74 00 2e 00  c.r.o.s.o.f.t...
+00000080: 63 00 6f 00 6d 00 2f 00 44 00 52 00 4d 00 2f 00  c.o.m./.D.R.M./.
+00000090: 32 00 30 00 30 00 37 00 2f 00 30 00 33 00 2f 00  2.0.0.7./.0.3./.
+000000a0: 50 00 6c 00 61 00 79 00 52 00 65 00 61 00 64 00  P.l.a.y.R.e.a.d.
+000000b0: 79 00 48 00 65 00 61 00 64 00 65 00 72 00 22 00  y.H.e.a.d.e.r.".
+000000c0: 20 00 76 00 65 00 72 00 73 00 69 00 6f 00 6e 00   .v.e.r.s.i.o.n.
+000000d0: 3d 00 22 00 34 00 2e 00 33 00 2e 00 30 00 2e 00  =.".4...3...0...
+000000e0: 30 00 22 00 3e 00 3c 00 44 00 41 00 54 00 41 00  0.".>.<.D.A.T.A.
+000000f0: 3e 00 3c 00 50 00 52 00 4f 00 54 00 45 00 43 00  >.<.P.R.O.T.E.C.
+00000100: 54 00 49 00 4e 00 46 00 4f 00 3e 00 3c 00 4b 00  T.I.N.F.O.>.<.K.
+00000110: 49 00 44 00 53 00 3e 00 3c 00 4b 00 49 00 44 00  I.D.S.>.<.K.I.D.
+00000120: 20 00 41 00 4c 00 47 00 49 00 44 00 3d 00 22 00   .A.L.G.I.D.=.".
+00000130: 41 00 45 00 53 00 43 00 42 00 43 00 22 00 20 00  A.E.S.C.B.C.". .
+00000140: 56 00 41 00 4c 00 55 00 45 00 3d 00 22 00 69 00  V.A.L.U.E.=.".i.
+00000150: 67 00 58 00 42 00 76 00 61 00 31 00 65 00 55 00  g.X.B.v.a.1.e.U.
+00000160: 67 00 4e 00 42 00 34 00 35 00 74 00 4b 00 51 00  g.N.B.4.5.t.K.Q.
+00000170: 72 00 44 00 78 00 35 00 77 00 3d 00 3d 00 22 00  r.D.x.5.w.=.=.".
+00000180: 3e 00 3c 00 2f 00 4b 00 49 00 44 00 3e 00 3c 00  >.<./.K.I.D.>.<.
+00000190: 2f 00 4b 00 49 00 44 00 53 00 3e 00 3c 00 2f 00  /.K.I.D.S.>.<./.
+000001a0: 50 00 52 00 4f 00 54 00 45 00 43 00 54 00 49 00  P.R.O.T.E.C.T.I.
+000001b0: 4e 00 46 00 4f 00 3e 00 3c 00 4c 00 41 00 5f 00  N.F.O.>.<.L.A._.
+000001c0: 55 00 52 00 4c 00 3e 00 68 00 74 00 74 00 70 00  U.R.L.>.h.t.t.p.
+000001d0: 73 00 3a 00 2f 00 2f 00 6c 00 69 00 63 00 2e 00  s.:././.l.i.c...
+000001e0: 73 00 74 00 61 00 67 00 69 00 6e 00 67 00 2e 00  s.t.a.g.i.n.g...
+000001f0: 64 00 72 00 6d 00 74 00 6f 00 64 00 61 00 79 00  d.r.m.t.o.d.a.y.
+00000200: 2e 00 63 00 6f 00 6d 00 2f 00 6c 00 69 00 63 00  ..c.o.m./.l.i.c.
+00000210: 65 00 6e 00 73 00 65 00 2d 00 70 00 72 00 6f 00  e.n.s.e.-.p.r.o.
+00000220: 78 00 79 00 2d 00 68 00 65 00 61 00 64 00 65 00  x.y.-.h.e.a.d.e.
+00000230: 72 00 61 00 75 00 74 00 68 00 2f 00 64 00 72 00  r.a.u.t.h./.d.r.
+00000240: 6d 00 74 00 6f 00 64 00 61 00 79 00 2f 00 52 00  m.t.o.d.a.y./.R.
+00000250: 69 00 67 00 68 00 74 00 73 00 4d 00 61 00 6e 00  i.g.h.t.s.M.a.n.
+00000260: 61 00 67 00 65 00 72 00 2e 00 61 00 73 00 6d 00  a.g.e.r...a.s.m.
+00000270: 78 00 3c 00 2f 00 4c 00 41 00 5f 00 55 00 52 00  x.<./.L.A._.U.R.
+00000280: 4c 00 3e 00 3c 00 4c 00 55 00 49 00 5f 00 55 00  L.>.<.L.U.I._.U.
+00000290: 52 00 4c 00 3e 00 68 00 74 00 74 00 70 00 73 00  R.L.>.h.t.t.p.s.
+000002a0: 3a 00 2f 00 2f 00 70 00 6c 00 61 00 79 00 72 00  :././.p.l.a.y.r.
+000002b0: 65 00 61 00 64 00 79 00 2d 00 75 00 69 00 2e 00  e.a.d.y.-.u.i...
+000002c0: 65 00 78 00 61 00 6d 00 70 00 6c 00 65 00 2e 00  e.x.a.m.p.l.e...
+000002d0: 63 00 6f 00 6d 00 3c 00 2f 00 4c 00 55 00 49 00  c.o.m.<./.L.U.I.
+000002e0: 5f 00 55 00 52 00 4c 00 3e 00 3c 00 44 00 45 00  _.U.R.L.>.<.D.E.
+000002f0: 43 00 52 00 59 00 50 00 54 00 4f 00 52 00 53 00  C.R.Y.P.T.O.R.S.
+00000300: 45 00 54 00 55 00 50 00 3e 00 4f 00 4e 00 44 00  E.T.U.P.>.O.N.D.
+00000310: 45 00 4d 00 41 00 4e 00 44 00 3c 00 2f 00 44 00  E.M.A.N.D.<./.D.
+00000320: 45 00 43 00 52 00 59 00 50 00 54 00 4f 00 52 00  E.C.R.Y.P.T.O.R.
+00000330: 53 00 45 00 54 00 55 00 50 00 3e 00 3c 00 2f 00  S.E.T.U.P.>.<./.
+00000340: 44 00 41 00 54 00 41 00 3e 00 3c 00 2f 00 57 00  D.A.T.A.>.<./.W.
+00000350: 52 00 4d 00 48 00 45 00 41 00 44 00 45 00 52 00  R.M.H.E.A.D.E.R.
+00000360: 3e 00                                            >.
+#+end_src
+
+We can follow the same steps as before to whiz through the first 32 bytes. Indeed, it's an 866 byte (~00 00 03 62~), version 0 (~00 00 00 00~), PlayReady (~9a04f079-9840-4286-ab92-e65be0885f95~), PSSH Box(~70 73 73 68~).  Nothing surprising yet.
+
+#+begin_src bash
+xxd -g1 -l32 playready.bin
+00000000: 00 00 03 62 70 73 73 68 00 00 00 00 9a 04 f0 79  ...bpssh.......y
+00000010: 98 40 42 86 ab 92 e6 5b e0 88 5f 95 00 00 03 42  .@B....[.._....B
+#+end_src
+
+The next four bytes make me exceedingly happy because it's so very, wholesomely Microsoft. If you guess "the payload size, but this time in little endian", you would be correct!. 834 bytes!
+
+#+begin_src bash
+xxd -g1 -s32 -l4 playready.bin
+
+00000020: 42 03 00 00                                      B...
+#+end_src
+
+Microsoft does a phenominal job documenting the contents of their PSSH Payload or the "PlayReady Object" (PRO) as they call it. The first 4 bytes, which we've just parsed out, is the length of the PRO in bytes. It has a hard limit of 15KB. The next 2 bytes are the number of "PlayReady Object Records (PROR)"
+
+One record, easy enough.
+
+#+begin_src bash
+xxd -g1 -s36 -l2 playready.bin
+
+00000024: 01 00                                            ..
+#+end_src
+
+That means that the remaining body is all a single record. Two bytes indicate the "record type", two more bytes indicate "record length", and then N an length record. In our case, that's type 1 (Indicates that the record contains a PlayReady Header (PRH)) and 824 more bytes. We're chipping away, I wear
+
+#+begin_src bash
+xxd -g1 -s38 -l2 playready.bin
+
+00000026: 01 00                                            ..Z
+
+xxd -g1 -s40 -l2 playready.bin
+
+00000028: 38 03                                            8.
+#+end_src
+
+At this point, I want to cheat a bit. No surprise here. Under the little endian UTF-16 and layers of PROs and PRORs and PRH... it's all just XML in the end of the day. Because If you've invested so heavily in a markup language and file format, why stop here.
+
+#+begin_src bash
+dd status=none skip=42 bs=1 if=playready.bin | iconv -f UTF-16LE -t UTF-8
+
+<WRMHEADER xmlns="http://schemas.microsoft.com/DRM/2007/03/PlayReadyHeader" version="4.3.0.0"><DATA><PROTECTINFO><KIDS><KID ALGID="AESCBC" VALUE="igXBva1eUgNB45tKQrDx5w=="></KID></KIDS></PROTECTINFO><LA_URL>foobar.asmx</LA_URL><LUI_URL>https://playready-ui.example.com</LUI_URL><DECRYPTORSETUP>ONDEMAND</DECRYPTORSETUP></DATA></WRMHEADER>
+#+end_src
+
+#+begin_src xml
+<WRMHEADER xmlns="http://schemas.microsoft.com/DRM/2007/03/PlayReadyHeader" version="4.3.0.0">
+    <DATA>
+        <PROTECTINFO>
+            <KIDS>
+                <KID ALGID="AESCBC" VALUE="igXBva1eUgNB45tKQrDx5w=="></KID>
+            </KIDS>
+        </PROTECTINFO>
+
+        <LA_URL>foobar.asmx</LA_URL>
+        <LUI_URL>https://playready-ui.example.com</LUI_URL>
+        <DECRYPTORSETUP>ONDEMAND</DECRYPTORSETUP>
+    </DATA>
+</WRMHEADER>
+#+end_src
+
+On the grand scheme of things, this is actually pretty reasonable. We have a single key with a base64 of the little endian key GUID. The algorithm is in plain text. Sure PlayReady has their oddities for ASMX license acquisition pages, but it's certainly more human readable than the proto... but also 6 times larger.
+
+** TODO Citizen Syllabi                                            :@essays:
+:PROPERTIES:
+:export_file_name: citizen_syllabi
+:export_date: 2024-03-16
+:export_hugo_custom_front_matter: :featured_image "img/how_to_overcomplicate_offline_storage/lto.jpg"
+:END:
+
+*** Notes
+Syllabi sit somehwere on the spectrum teaching between RTFM and an "organized lecture".
+
+Syllabi let hte read come to their own conclusion and foster discussion in a way that writen word or spoken lectures cannot.
+
+Syllabidemonstrate the authors understand of the problem space more than your average blog post. The author must understand the problem space fully before writing one.
+
+In avoiding writing something explicitly didactic, the author creates something implicitly didactic.
+
+In doing so, the author invites the read to approach the content on their own volition. Note: a syllabus contains some level setteing and does not assume what pror understanding the reader bring to the discussion,
+
+*** A Citizen Syllabus allows...
+
+- the author to share what they've read an what of that corpus is worth re-reading.
+- the author to signpost relevant sources to other learners on a similar journey.
+- signal boost. It's common practice too sort sources by their citations. highlighting specifc sources serves a similar end
+
+ Often times, without sufficient biograohies or references, blog posts are actually information dead ends -- they do not forward the reader on to further reading. Syllabi, instead, are a spoke-and-wheel constructions that direct the reader to a number of new services. A vertex on a graph, not leaf on a tree.
+
+*** When should we write
+
+Always write novel thoughts -- are you a graduate studen with novel research or a practictioner with a new creation? Are you a thinker with an unhear perspectice? Would you like to create a syllabus, but can't find enough material?
+
+*** When should I write a syllabus?
+
+Are you broadcasting existing ideas? Are you hoping to teach others a focused topic that spans multiple works? Maybe you _are_ writing about novel research, but want to shore others how you arrived at your conclusions.
+
+The difficulty of writing a syllabus: you have to read and research more than you would for a single post or talk. At the same time, you're more able to undersatnd how an individual source contribues to te field -- it's position in thye overall ontology -- and draws on paratextual relationships between works.
+
+Its even more useful to highlight individual chapters or passages from larger texts. Wirete your syllabus with individual sections highlighted -- don't just include a full book unless every chapter in that book is relevant to the syllabus.
+
+*** What makes good syllabi
+- A mux of primary and secondar sources. I recently joined a book club for Adam Smith's "The Wealth of Nations". Folks showed up to the first meeting with readers guides in addition to the book.
+- select specific passes instead of the whole work. This severs two purposes 1) signposts key take-aways 2) distilling the syllabus down into more shorter, focused items. More diverse sources from a myriad of perspectives is often better than a few cmoplete sources from a single author. Anthologies, acadmic journals, and conferences work on this principle and make for great syllabus-stuffers.
+- A range of difficult and tone. Unlike in an academic setting where you can tie course difficulty to studen ability, you can't assume your reader's academic background or prior exposure to your subject. Include a broad range of sources from acadmic to summary. Include some level setting sources to bring folks up to speed and some "higher order theory" to feed the more experienced readers
+- Include readily available sources. Don't assume that your readers have access to the same resources you do. I almost want to say "never include anything behind a paywall" but that would cut off an enormous wealth of information (sadly). So limit closed resources where possible. Opt for open alternatives where possible, self host a copy of your own, and make those publicly available with the syllabus.
+
+*** On Updates
+I feel strongly that anything on the internet should be a living document with transparent versioning. Please add and remove sources at will, so long as you leave a bread crumb trail as to _why_. This is especially important if someone is "following along at home" and the version they've come to know changes for some unexplainable reason. It should be your readers choice to follow the changes or hold course.
+
+*** Types of Syllabi
+
+1. task based
+
+   Task based syllabi are made up of purposeful activities which mirror real life situations.
+
+   "All human knoweldge is based on expereince" - David Hume. Experience leaves it own impression on your mind. If the knoedlge is not based on experiences, it is meaningless.
+
+2. text based
+
+   Text base syllabi are based on whole texts and these texts are selected in relation to the learners needs and the social contexts which learners wish to access. Oftent eims, these are the "old favorites and traditional learning experiences".
+
+   This definition highlights an important destinction: syllabi shouldn't just have a specific topic but also a target goal. For example "Video Encoding Tools" _targeting_ mid-level engineers working at OTT web streamign companies. With that simple "audience / goal" pair, you've already narrowed down on the readers prior knowledge, interests, and the syllabus' level of rigor.
+
+   Susan Feeze argues that a text is a unit of discoures in which related meanings are woven together to make a unified whole. Text based syllabi focus on patterns; no single text should stand alone, and two texts of a shared topic should be no more than two degrees removed from eachother.
+
+3. context based
+
+   broken down into "thematic", "sheltered", and "adjunct" items. Thematic items establish competance, sheltered items master the content, and adjust items demonstrate how theory and contxt are linked. The latter category is the most interesting, as it develops the academic copign mechanism of "teaching them how to think, not what to think."
+
+
+*** Differences between classroom and self study
+- self study lack some singular expert or authority figure. No one to answer direct questions the learner may have nor assess the quality of any tasks. Provide a commjunity or resources for asking questions. Make tasks self supported and provide means by which a learner might assess their own work. If you can rely on a strong community of learners, make the tasks inherently collabortive.
+- self study lacks any promise of time. Syllabi for academci systems generally assuem that focused sutdy will take place over a fixed period of time -- usually semesters or trimesters. and that the curriculum follows a fixed, linear path. This isn't the case with self-study. Study might be short or non-linear. Units should be independant and "free standing". Generally, assume that your syllabus will be picked over. If the order of items is important, indicate as much.
+
+  As reads pick over topics that resonate with them, one interesting structure to explore is not a "list of items" but a "graph of interconnected items". where each node is a single item and the edges are relationships between texts. Deleuze loves the concept of the "Rhixome" where all nodes are weighted equally. This does a few things for the reader. First, it frees them from the assumption of linear study. It's human nature to read top-to-bottom, even when we tell the reader otherwise. Second, the rhizome lets the reader pick a path through adjacent topics.
+- Access. This ons is simple. Teachers form syllabi based on the level of access they _know_ their students will have. That could mean online databases of articles or physical copies of books in special collections. We can't assume students will have _any_ access to paywalled academic content, even if they do have the funds to purchase them in the first place.
+
+  Somtimes the "most appropriate" content is the most expensive or restrictive, sure. In which case, present the work but provide alternatives whenever possible. Sometimes comparable analysis of the same subject will do, other times a secodary summary of the primary text will work in a pinch. Best case scenario: host your own copy -- take a snippet from the original PDF or photocopy those relevant pages if you must. These focused or cropped selections will help keep your syllabus focused as well.
+
+*** Motivated Texts
+There's a term in cinematography called "motivated lighting" which means "all lighting should come from a believable and explainable source." Don't light your scene in ways that wouldn't occur naturally given the lighting conditions in the set. Unmotivated lighting pulls viewers focus away from the scene and breaks the fourth wall.
+
+Likewise, every item on a syllabus should be motivated by the syllabus' core themes (setting the scene) and form a logical continuity with surrounding topics (non-linear structure, Russing nesting doll)
+
+With each text, include a description of the text and a brief explanation of why it was included. This both acts as a tool for you, the author, to keep your topics focus and as a signpost for the reader as they select text appropriate to their interests and needs (self-guided study, limited access to material, levels of difficulty, accessibility)
+
+*** How to Create a Syllabus -- Kevin Gannon
+
+The syllabus is often the first contact the reader will have with both you and the material. Start by level setting who you are, why you're interested in this topic, who the target audience is, and what they'll gain from the syllabus. This information should come _first_ and should be priminently displayed.
+
+Russian nesting dolls:
+- tasks should fit the within some specfic topic
+- topic / texts shjoudl fit within some unit or goals.
+- that goal should fit within the broader syllabus thesis.
+
+This nesting will help synthesize and reinforce learning.
+
+*** Ending Idea
+As you may have guess by now (or you've already scrolled down, cheater) this post is actually an elaborate syllabus itself. Each source bbelow helped inform this post. In exporing them youself, I hope you learn something useful to employ when you take a swing at writing one yourself.
+
+*** Structure
+
+1. citizen syllabus
+2. alternative context (self promotion)
+3. signal boosting
+4. self exploration
+5. setting the scene
+6. russian nesting dolls
+7. types of syllabi
+8. text syllabi
+9. task syllabi
+10. context based syllabi
+11. motivated text
+12. assumptions made in academic settings
+13. self-guided study
+14. non-linear structure
+15. levels of difficulty
+16. limited materials
+17. snippets
+18. mixed media
+19. accessibility (universal design language and effective material selection)
+20. study groups
+21. living documents
+22. version control
+23.
