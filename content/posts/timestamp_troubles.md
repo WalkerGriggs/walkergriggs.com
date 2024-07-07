@@ -7,7 +7,7 @@ description = """
 date = 2023-01-07
 categories = ["talks"]
 draft = false
-creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
+creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
 weight = 2013
 +++
 

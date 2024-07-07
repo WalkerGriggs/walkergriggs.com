@@ -4,7 +4,7 @@ author = ["Walker Griggs"]
 date = 2021-12-08
 categories = ["essays"]
 draft = true
-creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
+creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
 weight = 2001
 +++
 

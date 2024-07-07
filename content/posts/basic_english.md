@@ -7,7 +7,7 @@ description = """
 date = 2022-08-03
 categories = ["essays"]
 draft = false
-creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
+creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
 weight = 2006
 +++
 

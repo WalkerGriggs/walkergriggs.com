@@ -5,9 +5,9 @@ description = "What started as a 1 terabyte external harddrive loaded with a few
 date = 2023-04-01
 categories = ["devlogs"]
 draft = false
-creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
+creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
 weight = 2016
-featured_image = "img/how_to_overcomplicate_offline_storage/lto.jpg"
+featured_image = "img/how_to_overcomplicate_offline_storage/lto.webp"
 +++
 
 Seven years ago, I made the decision to keep offline backups of all my personal data. What started as a 1 terabyte external harddrive loaded with a few sentimental photos, zipped folders of school projects, and maybe the odd 360p DVD rip has turned into a 40TB NAS and 26TB worth of offline drives.

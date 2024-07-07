@@ -5,9 +5,9 @@ description = "I’ve recently been thinking about my personal brand – whateve
 date = 2023-02-07
 categories = ["essays"]
 draft = false
-creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
+creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
 weight = 2014
-featured_image = "img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.jpg"
+featured_image = "img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.webp"
 +++
 
 ## “I want to be remembered as the guy who likes lemons.” {#i-want-to-be-remembered-as-the-guy-who-likes-lemons-dot}

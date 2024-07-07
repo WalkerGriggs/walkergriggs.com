@@ -5,9 +5,9 @@ description = "Data is plentiful and only getting more abundant. That presents a
 date = 2023-03-25
 categories = ["essays"]
 draft = false
-creator = "Emacs 29.3 (Org mode 9.6.15 + ox-hugo)"
+creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
 weight = 2015
-featured_image = "img/data_preservation_alfs_room_and_spicy_p/spicy_p.jpg"
+featured_image = "img/data_preservation_alfs_room_and_spicy_p/spicy_p.webp"
 +++
 
 {{< figure src="/img/data_preservation_alfs_room_and_spicy_p/alfs_room.webp" caption="<span class=\"figure-number\">Figure 1: </span>Alf, \"Welcome to Alf's Room. I am Alf\"" width="420px" >}}

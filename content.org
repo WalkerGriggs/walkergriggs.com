@@ -931,7 +931,7 @@ At this point, your Ergodox Infinity should be both flash with your layout and y
 #+end_description
 
 #+attr_html: :width 100%
-[[file:static/img/pipewire-in-docker/pipewire.gif]]
+[[file:img/pipewire-in-docker/pipewire.gif]]
 
 [[https://pipewire.org/][Pipewire]] is a graph-based multimedia processing engine that lets you handle audio + video in real time! I've had way too much fun playing with it recently, but spent longer than I care to admit spinning it up in an Ubuntu container.
 
@@ -1084,7 +1084,7 @@ I'll likely write more about Pipewire once I get more experiencing working with 
 :PROPERTIES:
 :export_file_name:  zettelkasten_rhizomes_and_you
 :export_date: 2023-01-05
-:export_hugo_custom_front_matter: :featured_image "img/zettelkasten_rhizomes_and_you/zettel_1.jpg"
+:export_hugo_custom_front_matter: :featured_image "img/zettelkasten_rhizomes_and_you/zettel_1.webp"
 :END:
 
 #+begin_description
@@ -1437,7 +1437,7 @@ That said, I think the big takeaway here is the one I told you was coming from t
 :PROPERTIES:
 :export_file_name:  the_guy_who_likes_lemons
 :export_date: 2023-02-07
-:export_hugo_custom_front_matter: :featured_image "img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.jpg"
+:export_hugo_custom_front_matter: :featured_image "img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.webp"
 :END:
 
 #+begin_description
@@ -1519,7 +1519,7 @@ And so, of course, there’s only one way to close. My name is Walker Griggs, an
 :PROPERTIES:
 :export_file_name: data_preservation_alfs_room_and_spicy_p
 :export_date: 2023-03-25
-:export_hugo_custom_front_matter: :featured_image "img/data_preservation_alfs_room_and_spicy_p/spicy_p.jpg"
+:export_hugo_custom_front_matter: :featured_image "img/data_preservation_alfs_room_and_spicy_p/spicy_p.webp"
 :END:
 
 #+begin_description
@@ -1605,7 +1605,7 @@ I’m talking about my Youtube channel from 2011 and those VHS tapes stuffed dee
 :PROPERTIES:
 :export_file_name: how_to_overcomplicate_offline_storage
 :export_date: 2023-04-01
-:export_hugo_custom_front_matter: :featured_image "img/how_to_overcomplicate_offline_storage/lto.jpg"
+:export_hugo_custom_front_matter: :featured_image "img/how_to_overcomplicate_offline_storage/lto.webp"
 :END:
 
 #+begin_description
