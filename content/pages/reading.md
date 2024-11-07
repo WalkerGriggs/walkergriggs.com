@@ -6,28 +6,33 @@ creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
 weight = 2001
 +++
 
-|          |                                                                                                                                                            |
-|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Jun '24  | Nagel, Thomas. Mortal Questions. Cambridge University Press, 1991.                                                                                         |
-|          | Sapolsky, Robert M. Why Zebras Don't Get Ulcers. W. H. Freeman, 1994.                                                                                      |
-| May '24  | Murakami, Haruki. Sputnik Sweetheart. Kodansha International, 2001.                                                                                        |
-|          | Murakami, Haruki. Hard-Boiled Wonderland and the End of the World. Kodansha International, 1991.                                                           |
-|          | Zelazny, Roger. The Dream Master. Ace Books, 1966.                                                                                                         |
-|          | Sontag, Susan. Regarding the Pain of Others. Penguin Books, 2004.                                                                                          |
-| Apr '24  | Wilkerson, Isabel. The Warmth of Other Suns: The Epic Story of America's Great Migration. Random House, 2010.                                              |
-|          | Mason, Daniel. North Woods. Random House, 2023.                                                                                                            |
-|          | Smith, Adam. The Wealth of Nations. The Modern Library, 1994.                                                                                              |
-| Mar '24  | Britt, Ryan. The Spice Must Flow: The Story of Dune, from Cult Novels to Visionary Sci-Fi Movies. Plume, 2023.                                             |
-|          | Cassidy, John. How Markets Fail: The Economics of Rational Irrationality. Farrar, Straus and Giroux, 2009.                                                 |
-|          | Fricker, Miranda. Epistemic Injustice: Power and the Ethics of Knowing. Oxford University Press, 2007.                                                     |
-|          | Martine, Arkady. A Desolation Called Peace. Tor Books, 2021.                                                                                               |
-| Feb. '24 | Delany, Samuel R. Babel-17. Gregg Press, 1978.                                                                                                             |
-|          | Katznelson, Ira. When Affirmative Action Was White: An Untold History of Racial Inequality in Twentieth-Century America. W. W. Norton &amp; Company, 2006. |
-|          | Whyte, William H. The Social Life of Small Urban Spaces. Project for Public Spaces, 2001.                                                                  |
-|          | Alexander, Christopher, et al. A Pattern Language: Towns, Buildings, Construction. Oxford University Press, 1977.                                          |
-|          | Eberhardt, Jennifer L. Biased: Uncovering the Hidden Prejudice That Shapes What We See, Think, and Do. Penguin Books, 2019.                                |
-| Jan '24  | Rothstein, Richard. The Color of Law: A Forgotten History of How Our Government Segregated America. Liveright Publishing Corporation, 2018.                |
-|          | Bogle, John C. The Little Book of Common Sense Investing: The Only Way to Guarantee Your Fair Share of Stock Market Returns. Wiley, 2007.                  |
-|          | Kidder, Tracy. Rough Sleepers: Dr. Jim O’Connell’s Urgent Mission to Bring Healing to Homeless People. Random House, 2023.                                 |
-|          | Desmond, Matthew. Poverty, by America. Crown, 2023.                                                                                                        |
-|          | Jacobs, Jane. The Death and Life of Great American Cities. Random House, 2002                                                                              |
+|       |                       |                                                                   |
+|-------|-----------------------|-------------------------------------------------------------------|
+| 10/24 | Gaston Bachelard      | The Poetics of Space                                              |
+| 09/24 | Mariana Oliver        | Migratory Birds                                                   |
+|       | Thomas K. McCraw      | Prophet of Innovation: Joseph Schumpeter and Creative Destruction |
+| 08/24 | Xu Zechen             | Beijing Sprawl                                                    |
+|       | Mikhail Bulgakov      | The Master and Margarita                                          |
+| 06/24 | Thomas Nagel          | Mortal Questions                                                  |
+|       | Robert M. Sapolsky    | Why Zebras Don't Get Ulcers                                       |
+| 05/24 | Haruki Murakami       | Sputnik Sweetheart                                                |
+|       | Haruki Murakami       | Hard-Boiled Wonderland and the End of the World                   |
+|       | Roger Zelazny         | The Dream Master                                                  |
+|       | Susan Sontag          | Regarding the Pain of Others                                      |
+| 04/24 | Isabel Wilkerson      | The Warmth of Other Suns                                          |
+|       | Daniel Mason          | North Woods                                                       |
+|       | Adam Smith            | The Wealth of Nations                                             |
+| 03/24 | Ryan Britt            | The Spice Must Flow                                               |
+|       | John Cassidy          | How Markets Fail                                                  |
+|       | Miranda Fricker       | Epistemic Injustice: Power and the Ethics of Knowing              |
+|       | Arkady Martine        | A Desolation Called Peace                                         |
+| 02/24 | Samuel R Delany       | Babel-17                                                          |
+|       | Ira Katznelson        | When Affirmative Action Was White                                 |
+|       | William H. Whyte      | The Social Life of Small Urban Spaces                             |
+|       | Christopher Alexander | A Pattern Language: Towns, Buildings, Construction                |
+|       | Jennifer L. Eberhardt | Biased                                                            |
+| 01/24 | Richard Rothstein     | The Color of Law                                                  |
+|       | John C. Bogle         | The Little Book of Common Sense Investing                         |
+|       | Tracy Kidder          | Rough Sleepers                                                    |
+|       | Matthew Desmond       | Poverty                                                           |
+|       | Jane Jacobs           | The Death and Life of Great American Cities                       |

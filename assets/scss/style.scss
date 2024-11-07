@@ -76,7 +76,8 @@ table td, table td * {
 
 td {
     min-width: 80px;
-    padding-bottom: 1em;
+    white-space: nowrap;
+    padding-right: 0.5em;
 }
 
 @import "partial/header";
