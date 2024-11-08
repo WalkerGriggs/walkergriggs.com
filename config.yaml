@@ -7,7 +7,6 @@ ignoreErrors: ["error-disable-taxonomy"]
 
 params:
         header: Walker Griggs is a video and distributed systems engineer, focused on developer-first platforms. He is based in San Francisco, California.
-        getFormLink: https://getform.io/f/0f0f62d6-edbd-45d9-a998-3e2148260d5d
         twitter: "WebDevScaresMe"
         author:
                 email: "hello@walkergriggs.com"
