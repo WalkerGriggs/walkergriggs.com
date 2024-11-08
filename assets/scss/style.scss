@@ -3,7 +3,6 @@
 
 html {
   margin: 0;
-  padding: 0;
   height: 100%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -59,7 +58,6 @@ h6 {
     font-family: $font-family-header;
     font-style: normal;
     font-weight: 700;
-    font-size: $font-size;
 }
 
 input,
@@ -95,19 +93,11 @@ td {
     line-height: $line-height;
     float: right;
 
-    p, ol, figure, .highlight, img {
-        @media only screen and (max-width: 550px) {
-            padding-left: 0px;
-        }
-        padding-left: 80px;
-    }
-
     figure {
         margin: 0px;
 
         img, p {
             font-style: italic;
-            padding: 0;
             width: 100%;
         }
     }
@@ -145,6 +135,7 @@ td {
 pre {
   overflow-x: auto;
   padding: 15px 15px 10px 15px;
+  font-size: 0.8em;
 }
 
 iframe {
