@@ -4,16 +4,21 @@ author = ["Walker Griggs"]
 description = """
   "Timestamp Troubles" tells the story of triaging and patching unexpected livestream behaviors. The talk is a narrative account that puts equal weight on the debugging process as the final implementation, and was first given at Deuxed 2022. <https://youtu.be/m0yNWtCeWh8>
   """
-date = 2023-01-07
+date = 2022-10-13
 categories = ["talks"]
 draft = false
 creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
-weight = 2013
+weight = 2014
 +++
 
 ## Recording {#recording}
 
 <iframe src="https://www.youtube-nocookie.com/embed/m0yNWtCeWh8" allowfullscreen title="YouTube"></iframe>
+
+
+## Slides {#slides}
+
+<iframe id="pdf" src="/pdf/demuxed_2022.pdf" frameborder="0"></iframe>
 
 
 ## Abstract {#abstract}
@@ -29,13 +34,7 @@ I hope you’ll learn from our mistakes, a bit about Libav audio device decoders
 
 ## Transcript {#transcript}
 
-{{< figure src="/img/timestamp_troubles/slide_1.webp" width="420px" >}}
-
-Hey everyone, my name is Walker Griggs, and I’m an engineer at Mux.
-
 I’m actually going to do something a little out of order here and introduce the “punchline” for my talk before I even introduce the topic.
-
-{{< figure src="/img/timestamp_troubles/slide_2.webp" width="420px" >}}
 
 The punchline is: “reliable timestamps when livestreaming from virtual environments are really, really hard.”
 
@@ -47,17 +46,11 @@ I've realized, though, that databases and video have a lot more in common than y
 
 That’s why this talk will be geared to those of us who are looking to level up our deductive reasoning skills and maybe add new triage tools to our tool box. In the end of the day, all that matters is "getting there".
 
-{{< figure src="/img/timestamp_troubles/slide_3.webp" width="420px" >}}
-
 So where is this talk going?
 
 We’ll start by introducing the problem space, of course. Every good story needs an antagonist. We’ll take a quick detour to talk about timestamps, and use that info to color how we triaged the problem. Finally, we’ll arrive back at our problem statement and how we fixed it.
 
-{{< figure src="/img/timestamp_troubles/slide_4.webp" width="420px" >}}
-
 So let’s jump into it. On and off for the last 9 months, I’ve been working on a system called Web Inputs. Web Inputs takes a website URL as input, and outputs a livestream. URL in, video out. On the surface that seems pretty simple, but, as most abstractions do, that simplicity hides a great deal of complexity.
-
-{{< figure src="/img/timestamp_troubles/slide_5.webp" width="420px" >}}
 
 Web Inputs has to wear quite a few hats.
 
@@ -65,21 +58,13 @@ Web Inputs has to wear quite a few hats.
 2.  Chromium then pushes audio and video onto separate buffers -- X11 and Pulseaudio, specifically. We opted to use a virtual X11 frame buffer instead of a canvas to avoid the GPU requirement.
 3.  Finally, FFmpeg can transcode the buffer content and broadcast over Mux’s standard Livestream API.
 
-{{< figure src="/img/timestamp_troubles/slide_6.webp" width="420px" >}}
-
 An adjustment we made early on, and one that's the catalyst for this **entire** talk, is to hide the page load from the livestream. If we start Chrome and immediately buffer audio and video, we're going to catch the webpage loading in the resulting livestreaming. That's not a great customer experience.
 
-{{< figure src="/img/timestamp_troubles/slide_7.webp" width="420px" >}}
-
 Instead, we can listen to Chrome’s events. One of which is called “First Meaningful Paint”, and that’s effectively Chrome saying “something interesting is on the screen now, you should probably pay attention. A colleague of mine, [Garrett Graves](https://github.com/GRVYDEV) actually came up with this idea. From a timing perspective, it worked really well, but this change is also when we started seeing some odd behaviors.
-
-{{< figure src="/img/timestamp_troubles/slide_8.webp" width="420px" >}}
 
 Behavior number 1: the first 4-7 seconds of audio and video looked like they were shot from a cannon. The audio was scattered all over the place, and frames were jumping left and right.
 
 Behavior number 2: the audio + video would meander in and out of sync over the course of the broadcast.
-
-{{< figure src="/img/timestamp_troubles/slide_9.webp" width="420px" >}}
 
 That’s no good. So what did we do? We did, what I’m sure many of you all are guilty of, and stayed up late into the morning fiddling with ffmpeg flags. We read all the blog posts on AV sync. We tried various combinations of filters and flags.
 
@@ -91,23 +76,15 @@ Another point to call out here: we were testing in different environments. We we
 
 Empirical evidence is and will always be the fastest way to understanding your problem.
 
-{{< figure src="/img/timestamp_troubles/slide_10.webp" width="420px" >}}
-
 Before we look at any logs or metrics, let’s run through a quick primer on timestamps so we’re all on the same page.
-
-{{< figure src="/img/timestamp_troubles/slide_11.webp" width="420px" >}}
 
 You’ll often hear PTS and DTS talked about -- the "presentation timestamp" and "decode timestamp". For starters, every frame has both and they dictate the frames' order. The PTS is when a player should _present_ that specific frame to the viewer. The DTS is when the player should _decode_ the frame.
 
 These timestamps are different because frames aren’t always stored or transmitted in the order you view them. Some frames actually refer back to one another. These are called "predictive" or "delta" frames.
 
-{{< figure src="/img/timestamp_troubles/slide_12.webp" width="420px" >}}
-
 With that out of the way, let’s talk about our triage process.
 
 One thing we found early in our investigation: FFmpeg was complaining about timestamps assigned by the Pulseaudio device decoder. Naturally, we wanted to go right to the source, so we added some new log lines to the decoder and dumped various metrics to disk.
-
-{{< figure src="/img/timestamp_troubles/slide_13.webp" width="420px" >}}
 
 The first thing to call out: "non-monotonic DTS in output stream". These can be the bane of your existence if you’re not careful. It means that your decoded time stamps are not increasing by the same amount frame to frame.
 
@@ -117,8 +94,6 @@ The next bit to question: PTS and DTS on audio samples. Audio ‘frames’ don�
 
 Ultimately it comes down to Libav’s data models. Frames and packets are general structs and used for both video and audio, so we can think of “PTS” and “DTS” in this context as ‘appropriately typed fields that can store timestamps’. So that explains why we’re using this terminology, but it doesn’t explain why they’re different.
 
-{{< figure src="/img/timestamp_troubles/slide_14.webp" width="420px" >}}
-
 For that we have to look at the Pulse decoder which does 3 things when it assigns timestamps to frames.
 
 The first is to fetch the time according to the wall clock; that’s the DTS. It then adjusts the DTS by the sample latency. That latency is just the time difference between when the sample was buffered by Pulse and requested by ffmpeg.
@@ -127,19 +102,13 @@ It then runs it through a filter to de-noise the DTS and smooth out the timestam
 
 Keep in mind, this system is running a docker container, running on a VM, which is probably itself part of a hypervisor. We’re likely not using a hardware timing crystal here, so we de-noise that PTS to offset and inconsistencies.
 
-{{< figure src="/img/timestamp_troubles/slide_15.webp" width="420px" >}}
-
 We’re heading in the right direction, but at this point I’d say we have “data” — not “evidence”. Long log files aren’t exactly human readable, and certainly harder to reason about. I may not be a Python developer, but the one thing I’ll swear by is its ability to visualize and reason about data sets.
 
 The first thing we wanted to visualize were these timestamps, of course. We expected to see a linear increase in timestamps, maybe an artifact of those non-monotonic logs in the first few seconds.
 
-{{< figure src="/img/timestamp_troubles/slide_16.webp" width="420px" >}}
-
 Good news: we do! But, maybe not as clearly as we should.
 
 Unfortunately, this graph doesn’t tell us that much. We can’t draw any conclusions from this data. What would be more helpful would be to graph the **rate** at which these timestamps fluctuate because what we really care about is “how reliable or consistent these timestamps are”. The derivative, or the rate of change, of this data might show us how unstable these timestamps actually are.
-
-{{< figure src="/img/timestamp_troubles/slide_17.webp" width="420px" >}}
 
 Lo and behold; the derivative is pretty telling. So what are we looking at? Well a derivative of a linearly increasing function is flat, so that tells us that after some number of seconds, our timestamps are dead close to linearly increasing. That’s what we want!
 
@@ -149,17 +118,11 @@ Also worth calling out is that our denoising filter is doing it’s job, but it 
 
 There was another piece to the logs: that back pressure of buffered samples at the beginning of the stream.
 
-{{< figure src="/img/timestamp_troubles/slide_18.webp" width="420px" >}}
-
 If we graph the latency as well, we see some rough correlation. Again, high pangs of latency early in the stream which settles down to something more consistent.
-
-{{< figure src="/img/timestamp_troubles/slide_19.webp" width="420px" >}}
 
 If we think back to those initial behaviors, I think this visualizes them pretty well. We see an initial scramble of timestamps which likely is causing the player to throw frames at us in a seemingly random or unpredictable order. We can also see that the timestamps aren’t perfectly linear, which would explain why AV sync meanders a little bit over the course of a stream.
 
 Something to call out here though: this is just a correlational and not directly causational relationship. These are only part of the picture. It might be hasty to drop the gavel and blame Pulse. There’s a number of paths unexplored here. For example, these are only the audio samples. There’s a whole other side to the video samples to explore.
-
-{{< figure src="/img/timestamp_troubles/slide_20.webp" width="420px" >}}
 
 We needed to step back and consider our goals at this point, though. It’s important to remember that these visualizations are just interpretations -- not hard evidence. We, like many of you, are under deadlines.
 
@@ -167,13 +130,9 @@ We had to make the difficult decision here. Keep digging, or action what we alre
 
 Before we talk about how we fixed it, it's important to talk about what we already knew.
 
-{{< figure src="/img/timestamp_troubles/slide_21.webp" width="420px" >}}
-
 -   We already knew that latency was at play, and that Pulse was buffering more than we needed.
 -   We knew that our timestamps were based off of wall clocks that we couldn't always trust in this environment (even after denoising).
 -   We knew some simple metrics like the starting timestamp, exactly how many samples we’ve decoded, and the target frequency.
-
-{{< figure src="/img/timestamp_troubles/slide_22.webp" width="420px" >}}
 
 The first and very naive solution we used to validate our hypothesis was to ignore all samples until we were pulling off nice, round, 4kb packets. This solution gave us fine results in a controlled environment, but we'd never want this hack in production for obvious reasons.
 
@@ -181,23 +140,15 @@ The logical next step here is to flush Pulse's buffers. If you remember where th
 
 The last option was the one we ultimately went with, which is counting the number of samples and computing the DTS on the fly.
 
-{{< figure src="/img/timestamp_troubles/slide_23.webp" width="420px" >}}
-
 So what does that look like for us? First, we record the wall time when we initialize the device decoder — that’s our ‘starting time’. We then ignore all buffered samples with a DTS before that starting time.
 
 From there, we count each sample we do care about and use that to determine sample perfect timestamps using our target frequency and timebase.
 
 For example, if our target frequency is 48khz, or 48000hz, and we’ve already decoded 96000 samples, that means we’re exactly 2 seconds into the livestream.
 
-{{< figure src="/img/timestamp_troubles/slide_24.webp" width="420px" >}}
-
 If we translate this solution into terms Libav will understand, it's actually fairly simple.
 
-{{< figure src="/img/timestamp_troubles/slide_25.webp" width="420px" >}}
-
 The results were so much closer. Not perfect, but closer. In fact, over the next few days, we ran a 8 hour test stream and noticed that, over the course of the day, millisecond by millisecond, the video pulled ahead of the audio.
-
-{{< figure src="/img/timestamp_troubles/slide_26.webp" width="420px" >}}
 
 So, what gives?
 
@@ -207,16 +158,10 @@ So instead, we can re-sync where appropriate and actually use the wall clock as 
 
 This solution gives you the accuracy of a wall clock but the precision of sample counting.
 
-{{< figure src="/img/timestamp_troubles/slide_27.webp" width="420px" >}}
-
 So what are some takeaways here?
 
 1.  For us, this experience was our first time getting our hands dirty with device decoders. We found that, in this instance, going through FFmpeg's documentation flag by flag wasn't going to cut it. There's a big gap in online resources between high level glossary and low level specification. Getting hands on was the only way to fill that gap.
 2.  Choose redundancy where it matters. This lesson is something we've learned in infrastructure and database; video is no different. It's not always best to trust a single system when calculating timestamps.
-3.  The last take away, and one that we actually started recently, is to invest in glass-to-glass testing. We wasted far too many hours watching test cards and Big Buck Bunny -- my palms still get sweaty when I hear that pan flute.
-
-    One thing we tried was injecting QR codes directly into test cards with audible sync pulses at regular intervals. We can then check the resulting waveform to see if those pulses landed on frames flagged with QR codes. We can then use the frame count and sample rate to calculate how we've deviated.
-
-{{< figure src="/img/timestamp_troubles/slide_28.webp" width="420px" >}}
+3.  The last take away, and one that we actually started recently, is to invest in glass-to-glass testing. We wasted far too many hours watching test cards and Big Buck Bunny -- my palms still get sweaty when I hear that pan flute. One thing we tried was injecting QR codes directly into test cards with audible sync pulses at regular intervals. We can then check the resulting waveform to see if those pulses landed on frames flagged with QR codes. We can then use the frame count and sample rate to calculate how we've deviated.
 
 That said, I think the big takeaway here is the one I told you was coming from the very beginning: “reliable timestamps in virtual environments are really, really hard.”
