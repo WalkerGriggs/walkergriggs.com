@@ -7,13 +7,13 @@
 
 
 <div class="mb3 content">
-  {{ range (sort .Pages "Date" "desc") }}
   <ul class="page-list">
+    {{ range (sort .Pages "Date" "desc") }}
     <li>
       <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
       <span>{{ .Date.Format "2006/01/02" }}</span>
     </li>
+    {{ end }}
   </ul>
-  {{ end }}
 </div>
 {{ end }}
