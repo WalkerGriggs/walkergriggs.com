@@ -938,7 +938,7 @@ At this point, your Ergodox Infinity should be both flash with your layout and y
 #+end_description
 
 #+attr_html: :width 100%
-[[file:img/pipewire-in-docker/pipewire.gif]]
+[[file:/img/pipewire-in-docker/pipewire.gif]]
 
 [[https://pipewire.org/][Pipewire]] is a graph-based multimedia processing engine that lets you handle audio + video in real time! I've had way too much fun playing with it recently, but spent longer than I care to admit spinning it up in an Ubuntu container.
 
