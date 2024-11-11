@@ -99,6 +99,117 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 |       | Matthew Desmond       | Poverty                                                           |
 |       | Jane Jacobs           | The Death and Life of Great American Cities                       |
 
+
+* Recently
+:PROPERTIES:
+:export_hugo_section: recently
+:END:
+
+** Recently                                                      :@recently:
+:PROPERTIES:
+:export_file_name: recently_2024_10_19
+:export_date: 2024-10-19
+:END:
+
+I've always enjoyed [[https://macwright.com/2024/08/01/recently.html][Mac Wright's 'Recently' posts]]. They remind me of a modern, retrospective reinterpretation of [[https://github.com/ESWAT/john-carmack-plan-archive][John Carmack's .plan files]]. "Recently" pages feel like a good way to hold myself accountable. Or at least, to attempt to.
+
+
+** FOMS, HLS Interest, and Demuxed                               :@recently:
+:PROPERTIES:
+:export_file_name: recently_2024_10_20
+:export_date: 2024-10-20
+:export_hugo_custom_front_matter: :featured_image "img/recently/2024-10-20/foms2024.webp"
+:END:
+
+What a week. I'm mostly recovered from the last ~14 straight 12+ hour days. They were good days, exciting days, but long days.
+
+*** In the rearview
+The week started on a high note with FOMS @ Crunchyroll HQ. The Foundations of Open Media Standards is a long running un-conference for media engineers to collaboratively identify industry pain points and action items. It's entirely volunteer organized and I took over as its steward a few years back. I prefer the term 'steward' over 'organizer' or similar because this conference has been organically growing and shaping for longer than I've been a professional developer -- this was its 17th year. There were organizers before and will be organizers after me.
+
+This year was an improvement over last and, with feedback in hand, I hope to take next year another step forward. Conversation topics were to be expected:
+1. [[https://phrack.org/issues/71/6.html#article][DRM is fundamentally broken]]
+2. Legacy devices are no good
+3. Interstitials are extremely good
+4. [[https://github.com/streaming-video-technology-alliance/common-media-library/][We should stop implementing the same thing repeatedly.]]
+
+#+CAPTION: FOMS '24 @ Crunchyroll HQ
+#+ATTR_HTML: :width 420px
+[[/img/recently/2024-10-20/foms2024.webp]]
+
+Tuesday marked another trip down to Cupertino for the HLS Interest event at Apple's new(ish) developer center. There were more presentations this year and less discussion, and, relative to last year's Vision Pro announcements, '24 was less action packed. Apple employees are always well rehearsed, so, in some respects, it felt like a mini-WWDC for video proprietors.
+
+Arguably my favorite presentation was from an English broadcaster about their sign language production and distribution experiments for flexible picture-in-picture placement.
+
+Somehow we're only half-way through the week. [[https://2024.demuxed.com][Demuxed]] this year was at the lovely Regency Ballroom. I wore two hats: speaker and organizer.
+
+#+CAPTION: Demuxed '24 @ Regency Ballroom
+#+ATTR_HTML: :width 420px
+[[/img/recently/2024-10-20/demuxed2024.webp]]
+
+My role at Demuxed is usually 'speaker wrangler' and 'greenroom helicopter'. This year, I was joined by a tremendous colleague and friend who shared some of the burden of climbing those ~3 flights of stairs from greenroom to stage. The Regency is a concert venue through and through -- nothing makes you feel more punk rock than climbing those back stairs to the stage, past a tour bus waiting in the alley... to talk about PSSH boxes.
+
+Speaking of which (I had to, I'm sorry. It's been a long week) the scheduling committee had the foresight to schedule my talk in the third slot on Wednesday morning which gave me enough time to settle in, shake it out, and get back to my staff duties anxiety free.
+
+*** Media Diet
+Lets just say my media diet these last few weeks has been non-existent. I look forward to starting Metaphor: ReFantazio, I have a backlog of Antonioni films to work through, and I need to punch through the end of [[https://www.goodreads.com/book/show/13269.The_Poetics_of_Space][The Poetics of Space]].
+
+*** Looking Forward
+I'm heading to [[https://www.videolan.org/videolan/events/vdd24/index.html][VDD]] in a week. It'll be my first time in Seoul so I'll defer some post-Demuxed rest until I'm out-of-office and abroad.
+
+Thank you to everyone’s kind words and encouragement. Demuxed and FOMS would be nothing without your enthusiasm and contributions. I’m off to coil and sort all of our cables. Until next time…
+
+⏭️
+
+** VDD '24, Seoul                                                :@recently:
+:PROPERTIES:
+:export_file_name: recently_2024_11_04
+:export_date: 2024-11-04
+:export_hugo_custom_front_matter: :featured_image "img/recently/2024-11-04/2.webp"
+:END:
+
+#+begin_description
+Recently I traveled to Seoul for Video Dev Days '24 and to remind myself just how deep multimedia goes.
+#+end_description
+
+*** In the rearview
+A host of friendly faces -- old and new. I'm in Seoul this week for [[https://www.videolan.org/videolan/events/vdd24/][Video Dev Days]] and some needed time off. The leaves are turning, the food is predictably remarkable, and the conversations could not be more different from those at Demuxed -- swap CMCD, DRM, and CMAF HAM for AVX2, dav1d checkasm, and mailing list Shenanigans.
+
+#+CAPTION: VDD '24 @ Kwangwoon University
+#+ATTR_HTML: :width 420px
+[[/img/recently/2024-11-04/2.webp]]
+
+One discussion in particular stuck with me: "how do we teach people assembly 'the VLC way'". This topic boarders on the perennially popular discussion of "how do we teach video?" -- one that I personally wrestle with on a weekly basis as someone trying to /learn/ video comprehensively.
+
+I would never claim to understand pedagogy more than your average tutor, but I did some reading on the subject while writing an essay on 'Citizen Syallbi' (work in progress). To give a new developer a series of goal-oriented tasks would, in my opinion, do them a disservice. People learn in all sort of ways -- reading, teaching, doing, observing -- and teaching with the specific target of "molding new VLC ASM developers" would fall, I think, into the trap bootcamps have for the last decade.
+
+Maybe I'm wrong; time will tell. In any case, I'm all for starting somewhere as opposed to bikeshedding the conversation into oblivion. Written guides, recorded lectures, and study groups can all be added after-the-fact.
+
+#+CAPTION: [[https://x.com/FFmpeg/status/1852542388851601913][94x speedup]], or how to enrage X
+#+ATTR_HTML: :width 420px
+[[/img/recently/2024-11-04/5.webp]]
+
+Otherwise, I'm in Seoul so that's pretty neat. The city is extremely public-transit friendly (as far as I can tell) and there's never a shortage of things to see. My legs are exhausted from marching around palaces, temples, national parks, bars, and fish markets. But a good kind of tired, ya know?
+
+#+CAPTION: Euljiro Brewing @ Myeongdong, Seoul
+#+ATTR_HTML: :width 420px
+[[/img/recently/2024-11-04/3.webp]]
+
+On a totally unrelated note, I found a street with nothing but camera shops. I couldn't /not/ poke my head in, and now I have a new-to-me Nikon FM2. It's been nearly a decade since I've shot an analog camera, so pray that these scans come out semi-salvageable.
+
+#+CAPTION: Nikon FM2 AM
+#+ATTR_HTML: :width 420px
+[[/img/recently/2024-11-04/4.webp]]
+
+*** Media Diet
+Between flights and down moments to hotel, I've put a sizable dent in ReFantazio -- Atlus has done it again. With the new film camera in-hand, I've had to remind myself how to actually take a half decent photo. [[https://www.youtube.com/@graincheck][graincheck]], [[https://www.youtube.com/@adammissedfocus][Adam Missed Focus]], and [[https://www.youtube.com/@Codacolor][Cody Mitchell]] have been tremendously effective at getting me excited to go shoot.
+
+I don't have a book lined up at the moment. I'll be picking my way through [[https://www.wiley.com/en-us/The+H.264+Advanced+Video+Compression+Standard%2C+2nd+Edition-p-9780470516928]["the h264 book"]] soon which may or may not qualify as reading depending on your definition.
+
+*** Looking forward
+I'm excited for some stability but I'm not sure how much can be found in the fragmented weeks between now and the near year. I want to try my hand at squashing some VLC issues and maybe implementing CENC in FFmpeg. Onward and upward...
+
+⏭️
+
 * Posts
 :PROPERTIES:
 :export_hugo_section: posts
@@ -167,7 +278,6 @@ Persistent homesteads go beyond SRE though. When we take responsibility for supp
 
 Service ownership is overlooked in the majority of continuous learning projects, despite it being such a critical facet of successful enterprise services.
 
-
 ***** Span multiple layers
 It's important to think about where and how things are run. This diversity adds perspective
 
@@ -203,11 +313,15 @@ Use case: Say a user has 100 accounts at 100 different websites. Some, but not a
 
 Instead, a user should be able to press one button in their password manager which will programatically generate a new password and update the account settings through the proposed endpoints. Better yet, the password manager should do this automatically every N days without the user needing to trigger the process.
 
-** TODO Five Years with Emacs                                       :@devlogs:
+** TODO PSSH; Primordial Soup of Secure-ish Headers                 :@talks:
 :PROPERTIES:
-:export_file_name: five_years_with_emacs
-:export_date: 2020-12-28
+:export_file_name: pssh_primordial_soup_of_secure-ish_headers
+:export_date: 2024-10-16
 :END:
+
+*** Slides
+
+{{{pdf(/pdf/demuxed_2024.pdf)}}}
 
 ** DONE Coding Diddles                                             :@essays:
 :PROPERTIES:
@@ -1231,17 +1345,6 @@ Genette, Gérard. /Paratexts: Thresholds of Interpretation/. Literature, Culture
 Luhmann, Niklas. /Communicating with Slip Boxes/. Accessed January 5, 2023. https://luhmann.surge.sh/communicating-with-slip-boxes.
 
 /The Rhizome - A Thousand Plateaus, Deleuze and Guattari/. Then & Now, 2018. https://www.youtube.com/watch?v=RQ2rJWwXilw&ab_channel=Then%26Now.
-
-** TODO PSSH; Primordial Soup of Secure-ish Headers                 :@talks:
-:PROPERTIES:
-:export_file_name: pssh_primordial_soup_of_secure-ish_headers
-:export_date: 2024-10-16
-:END:
-
-*** Slides
-
-{{{pdf(/pdf/demuxed_2024.pdf)}}}
-
 
 ** DONE Timestamp Troubles                                      :@talks:
 :PROPERTIES:
