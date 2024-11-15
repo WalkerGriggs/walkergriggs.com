@@ -3,12 +3,15 @@ title = "Reading"
 author = ["Walker Griggs"]
 draft = false
 creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
-weight = 2001
+weight = 2002
 +++
 
 |       |                       |                                                                   |
 |-------|-----------------------|-------------------------------------------------------------------|
+| 11/24 | David Hume            | Dialogues Concerning Natural Religion                             |
+|       | Lau Yee-Wa            | Tongueless                                                        |
 | 10/24 | Gaston Bachelard      | The Poetics of Space                                              |
+|       | James Rachels         | The Right Thing to Do; Basic Reading in Moral Philosophy          |
 | 09/24 | Mariana Oliver        | Migratory Birds                                                   |
 |       | Thomas K. McCraw      | Prophet of Innovation: Joseph Schumpeter and Creative Destruction |
 | 08/24 | Xu Zechen             | Beijing Sprawl                                                    |
