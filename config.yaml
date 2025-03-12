@@ -7,7 +7,7 @@ pluralizeListTitles: false
 
 
 params:
-        header: Walker Griggs is a video and distributed systems engineer, focused on developer-first platforms. He is based in San Francisco, California.
+        header: Walker Griggs is a distributed systems engineer, focused on developer-first platforms. He is based in San Francisco, California.
         twitter: "WebDevScaresMe"
         author:
                 email: "hello@walkergriggs.com"
