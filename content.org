@@ -326,7 +326,7 @@ Given at [[https://www.meetup.com/sf-video-technology/events/298593592/][April '
 
 *** Recording
 
-Coming soon...
+{{{youtube(ZMTkdIb7RIc)}}}
 
 *** Slides
 

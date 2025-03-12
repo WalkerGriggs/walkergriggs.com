@@ -13,7 +13,7 @@ Given at [April '24 SF Video Technology](https://www.meetup.com/sf-video-technol
 
 ## Recording {#recording}
 
-Coming soon...
+<iframe src="https://www.youtube-nocookie.com/embed/ZMTkdIb7RIc" allowfullscreen title="YouTube"></iframe>
 
 
 ## Slides {#slides}
@@ -158,7 +158,7 @@ PlayReady Object
 
 I spent some time coming up with a way to effectively describe the contents of the PRH record for you, but I’ll tell you this joke instead. An Intel 8008, the universal coded character set TWO, and a standard generalize markup language walk into a bar…
 
-The punchline reads something like "UTF16 little endian, XMLL". It’s always fun how a few decisions made by Intel architect the 8000 series, Microsoft developing Windows NT, and W3C creating a markup language for the web trickle into out streaming tech.
+The punchline reads something like "UTF16 little endian, XML". It’s always fun how a few decisions made by Intel architect the 8000 series, Microsoft developing Windows NT, and W3C creating a markup language for the web trickle into out streaming tech.
 
 But I digress. Let’s take a quick pass through this PSSH box. Playready PSSHs stored in manifest are actually stripped of the fields and ONLY include their data payload. That makes for a great shortcut for this talk. We start with a little endian integer size of 834 bytes.
 
@@ -170,7 +170,7 @@ xxd -g1 -s32 -l10 playready.bin
 00000020: 42 03 00 00 01 00 01 00 38 03 00 00              B.......8.
 ```
 
-PlayReady give us a myriad of things to look at. First and foremost, this is a version 4.3.0.0 PlayReadyHeader. Each header contains a protection info node which contains a list of keys. Multi-key support was added in 2015 in version 4.2.0.0, which is pretty recent as far as DRM is concerned.
+PlayReady give us a myriad of things to look at in these objects. First and foremost, this is a version 4.3.0.0 PlayReadyHeader. Each header contains a protection info node which contains a list of keys. Multi-key support was added in 2015 in version 4.2.0.0, which is pretty recent as far as DRM is concerned.
 
 ```nil
 dd status=none skip=42 bs=1 if=playready.bin | iconv -f UTF-16LE -t UTF-8 | xq
@@ -186,15 +186,17 @@ dd status=none skip=42 bs=1 if=playready.bin | iconv -f UTF-16LE -t UTF-8 | xq
 </WRMHEADER>
 ```
 
-Each key is assigned an algorithm. In this case, AES CBCS. PlayReady also packs with it the license acquisition url, domain service IDs, even room for custom attributes identify publishers, creation dates, etc. But the important note here is, whereas Widevine gravitates towards identifying the content holistically, PlayReady is focused on a set of keys which may or may not encompass the content. Either way, there’s something to glean from “this is my content” and “these are the keys that protect my content”.
+Each key is assigned an algorithm -- in this case, AES CBCS. PlayReady also packs with it the license acquisition url, domain service IDs, even room for custom attributes identify publishers, creation dates, etc. The important note here is, whereas Widevine gravitates towards identifying the content holistically, PlayReady is focused on a set of keys which may or may not encompass the content. Either way, there’s something to glean from “this is my content” and “these are the keys that protect my content”.
 
-Now for our third and final: Fairplay. How can I describe Apple’s approach to DRM except for “they just don’t." In classic Apple fashion, they march by the beat of their own drum. They do not use a PSSH anywhere. The spec said “optional” and they ran with it. To be fair, Apple supports a streaming key delivery which is effectively an arbitrary URI to identify single keys. You’ll often see these in manifests but they’re not strongly enforced.
+Now for our third and final: Fairplay.
+
+How can I describe Apple’s approach to DRM except for “they just don’t." In classic Apple fashion, they march by the beat of their own drum. They do not use a PSSH anywhere. The spec said “optional” and they ran with it. To be fair, Apple supports a streaming key delivery which is effectively an arbitrary URI to identify single keys. You’ll often see these in manifests but they’re not strongly enforced.
 
 ```nil
 skd://demuxed?keyId=bdc1058a5ead035241e39b4a42b0f1e7
 ```
 
-In fact, when you look at HLS.js `onMediaEncrypted` implementation, you’ll notice that the function is one giant condition that starts with “if fairplay” (and has sinf). Everyone else, parse the PSSH.
+In fact, when you look at HLS.js `onMediaEncrypted` implementation, you’ll notice that the function is one giant condition that starts with “if Fairplay." Everyone else, parse the PSSH.
 
 ```nil
 if (
@@ -208,7 +210,9 @@ if (
 }
 ```
 
-This makes more sense when you consider the track encryption box. The tenc, like PSSH, defines protection parameters. Unlike the PSSH though, the tenc is required for protected tracks. It specifies all sorts of defaults: default key id, default initialization vector, etc. If you consider Fairplay, this is all they need! They don’t support CTR, so they don’t need a protection scheme indicator. They don’t support multi-key license requests nor content identification. As far as the track encryption box is concerned, they only ever need version 0. The crypt and skip byte blocks control the pattern which encryption is applies to subsamples, but HLS though has dictated “9 off, 1 on”. Apple has simplified their DRM story be using and vehemently stick to defaults across the board. If they want to rotate keys over a single track, you can override the encryption parameters for with the sample group description. In the end of the day, that’s everything the decoder needs to make license requests and playback protected content.
+This makes more sense when you consider the track encryption box. The TENC, like PSSH, defines protection parameters. Unlike the PSSH though, the TENC is required for protected tracks. It specifies all sorts of defaults: default key id, default initialization vector, etc. If you consider Fairplay, this is all they need!
+
+They don’t support CTR, so they don’t need a protection scheme indicator. They don’t support multi-key license requests nor content identification. As far as the track encryption box is concerned, they only ever need version 0. The crypt and skip byte blocks control the pattern which encryption is applies to subsamples, but HLS though has dictated “9 off, 1 on”. Apple has simplified their DRM story be using and vehemently stick to defaults across the board. If they want to rotate keys over a single track, you can override the encryption parameters for with the sample group description. In the end of the day, that’s everything the decoder needs to make license requests and playback protected content.
 
 ```nil
 aligned(8) class TENC extends FullBox('tenc', version, flags=0)
