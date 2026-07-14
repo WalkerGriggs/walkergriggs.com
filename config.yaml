@@ -1,5 +1,5 @@
 baseURL: 'https://walkergriggs.com'
-languageCode: 'en-us'
+locale: 'en-us'
 title: 'Walker Griggs'
 disableKinds: ["taxonomy"]
 ignoreErrors: ["error-disable-taxonomy"]
@@ -13,7 +13,7 @@ params:
                 email: "hello@walkergriggs.com"
 
 permalinks:
-        posts: "/:year/:month/:day/:filename"
+        posts: "/:year/:month/:day/:contentbasename"
         pages: "/:slug"
 
 menu:
