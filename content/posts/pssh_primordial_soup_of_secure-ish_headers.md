@@ -4,8 +4,6 @@ author = ["Walker Griggs"]
 date = 2024-10-16
 categories = ["talks"]
 draft = false
-creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
-weight = 2004
 +++
 
 Given at [April '24 SF Video Technology](https://www.meetup.com/sf-video-technology/events/298593592/) meetup and [Demuxed '24](https://2024.demuxed.com)
@@ -42,6 +40,8 @@ We’re going to a happy place. It’s a crisp, April morning, the sun is shinin
 
 My name is Walker Griggs, I’m a video engineer at Mux, and with our time together, we’ll attempt to answer that question. We’ll tear apart a few PSSH boxes bit by bit, we’ll discover a few interesting design choices, and we’ll discuss what those choices mean for license request semantics. My hope is that we’ll walk away today appreciating just how quirky, idiomatic, and character rich these boxes are.
 
+---
+
 Before we get hands on with some hex dumps, we should first at least cover some of the box basics. The PSSH, or Protection System Specific Header, is a flexible and general box that contains the data needed by a content protection system to play back the content -- most often just the encryption key ID. The format of that data is specified by a DRM system identifier. As the name suggests, it’s specific for a given DRM scheme and is most often used by a scheme’s CDM (content decryption module) to generate license requests.
 
 Unlike the TrackEncryption box, the PSSH is optional regardless if the content is protected or not. Also different from the TrackEncryption box, there can be multiple PSSH boxes if the content is playable under multiple schemes. Maybe most important for this talk, it’s outside any security boundary. Please don't sue me.
@@ -65,6 +65,8 @@ aligned(8) class PSSH extends FullBox('pssh', version, flags=0)
 There isn’t much to see in the spec either. The PSSH MUST contain a system ID, possibly a list of key ids depending on the box version, and then the arbitrary binary blob.
 
 In preparing for this talk, I’ve reviewed many many PSSH boxes from major streaming services, live venues, and creator networks. The vast majority (maybe even all) of the boxes I’ve surveyed the list of key IDs have been omitted. So in practice, the PSSH is a scheme ID followed by arbitrary data.
+
+---
 
 Let’s pull one apart.
 
@@ -97,7 +99,7 @@ If you haven’t worked with protocol buffers before, they’re a way to seriali
 
 For example, the message Foobar contains one, int64 field called A at index 1. If we set A to 150 and encode, we get the following three bytes: `08 96 01`.
 
-If we look at our Widevine payload (everything after byte 32), the first two bytes if our payload (`12 10`) are clever varints that tell us the field is the second index, is a variable length type like a string, list, byte array, or nested proto, and it’s 16 bytes long. See, [Protobuf's encoding documentation](https://protobuf.dev/programming-guides/encoding/) for more detail.
+If we look at our Widevine payload (everything after byte 32), the first two bytes if our payload (`12 10`) are clever varints that tell us the field is the second index, is a variable length type like a string, list, byte array, or nested proto, and it’s 16 bytes long. See, Protobuf's encoding documentation{{< sidenote >}}"Encoding," Protocol Buffers Documentation, Google, accessed July 13, 2026, <https://protobuf.dev/programming-guides/encoding/>.{{< /sidenote >}} for more detail.
 
 Any time I’m working with MPEG CENC, 16 byes should immediately signal initialization vector, key id, or key material. Given that the PSSH is squarely outside of our security boundary, we can safely rule out the latter. This is likely our key ID.
 
@@ -139,6 +141,8 @@ dd status=none skip=52 count=88 bs=1 if=widevine.bin | base64 -d | jq
   "variantId": "956578592210223111"
 }
 ```
+
+---
 
 Time for PlayReady.
 
@@ -187,6 +191,8 @@ dd status=none skip=42 bs=1 if=playready.bin | iconv -f UTF-16LE -t UTF-8 | xq
 ```
 
 Each key is assigned an algorithm -- in this case, AES CBCS. PlayReady also packs with it the license acquisition url, domain service IDs, even room for custom attributes identify publishers, creation dates, etc. The important note here is, whereas Widevine gravitates towards identifying the content holistically, PlayReady is focused on a set of keys which may or may not encompass the content. Either way, there’s something to glean from “this is my content” and “these are the keys that protect my content”.
+
+---
 
 Now for our third and final: Fairplay.
 

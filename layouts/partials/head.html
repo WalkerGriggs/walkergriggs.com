@@ -12,8 +12,31 @@
 
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
 
-  {{ partial "twitter.html" . }}
-  {{ partial "open_graph.html" . }}
+  <meta property="og:title" content="{{ if .IsPage }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}">
+  <meta name="og:description" content="{{ $description }}">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ with .Params.featured_image }}
+  <meta property="og:image" content="{{ . | absURL }}">
+  <meta property="og:image:secure_url" content="{{ . | absURL }}">
+  {{ end }}
+  {{ range .Params.categories }}<meta property="article:section" content="{{ . }}">{{ end }}
+  {{ if isset .Params "date" }}<meta property="article:published_time" content="{{ (time .Date).Format "2006-01-02T15:04:05Z" }}">{{ end }}
+
+  {{ with .Site.Params.twitter }}
+  <meta name="twitter:site" content="@{{ . }}">
+  <meta name="twitter:creator" content="@{{ . }}">
+  {{ end }}
+  <meta name="twitter:title" content="{{ if .IsPage }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}">
+  <meta name="twitter:description" content="{{ $description }}">
+  {{ with .Params.featured_image }}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ . | absURL }}">
+  {{ else }}
+  <meta name="twitter:card" content="summary">
+  {{ end }}
 
   {{ $inServerMode := hugo.IsServer }}
   {{ $sass         := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "scss/style.scss" . }}

@@ -1,0 +1,17 @@
+{{- /*
+  Link render hook.
+
+  A bare-URL autolink -- `<https://host/path>`, as used by the citations in
+  sidenotes -- is rendered as just its hostname followed by a small link glyph,
+  while the anchor still resolves to the full URL. Ordinary labelled links,
+  `[text](url)`, are left to render normally.
+*/ -}}
+{{- $dest := .Destination -}}
+{{- $u := urls.Parse $dest -}}
+{{- $text := .Text | plainify -}}
+{{- if and (eq $text $dest) $u.Host -}}
+  {{- $host := strings.TrimPrefix "www." $u.Host -}}
+  <a class="cite-link" href="{{ $dest | safeURL }}" rel="noopener"{{ with .Title }} title="{{ . }}"{{ else }} title="{{ $dest }}"{{ end }}>{{ $host }}<span class="cite-link__icon" aria-hidden="true">↗</span></a>
+{{- else -}}
+  <a href="{{ $dest | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>
+{{- end -}}

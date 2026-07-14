@@ -1,0 +1,21 @@
+{{- /* A numbered Tufte sidenote. Usage:
+       text.{{< sidenote >}}Note body.{{< /sidenote >}}
+     An optional margin figure sits ABOVE the numbered text (the number stays
+     with the caption text, per Tufte). Give it either way — both work:
+       text.{{< sidenote image="/img/x.webp" alt="…" >}}Note body.{{< /sidenote >}}
+       text.{{< sidenote >}}![alt](/img/x.webp) Note body.{{< /sidenote >}}
+     A leading markdown image in the body is hoisted out automatically so the
+     number never lands before the image. */ -}}
+{{- $id := printf "sn-%d" .Ordinal -}}
+{{- $img := .Get "image" -}}
+{{- $alt := .Get "alt" -}}
+{{- $body := .Inner -}}
+{{- if not $img -}}
+  {{- $m := findRESubmatch `(?s)^\s*!\[([^\]]*)\]\(([^)\s]+)\)\s*(.*)$` .Inner -}}
+  {{- with $m -}}
+    {{- $alt = index (index . 0) 1 -}}
+    {{- $img = index (index . 0) 2 -}}
+    {{- $body = index (index . 0) 3 -}}
+  {{- end -}}
+{{- end -}}
+<label for="{{ $id }}" class="margin-toggle sidenote-number"></label><input type="checkbox" id="{{ $id }}" class="margin-toggle"/><span class="sidenote">{{- with $img }}<img src="{{ . }}"{{ with $alt }} alt="{{ . }}"{{ end }}>{{ end -}}<span class="sidenote-body">{{ $body | .Page.RenderString }}</span></span>

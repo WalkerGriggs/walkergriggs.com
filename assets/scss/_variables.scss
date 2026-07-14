@@ -1,24 +1,29 @@
-$font-family-header: Palatino, Constantia, "Lucida Bright", Lucidabright,
-                     "Lucida Serif", Lucida, "DejaVu Serif",
-                     "Bitstream Vera Serif", "Liberation Serif", Georgia,
-                     serif;
+// ── Palette ────────────────────────────────────────────────────────────
+// Tufte's off-white / off-black — softer than pure #fff / #000, so the
+// contrast never glares. Colour is reserved for figures; text is greyscale.
+$color-background: #fffff8;
+$color-text:       #111111;
+$color-meta:       #6b6b64; // dates, captions, footer — quiet
+$color-accent:     #a00000; // ink red, used sparingly (never for prose links)
+$color-rule:       #e0e0d6; // hairlines only
 
-$font-family-body: -apple-system, BlinkMacSystemFont, "Avenir Next",
-                   Avenir, "Nimbus Sans L", Roboto, Noto, "Segoe UI",
-                   Arial, Helvetica, "Helvetica Neue", sans-serif;
+// ── Type ───────────────────────────────────────────────────────────────
+// Garnier is the display + text face (@font-face rules at the top of
+// style.scss). Palatino / Georgia are the metrically-similar fallbacks
+// Tufte CSS itself uses.
+$font-serif: "Garnier", Georgia, serif;
+$font-mono:  "SFMono-Regular", Courier, monospace;
+$font-base:  14px;
 
-$font-family-mono: monospace;
-$font-family-footer: monospace;
-
-$font-size: 16px;
-$hero-size: 24px;
-$line-height: 1.5;
-
-$page-width: 500px;
-$content-width: 420px;
-$content-padding: 80px;
-
-$color-background: #FFF;
-$color-text: #000;
-$color-accent: #4B32EC;
-$color-meta: #666;
+// ── Measure ────────────────────────────────────────────────────────────
+// One column width for the whole site — masthead, hero, prose, lists and
+// footer all share $measure and sit flush left against $gutter. The only
+// thing allowed past it is the margin band on the right, which holds the
+// sidenotes and margin notes. Layout metrics are in px so the margins stay
+// a fixed physical size independent of the type scale.
+$measure:            600px; // the shared column
+$gutter:             60px;  // left inset from the viewport edge
+$sidenote-width:     240px;
+$sidenote-gap:       30px;
+$sidenote-offset:   -($sidenote-width + $sidenote-gap); // out into the margin
+$breakpoint:         1000px; // below this the margin band can't fit — collapse

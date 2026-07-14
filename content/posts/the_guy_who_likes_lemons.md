@@ -5,9 +5,6 @@ description = "I’ve recently been thinking about my personal brand – whateve
 date = 2023-02-07
 categories = ["essays"]
 draft = false
-creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
-weight = 2014
-featured_image = "img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.webp"
 +++
 
 ## “I want to be remembered as the guy who likes lemons.” {#i-want-to-be-remembered-as-the-guy-who-likes-lemons-dot}
@@ -18,12 +15,12 @@ She explained. There are always wonderful essays about ambition and adversity, b
 
 She didn’t remember the specifics of the essay. It was probably some analogy about how the author strove to be bright and funky, or sweet and sour. The contents of the essay didn’t even matter; it was all about that unforgettable opening sentence that I’m still talking about 10 years later.
 
-In a world where hiring managers review your resume  [in 6 seconds](https://www.theladders.com/static/images/basicSite/pdfs/TheLadders-EyeTracking-StudyC2.pdf), users context switch [after 400ms](https://lawsofux.com/doherty-threshold/), and the optimal sales email can fit [in a single tweet](https://blog.boomerangapp.com/2016/02/7-tips-for-getting-more-responses-to-your-emails-with-data/), the guy who likes lemons got that advisor’s attention in just 11 words.
+{{< newthought >}}In a{{< /newthought >}} world where hiring managers review your resume in 6 seconds,{{< sidenote >}}TheLadders, _Keeping an Eye on Recruiter Behavior_ (New York: TheLadders, 2012), <https://www.theladders.com/static/images/basicSite/pdfs/TheLadders-EyeTracking-StudyC2.pdf>.{{< /sidenote >}} users context switch after 400ms,{{< sidenote >}}Jon Yablonski, "Doherty Threshold," Laws of UX, accessed July 13, 2026, <https://lawsofux.com/doherty-threshold/>.{{< /sidenote >}} and the optimal sales email can fit in a single tweet,{{< sidenote >}}Alex Moore, "7 Tips for Getting More Responses to Your Emails (With Data!)," The Boomerang Blog, February 12, 2016, <https://blog.boomerangapp.com/2016/02/7-tips-for-getting-more-responses-to-your-emails-with-data/>.{{< /sidenote >}} the guy who likes lemons got that advisor’s attention in just 11 words.
 
 
 ## Wear Orange Shoes {#wear-orange-shoes}
 
-Four years later, I read Dave Kerpen’s book [“The Art of People”](http://www.artofpeoplebook.com/). Out of 53 chapters, one detail has stuck with me: Kerpen always wears orange shoes.
+Four years later, I read Dave Kerpen’s book “The Art of People.”{{< sidenote >}}Dave Kerpen, _The Art of People: 11 Simple People Skills That Will Get You Everything You Want_ (New York: Crown Business, 2016), <https://www.goodreads.com/book/show/31848390-the-art-of-people>.{{< /sidenote >}} Out of 53 chapters, one detail has stuck with me: Kerpen always wears orange shoes.
 
 Some people will think that’s silly; most won’t notice. There’s a sliver of people, though, that will never forget those bright orange shoes. If that translates to just one new connection, hire, or investment, the shoes have paid out in dividends.
 
@@ -39,8 +36,6 @@ The funny thing is I never intended to grow a mustache. I was debugging a misbeh
 
 
 ## Look good, feel good, sh\*t in the woods! {#look-good-feel-good-sh-t-in-the-woods}
-
-{{< figure src="/img/the_guy_who_likes_lemons/look_good_feel_good.webp" width="420px" >}}
 
 I went to college in Maine. Freshman orientation was a one-week trek deep into the forest. So deep, in fact, that our van had skid plates for dirt roads and bull bars in case we “bumped” into a moose.
 
@@ -59,9 +54,11 @@ I’ve recently been thinking about my personal brand – whatever that means. D
 
 At the end of the day, like all of you, I have varied interests. What I might want to shout from the rooftops one day, I may be uncomfortable sharing the next; and what others might find meaningful, might feel inconsequential to me.
 
-One interview that lives rent-free in my head is [Numerphile’s discussion with John Conway on his Game of Life](https://youtu.be/E8kUJL04ELA). To Conway, the Game of Life felt like an insignificant curiosity. To the rest of the world, the game was immensely impactful.
+---
 
-Conway spent much of his illustrious career studying cellular automaton, but his most notorious work can be written in [less than 40 characters](https://codegolf.stackexchange.com/a/12733).
+One interview that lives rent-free in my head is Numberphile’s discussion with John Conway on his Game of Life.{{< sidenote >}}Numberphile, "Does John Conway Hate His Game of Life?," YouTube video, 2014, <https://youtu.be/E8kUJL04ELA>.{{< /sidenote >}} To Conway, the Game of Life felt like an insignificant curiosity. To the rest of the world, the game was immensely impactful.
+
+Conway spent much of his illustrious career studying cellular automaton, but his most notorious work can be written in less than 40 characters.{{< sidenote >}}Game of Life implemented in under 40 characters, Code Golf Stack Exchange, accessed July 13, 2026, <https://codegolf.stackexchange.com/a/12733>.{{< /sidenote >}}
 
 [Kolmogorov complexity](https://en.wikipedia.org/wiki/Kolmogorov_complexity) is the theory that something is as complex as the shortest program that can reproduce it. By those standards, the Game of Life is less complex than [the name of some Welch towns](https://en.wikivoyage.org/wiki/Llanfairpwllgwyngyll).
 
@@ -71,10 +68,8 @@ Conway spent much of his illustrious career studying cellular automaton, but his
 
 The Game of Life and Conway’s relationship with it, highlights how little it takes to leave a lasting impression and how it often happens when you least expect it. No matter how we try, we can’t control it.
 
-[Franz Wright](https://exceptindreams.livejournal.com/373521.html) wrote that “one of the few pleasures of writing is the thought of one’s book in the hands of a kind hearted intelligent person somewhere.”
+{{< newthought >}}Franz Wright{{< /newthought >}}{{< sidenote >}}Franz Wright, quoted in "except in dreams," LiveJournal, accessed July 13, 2026, <https://exceptindreams.livejournal.com/373521.html>.{{< /sidenote >}} wrote that “one of the few pleasures of writing is the thought of one’s book in the hands of a kind hearted intelligent person somewhere.”
 
 I take solace in knowing that, as long as we approach life bright and funky, bold and authentic, or smiling and borderline puerile, someone will remember.
 
 And so, of course, there’s only one way to close. My name is Walker Griggs, and I want to be remembered as the mustached man who looked good, felt good, loved lemons, and shat in the woods – metaphorically, of course.
-
-{{< figure src="/img/the_guy_who_likes_lemons/walker_griggs_the_guy_who_likes_lemons.webp" width="420px" >}}

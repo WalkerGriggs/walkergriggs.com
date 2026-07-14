@@ -1,0 +1,13 @@
+{{- /* An epigraph. Usage:
+       {{< epigraph author="Cicero, *De Oratore*" >}}
+       The quotation, which may run to several paragraphs.
+       {{< /epigraph >}}
+       The author attribution is optional and accepts markdown. */ -}}
+<div class="epigraph">
+<blockquote>
+{{ .Page.RenderString (dict "display" "block") .Inner }}
+{{- with .Get "author" }}
+<footer>{{ $.Page.RenderString . }}</footer>
+{{- end }}
+</blockquote>
+</div>

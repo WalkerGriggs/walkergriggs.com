@@ -1,144 +1,532 @@
 @import "variables";
-@import "util";
+
+// ─────────────────────────────────────────────────────────────────────────
+// A minimal Tufte implementation: serif measure, a reserved right margin for
+// sidenotes, quiet greyscale text, colour left for figures. See
+// docs/tufte-design-reference.md for the design rationale.
+// ─────────────────────────────────────────────────────────────────────────
+
+// ── Garnier ──────────────────────────────────────────────────────────────
+// Demo/trial weights (PoWGarnierDemo) — evaluation only; a production licence
+// is required before shipping. Roman and italic ship as separate files.
+@mixin garnier($weight, $style, $file) {
+    @font-face {
+        font-family: "Garnier";
+        font-weight: $weight;
+        font-style: $style;
+        font-display: swap;
+        src: url("https://fonts.sfo3.cdn.digitaloceanspaces.com/garnier/#{$file}.woff2") format("woff2"),
+             url("https://fonts.sfo3.cdn.digitaloceanspaces.com/garnier/#{$file}.woff")  format("woff");
+    }
+}
+
+@include garnier(400, normal, "PoWGarnier-Regular");
+@include garnier(400, italic, "PoWGarnier-Italic");
+@include garnier(500, normal, "PoWGarnier-Medium");
+@include garnier(700, normal, "PoWGarnier-Bold");
+@include garnier(700, italic, "PoWGarnier-BoldItalic");
 
 html {
-  margin: 0;
-  height: 100%;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+    font-size: $font-base; // rem base — 1.4rem body ≈ 12px
+    margin: 0;
+    height: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
-    @media only screen and (max-width: 550px) {
-        width: 500px;
-        img, figure {
-            max-width: 500px;
-        }
-    }
-
-    @media only screen and (max-width: 500px) {
-        width: 450px;
-        img, figure {
-            max-width: 450px;
-        }
-    }
-
-    @media only screen and (max-width: 450px) {
-        width: 400px;
-        img, figure {
-            max-width: 400px;
-        }
-    }
-
-    @media only screen and (max-width: 400px) {
-        width: 350px;
-        img, figure {
-            max-width: 350px;
-        }
-    }
-
-    width: $page-width;
-    margin: 5%;
-    margin-bottom: 0px;
-    flex: 1;
+    margin: 0; // flush left — no centering
+    padding: 3.5rem 0 3.5rem $gutter;
     background-color: $color-background;
     color: $color-text;
-    font-family: $font-family-body;
-    font-size: $font-size;
+    font-family: $font-serif;
+    font-size: 1.4rem;
     font-weight: 400;
-    text-rendering: geometricPrecision;
+    line-height: 2rem;
+    font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    counter-reset: sidenote-counter;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: $font-family-header;
-    font-style: normal;
-    font-weight: 700;
+// ── Headings ─────────────────────────────────────────────────────────────
+// Tufte stops at h3. Roman h1, italic h2/h3 — no bold shouting.
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    max-width: $measure;
 }
 
-input,
-button,
-select,
-textarea {
+h1 {
+    font-weight: 500;
+    font-size: 3.2rem;
+    margin: 0 0 1rem;
+}
+
+h2 {
+    font-style: italic;
+    font-size: 2.2rem;
+    margin: 2.5rem 0 1rem;
+}
+
+h3 {
+    font-style: italic;
+    font-size: 1.7rem;
+    margin: 2rem 0 1rem;
+}
+
+h4, h5, h6 {
+    font-style: italic;
+    font-size: 1.4rem;
+    margin: 1.75rem 0 1rem;
+}
+
+input, button, select, textarea {
     font-family: inherit;
 }
 
-table td, table td * {
-    text-align: left;
-    vertical-align: top;
-}
+// ── Masthead & footer ────────────────────────────────────────────────────
+// Mark on the left, italic nav on the right, a single hairline top and bottom.
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: $measure;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $color-rule;
 
-td {
-    min-width: 80px;
-    white-space: nowrap;
-    padding-right: 0.5em;
-}
+    #logo {
+        cursor: pointer;
 
-@import "partial/header";
-@import "partial/footer";
-
-.hero {
-    font-family: $font-family-header;
-    font-size: $hero-size;
-    font-style: normal;
-    font-weight: 700;
-}
-
-.content {
-    width: 100%;
-    line-height: $line-height;
-    float: right;
-
-    figure {
-        margin: 0px;
-
-        img, p {
-            font-style: italic;
-            width: 100%;
+        img {
+            display: block;
+            height: 38px;
         }
+    }
+
+    #nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            display: inline-block;
+            margin-left: 1.4rem;
+        }
+
+        li > a {
+            color: $color-text;
+            font-style: italic;
+            font-size: 1.15rem;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+                text-underline-offset: 0.14em;
+            }
+        }
+    }
+}
+
+#footer {
+    clear: both;
+    max-width: $measure;
+    margin-top: 4rem;
+    padding-top: 1rem;
+    border-top: 1px solid $color-rule;
+    color: $color-meta;
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 400;
+}
+
+// The only layout utilities the templates use.
+.mb3 { margin-bottom: 2rem; }
+.pb3 { padding-bottom: 2rem; }
+
+// ── Hero ─────────────────────────────────────────────────────────────────
+// The one large, deliberate voice on the page — the bio line or post title.
+.hero {
+    font-family: $font-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.9rem;
+    line-height: 1.35;
+    max-width: $measure;
+    margin-bottom: 2.5rem;
+
+    a { color: inherit; }
+}
+
+// On a post, the date sits directly beneath the title — drop the hero's
+// bottom margin so they read as one unit. The .mb3 wrapper spaces the block
+// from the body below.
+.post-header .hero {
+    margin-bottom: 0.25rem;
+}
+
+// ── The reading column ───────────────────────────────────────────────────
+.content {
+    line-height: 2rem;
+    counter-reset: figure-counter; // "Figure N:" labels, per article
+
+    // Everything in the flow is held to the measure; the space to its right
+    // is the margin band the sidenotes float into.
+    p, ol, ul, dl, blockquote, pre, table, h1, h2, h3, h4, h5, h6 {
+        max-width: $measure;
     }
 
     p {
-        margin-block-start: 1em;
-        margin-block-end: 2em;
+        margin: 0;
     }
 
+    // Book-style paragraphs: no vertical gap, and each new paragraph is
+    // marked by a first-line indent. Only consecutive paragraphs indent, so
+    // the opening paragraph of a section (after a heading) stays flush.
+    p + p {
+        text-indent: 1.5em;
+    }
+
+    // Thematic break (`---`): a pure whitespace section break, no rule. The
+    // paragraph after it resets to flush, as it no longer follows a <p>.
+    hr {
+        border: 0;
+        margin: 1rem 0;
+    }
+
+    ol, ul {
+        padding-left: 1.4rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+
+    // Tufte links: same colour as the text, underlined, no hover theatrics.
     a {
-        color: $color-background;
-        background: $color-accent;
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-thickness: 0.06em;
+        text-underline-offset: 0.14em;
+    }
+
+    // Citation links (render-link.html): a bare-URL autolink collapses to its
+    // hostname plus a small raised glyph. The host underlines like any link;
+    // the glyph sits outside the underline, quiet and monochrome.
+    .cite-link {
+        white-space: nowrap;
+    }
+
+    .cite-link__icon {
+        display: inline-block; // lift the glyph clear of the underline
+        font-size: 0.7em;
+        line-height: 1;
+        margin-left: 0.15em;
+        vertical-align: 0.15em;
         text-decoration: none;
-        padding: 0.15em 0.25em;
+        opacity: 0.65;
+    }
+
+    // Small caps opener, à la Beautiful Evidence.
+    .newthought {
+        font-variant: small-caps;
+        font-size: 1.15em;
+        letter-spacing: 0.03em;
+    }
+
+    // A newthought opens a new movement, so its paragraph carries the same
+    // flush, whitespace break an `---` would — use the shortcode in place of
+    // a thematic break rather than pairing the two.
+    p:has(> .newthought:first-child) {
+        margin-top: 1rem;
+        text-indent: 0;
     }
 }
 
+// ── Sidenotes & margin notes ─────────────────────────────────────────────
+// Sidenotes are numbered; margin notes are the numberless variant. No
+// JavaScript: a hidden checkbox toggles the note into view on narrow screens
+// (the "checkbox hack"). On wide screens the note lives in the margin.
+.sidenote,
+.marginnote {
+    float: right;
+    clear: right;
+    position: relative;
+    width: $sidenote-width;
+    margin-right: $sidenote-offset;
+    margin-top: 0.3rem;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    vertical-align: baseline;
+    text-indent: 0; // don't inherit the paragraph's first-line indent
+}
+
+.sidenote-number {
+    counter-increment: sidenote-counter;
+}
+
+// Inline superscript reference…
+.sidenote-number:after {
+    content: counter(sidenote-counter);
+    font-size: 0.8rem;
+    top: -0.5rem;
+    left: 0.1rem;
+    position: relative;
+    vertical-align: baseline;
+}
+
+// …matched by the number that opens the note's text. It sits on .sidenote-body
+// (not the whole note) so a leading margin image stays above the number.
+.sidenote-body:before {
+    content: counter(sidenote-counter) " ";
+    font-size: 0.8rem;
+    top: -0.5rem;
+    position: relative;
+    vertical-align: baseline;
+}
+
+input.margin-toggle {
+    display: none;
+}
+
+label.sidenote-number {
+    display: inline;
+}
+
+// The ⊕ toggle for a numberless margin note is desktop-hidden.
+label.margin-toggle:not(.sidenote-number) {
+    display: none;
+}
+
+// An image inside a note fills the margin band and stacks above its text.
+.sidenote img,
+.marginnote img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.4rem;
+}
+
+// ── Figures ──────────────────────────────────────────────────────────────
+.content figure {
+    // Held flush-left to the text measure, like every other block. The image
+    // is centred within that column (below), not across the wider .content
+    // band that reserves space for sidenotes.
+    margin: 2.5rem 0;
+    max-width: $measure;
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin-inline: auto;
+    }
+
+    figcaption,
+    p {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        color: $color-meta;
+        margin-top: 0.5rem;
+    }
+
+    // Auto-numbered caption label — replaces the old hand-typed, escaped
+    // "<span class='figure-number'>Figure N: </span>" org-mode artifact.
+    figcaption {
+        counter-increment: figure-counter;
+
+        &:before {
+            content: "Figure " counter(figure-counter) ": ";
+            font-style: italic;
+        }
+    }
+}
+
+// A figure dropped into the margin: wrap the <img> in a .marginnote span.
+.content figure .marginnote img {
+    max-width: 100%;
+}
+
+// ── Epigraph ─────────────────────────────────────────────────────────────
+blockquote {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid $color-rule;
+    font-style: italic;
+
+    footer {
+        font-style: normal;
+        font-size: 1.1rem;
+        color: $color-meta;
+        margin-top: 0.5rem;
+        font-style: italic;
+    }
+}
+
+.epigraph blockquote {
+    border-left: 0;
+    padding-left: 0;
+}
+
+// ── Tables ───────────────────────────────────────────────────────────────
+// Horizontal rules only — no grid, no chartjunk.
+table {
+    border-collapse: collapse;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 1.5rem 0;
+}
+
+th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.25rem 1.25rem 0.25rem 0;
+    white-space: nowrap;
+}
+
+thead th {
+    border-bottom: 1px solid $color-text;
+    font-weight: 500;
+}
+
+// ── Post / reading lists ─────────────────────────────────────────────────
 .page-list {
-    padding-inline-start: 0px;
+    list-style: none;
+    padding-left: 0;
+    max-width: $measure;
 
     li {
         display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.5rem;
-        line-height: 1;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 0.6rem;
+        line-height: 1.3;
+
+        // Tag and date share one quiet meta treatment; both are fixed-width
+        // columns so every title starts at the same x and dates align left.
+        .label, .date {
+            color: $color-meta;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .label {
+            flex: 0 0 52px;
+            font-style: italic;
+        }
+
+        .date {
+            flex: 0 0 64px;
+            font-variant-numeric: oldstyle-nums;
+            white-space: nowrap;
+        }
 
         a {
+            flex: 1 1 auto;
             color: $color-text;
-            background: $color-background;
             text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+                text-underline-offset: 0.14em;
+            }
         }
     }
-};
+}
+
+// ── Meta ─────────────────────────────────────────────────────────────────
+.date {
+    color: $color-meta;
+    font-style: italic;
+    font-size: 1.15rem;
+}
+
+// ── Code ─────────────────────────────────────────────────────────────────
+// Quiet and monochrome: colour stays reserved for figures. Syntax highlighting
+// is expressed typographically — bold keywords, italic grey comments — on a
+// faintly tinted block.
+code {
+    font-family: $font-mono;
+    font-size: 0.9em;
+}
+
+pre, .highlight {
+    max-width: $measure;
+    margin: 1.5rem 0;
+    background: #f4f4ec;
+    overflow-x: auto;
+}
 
 pre {
-  overflow-x: auto;
-  padding: 15px 15px 10px 15px;
-  font-size: 0.8em;
+    padding: 1rem 1.25rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+
+    code { font-size: inherit; }
+}
+
+// The Chroma wrapper already carries the block styling; its inner <pre> only
+// needs padding, so avoid a doubled background/margin.
+.highlight pre {
+    margin: 0;
+    max-width: none;
+}
+
+.chroma {
+    .c, .ch, .cm, .c1, .cs, .cp, .cpf { color: $color-meta; font-style: italic; } // comments
+    .k, .kc, .kd, .kn, .kp, .kr, .kt { font-weight: 700; }                        // keywords
+    .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss,          // strings
+    .m, .mb, .mf, .mh, .mi, .il, .mo { color: #55554e; }                          // numbers
 }
 
 iframe {
+    max-width: $measure;
     width: 100%;
     aspect-ratio: 16 / 9;
+    border: 0;
+}
+
+// ── Narrow viewports ─────────────────────────────────────────────────────
+// The margin collapses: notes hide until tapped, everything spans full width.
+@media (max-width: $breakpoint) {
+    body {
+        padding: 2.5rem 1.5rem;
+    }
+
+    #header, #footer,
+    .hero,
+    .content p, .content ol, .content ul, .content dl,
+    .content blockquote, .content pre, .content table,
+    .content figure, .content h1, .content h2, .content h3,
+    .content h4, .content h5, .content h6,
+    .page-list, iframe {
+        max-width: 100%;
+        width: auto;
+    }
+
+    label {
+        cursor: pointer;
+    }
+
+    label.margin-toggle:not(.sidenote-number) {
+        display: inline;
+        color: $color-accent;
+    }
+
+    .sidenote,
+    .marginnote {
+        display: none;
+    }
+
+    .margin-toggle:checked + .sidenote,
+    .margin-toggle:checked + .marginnote {
+        display: block;
+        float: none;
+        clear: both;
+        width: 95%;
+        max-width: 95%;
+        margin: 1rem 2.5% 1.5rem;
+        position: relative;
+    }
 }

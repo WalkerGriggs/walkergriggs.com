@@ -7,8 +7,6 @@ description = """
 date = 2022-08-07
 categories = ["essays"]
 draft = false
-creator = "Emacs 29.4 (Org mode 9.6.15 + ox-hugo)"
-weight = 2005
 +++
 
 > "If you fail in copying from a master you succeed in birthing an original art", Kushal Poddar
@@ -19,6 +17,8 @@ Then a content creator – a carving guru, as my colleague referred to him – r
 
 My colleagues' story resonated with me; programming works the same way.
 
+---
+
 I can't count the number of times I've stumbled on a new idea, excitedly put pen to paper, and resurfaced a few hours later to learn -- after some light 'market research' -- that someone else has solved the problem. At that point I’m faced with the decision to write it off as a fun investigation or to forge ahead knowing that someone beat me to the punch. And of course someone else has! Given the glut of public repositories on Github alone, it’s hard to imagine some problems haven’t been solved.
 
 I wouldn’t call this a particularly productive outlook, but for some innate reason it’s a shared human experience. We want to be adventurers and make great discoveries, and yet the most notable advances are often those in a solved fields.
@@ -27,10 +27,8 @@ Take chess, for example. The further a player deviates from the "main line" or a
 
 Like chess games or wood carvings, frame your programming projects as diddles. Sorting algorithms, data structures, security groups, EMNIST data, hello worlds – all are diddles. There’s nothing original about heap sort and certainly classifying handwritten letters seems like a solved problem. We should take solace in that. Before we write our magnum opal, we should understand existing systems. How can we presume to be entirely original until we know all existing prior art.
 
-There’s another part to diddles too. In a recent post about Basic English and controlled languages, I touched on that, to learn quickly we need to first learn slowly. By limiting the syllabus to the most common parts, we’re giving ourselves time to build a solid, reliable, and practical foundation. My colleague may have carved 15+ canoes in one weekend, but their last iteration was infinitely better than their first. By freeing themselves from the need to produce original work, they were able to focus on the techniques of carving.
+{{< newthought >}}There’s another{{< /newthought >}} part to diddles too. In a recent post about Basic English and controlled languages, I touched on that, to learn quickly we need to first learn slowly. By limiting the syllabus to the most common parts, we’re giving ourselves time to build a solid, reliable, and practical foundation. My colleague may have carved 15+ canoes in one weekend, but their last iteration was infinitely better than their first. By freeing themselves from the need to produce original work, they were able to focus on the techniques of carving.
 
 Thinking about my own experience learning Go, I probably wrote just as many CLIs as my colleague has carved canoes. CLIs aren’t sexy and they’re most certainly not novel. But now I can whip out a CLI faster than you read this post. And how many times have I needed to in the wild. Tons!
 
-So write like Didion! Paint like Jackson! Dribble like Jordan!
-
-Practice your diddles, re-implement your darlings, and study how “innovations” make use of your favorite data structures. Before you blow anyone’s mind, first learn what makes their brain tick.
+{{< newthought >}}So write{{< /newthought >}} like Didion! Paint like Jackson! Dribble like Jordan! Practice your diddles, re-implement your darlings, and study how “innovations” make use of your favorite data structures. Before you blow anyone’s mind, first learn what makes their brain tick.

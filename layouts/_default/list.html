@@ -7,18 +7,16 @@
 
 
 <div class="mb3 content">
-  {{ range $taxonomy := .Site.Taxonomies.categories.Alphabetical.Reverse }}
-  <div class="mb3">
-    <a href="/categories/{{$taxonomy.Name}}">{{ strings.FirstUpper $taxonomy.Name }}</a>
-    <ul class="page-list">
-      {{ range (sort .Pages "Date" "desc") }}
-      <li>
-        <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
-        <span >{{ .Date.Format "2006/01/02" }}</span>
-      </li>
-      {{ end }}
-    </ul>
-  </div>
-  {{ end }}
+  {{ $labels := dict "talks" "talk" "essays" "essay" "recently" "micro" }}
+  <ul class="page-list">
+    {{ range (where .Site.RegularPages "Params.categories" "!=" nil).ByDate.Reverse }}
+    {{ $cat := index .Params.categories 0 }}
+    <li>
+      <em class="label">{{ index $labels $cat | default $cat }}</em>
+      <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+      <span class="date">{{ .Date.Format "2006/01/02" }}</span>
+    </li>
+    {{ end }}
+  </ul>
 </div>
 {{ end }}

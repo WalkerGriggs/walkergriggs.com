@@ -1,0 +1,12 @@
+{{- /* Figure with an optional caption. Overrides Hugo's built-in figure.
+       The caption is auto-numbered by a CSS counter — no manual "Figure N:"
+       prefix — and there is no width attribute, so the image fills the measure.
+       Usage:
+         {{< figure src="/img/x.webp" caption="A caption." alt="…" >}}
+       The caption accepts markdown (e.g. links). */ -}}
+<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+<img src="{{ .Get "src" }}"{{ with .Get "alt" }} alt="{{ . }}"{{ end }}>
+{{- with .Get "caption" }}
+<figcaption>{{ . | $.Page.RenderString }}</figcaption>
+{{- end }}
+</figure>

@@ -1,0 +1,6 @@
+{{- /* A numberless margin note. Usage:
+       text{{< marginnote >}}Aside body.{{< /marginnote >}}
+       Optional margin figure above the text:
+       text{{< marginnote image="/img/x.webp" alt="…" >}}Aside.{{< /marginnote >}} */ -}}
+{{- $id := printf "mn-%d" .Ordinal -}}
+<label for="{{ $id }}" class="margin-toggle">&#8853;</label><input type="checkbox" id="{{ $id }}" class="margin-toggle"/><span class="marginnote">{{- with .Get "image" }}<img src="{{ . }}"{{ with $.Get "alt" }} alt="{{ . }}"{{ end }}>{{ end -}}{{ .Inner | .Page.RenderString }}</span>

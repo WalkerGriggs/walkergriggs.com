@@ -1,0 +1,2 @@
+{{- /* Small-caps opener. Usage: {{< newthought >}}First few words{{< /newthought >}} of a paragraph. */ -}}
+{{- printf `<span class="newthought">%s</span>` (.Inner | .Page.RenderString | string) | safeHTML -}}

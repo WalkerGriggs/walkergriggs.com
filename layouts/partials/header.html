@@ -5,7 +5,7 @@
     <div id="nav">
       <ul>
         {{ range .Site.Menus.main }}
-        <li><a class="no-decoration" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+        <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
         {{ end }}
       </ul>
     </div>
