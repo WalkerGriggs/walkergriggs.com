@@ -8,10 +8,9 @@ $color-accent:     #a00000; // ink red, used sparingly (never for prose links)
 $color-rule:       #e0e0d6; // hairlines only
 
 // ── Type ───────────────────────────────────────────────────────────────
-// Garnier is the display + text face (@font-face rules at the top of
-// style.scss). Palatino / Georgia are the metrically-similar fallbacks
-// Tufte CSS itself uses.
-$font-serif: "Garnier", Georgia, serif;
+// EB Garamond is the display + text face, loaded from Google Fonts.
+// Georgia is the metrically-similar fallback Tufte CSS itself uses.
+$font-serif: "EB Garamond", Georgia, serif;
 $font-mono:  "SFMono-Regular", Courier, monospace;
 $font-base:  14px;
 

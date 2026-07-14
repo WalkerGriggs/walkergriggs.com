@@ -6,25 +6,7 @@
 // docs/tufte-design-reference.md for the design rationale.
 // ─────────────────────────────────────────────────────────────────────────
 
-// ── Garnier ──────────────────────────────────────────────────────────────
-// Demo/trial weights (PoWGarnierDemo) — evaluation only; a production licence
-// is required before shipping. Roman and italic ship as separate files.
-@mixin garnier($weight, $style, $file) {
-    @font-face {
-        font-family: "Garnier";
-        font-weight: $weight;
-        font-style: $style;
-        font-display: swap;
-        src: url("https://fonts.sfo3.cdn.digitaloceanspaces.com/garnier/#{$file}.woff2") format("woff2"),
-             url("https://fonts.sfo3.cdn.digitaloceanspaces.com/garnier/#{$file}.woff")  format("woff");
-    }
-}
-
-@include garnier(400, normal, "PoWGarnier-Regular");
-@include garnier(400, italic, "PoWGarnier-Italic");
-@include garnier(500, normal, "PoWGarnier-Medium");
-@include garnier(700, normal, "PoWGarnier-Bold");
-@include garnier(700, italic, "PoWGarnier-BoldItalic");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,700;1,500;1,700&display=swap");
 
 html {
     font-size: $font-base; // rem base — 1.4rem body ≈ 12px
@@ -40,7 +22,7 @@ body {
     color: $color-text;
     font-family: $font-serif;
     font-size: 1.4rem;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 2rem;
     font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
     text-rendering: optimizeLegibility;
@@ -52,7 +34,7 @@ body {
 // Tufte stops at h3. Roman h1, italic h2/h3 — no bold shouting.
 h1, h2, h3, h4, h5, h6 {
     font-family: $font-serif;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.1;
     max-width: $measure;
 }
