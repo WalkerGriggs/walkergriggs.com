@@ -6,9 +6,28 @@
 // docs/tufte-design-reference.md for the design rationale.
 // ─────────────────────────────────────────────────────────────────────────
 
-// EB Garamond is loaded via a <link> in head.html (with preconnect) rather
-// than an @import here — an @import would serialize the font fetch behind
-// this stylesheet's download and parse.
+// EB Garamond is self-hosted (assets/fonts/) and preloaded in head.html, so
+// the bytes arrive before first paint and there's no flash of the fallback.
+// One variable file per style spans the whole 400–800 weight axis, covering
+// both the 500 (text) and 700 (bold) weights the design uses. head.html
+// preloads these same fingerprinted URLs — fingerprint is deterministic, so
+// the same file always resolves to the same URL.
+{{ $ebNormal := resources.Get "fonts/eb-garamond-normal.woff2" | fingerprint -}}
+{{ $ebItalic := resources.Get "fonts/eb-garamond-italic.woff2" | fingerprint -}}
+@font-face {
+    font-family: "EB Garamond";
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url("{{ $ebNormal.RelPermalink }}") format("woff2");
+}
+@font-face {
+    font-family: "EB Garamond";
+    font-style: italic;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url("{{ $ebItalic.RelPermalink }}") format("woff2");
+}
 
 html {
     font-size: $font-base; // rem base — 1.4rem body ≈ 12px

@@ -38,12 +38,17 @@
   <meta name="twitter:card" content="summary">
   {{ end }}
 
-  <!-- Preconnect so the EB Garamond fetch can start before the CSS is
-       parsed. Loaded via a direct <link> rather than an @import inside the
-       stylesheet, which would serialize discovery behind the CSS download. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,700;1,500;1,700&display=swap">
+  <!-- Preload the self-hosted EB Garamond files so the fetch starts
+       immediately, before the CSS is even parsed — the font is ready by
+       first paint, so there's no flash of the fallback. These URLs are
+       fingerprinted and must match the @font-face src in style.scss;
+       fingerprint is deterministic, so the same file yields the same URL.
+       crossorigin is required even same-origin, because font fetches use
+       CORS/anonymous mode — without it the browser downloads twice. -->
+  {{ $ebNormal := resources.Get "fonts/eb-garamond-normal.woff2" | fingerprint }}
+  {{ $ebItalic := resources.Get "fonts/eb-garamond-italic.woff2" | fingerprint }}
+  <link rel="preload" as="font" type="font/woff2" href="{{ $ebNormal.RelPermalink }}" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="{{ $ebItalic.RelPermalink }}" crossorigin>
 
   {{ $inServerMode := hugo.IsServer }}
   {{ $sass         := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "scss/style.scss" . }}
