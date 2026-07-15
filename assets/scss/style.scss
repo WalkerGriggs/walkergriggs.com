@@ -6,7 +6,9 @@
 // docs/tufte-design-reference.md for the design rationale.
 // ─────────────────────────────────────────────────────────────────────────
 
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,700;1,500;1,700&display=swap");
+// EB Garamond is loaded via a <link> in head.html (with preconnect) rather
+// than an @import here — an @import would serialize the font fetch behind
+// this stylesheet's download and parse.
 
 html {
     font-size: $font-base; // rem base — 1.4rem body ≈ 12px
